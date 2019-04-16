@@ -34,11 +34,11 @@ var generateRandomString = function(length) {
 };// end random number gen.
 var stateKey = 'podbean_auth_state';// cookie name
 var app = express();
-app.use(express.static(__dirname + '/public'))
+router.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 // this is to get authorization for our selves ie user dose not need to use this function
-app.get('/login_podbean', function(req, res) {
+router.get('/login_podbean', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
   // your application requests authorization
@@ -53,7 +53,7 @@ app.get('/login_podbean', function(req, res) {
     }));
 });
 // main authorization steeps this is where the user inputed information is sent along.
-app.get('/callback_podbean', function(req, res) {
+router.get('/callback_podbean', function(req, res) {
   console.log('call back was hit')
   // your application requests refresh and access tokens
   // after checking the state parameter
