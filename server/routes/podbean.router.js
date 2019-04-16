@@ -1,6 +1,6 @@
-const express = require('express');
+
 const pool = require('../modules/pool');
-const router = express.Router();
+
 require('dotenv').config();
 /**
  * This is an example of a basic node.js script that performs
@@ -18,6 +18,7 @@ var cookieParser = require('cookie-parser');
 var client_id = '7ae314124aac5c7de467d'; // Your client id
 var client_secret = process.env.CLIENT_SECRET_PODBEAN; // Your secret
 var redirect_uri = 'https://hermes-host.herokuapp.com/callback_podbean'; // Your redirect uri
+const router = express.Router();
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
