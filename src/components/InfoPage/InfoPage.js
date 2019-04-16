@@ -7,6 +7,7 @@ import React from 'react';
 
 const InfoPage = () => (
   <div>
+    <a href='/podbean/login_podbean'>Test podbean</a>
     <p>
       Info Page
     </p>
