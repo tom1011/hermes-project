@@ -6,9 +6,9 @@ function* send(action){
        const response = yield axios({
           method: 'GET',
           url: 'podbean/login_podbean',
-          headers: {
-            "Access-Control-Allow-Origin": "*"
-          }
+        //   headers: {
+        //     'Access-Control-Allow-Origin': '*',
+        //   }
        })
     console.log(response)
 }
