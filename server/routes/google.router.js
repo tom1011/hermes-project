@@ -1,6 +1,12 @@
+const express = require('express'); // Express web server framework
+const router = express.Router();
 
 
-async function main() {
+ 
+
+router.post('/transcription', async function (req, res) {
+    console.log('post to googleCloud hit');
+    
     // Imports the Google Cloud client library
     const speech = require('@google-cloud/speech');
     const fs = require('fs');
@@ -39,5 +45,7 @@ async function main() {
         .map(result => result.alternatives[0].transcript)
         .join('\n');
     console.log(`Transcription: ${transcription}`);
-}
-main().catch(console.error);
+    res.send(transcription);
+});
+
+module.exports = router;

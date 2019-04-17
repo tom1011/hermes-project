@@ -27,6 +27,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/podbean', podbeanRouter);
+app.use('/googleCloud', googleRouter);
 
 // Serve static files
 app.use(express.static('build'));
