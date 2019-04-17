@@ -1,51 +1,50 @@
 const express = require('express'); // Express web server framework
 const router = express.Router();
-
+const app = express();
 
  
 
 router.post('/transcription', async function (req, res) {
-    console.log('post to googleCloud hit');
+
     
-    // Imports the Google Cloud client library
-    const speech = require('@google-cloud/speech');
-    const fs = require('fs');
+        // [START speech_transcribe_async_gcs]
+        // Imports the Google Cloud client library
+        let speech = require('@google-cloud/speech');
 
-    // Creates a client
-    const client = new speech.SpeechClient();
+        // Creates a client
+        let client = new speech.SpeechClient();
 
-    // The name of the audio file to transcribe
-    const fileName = './resources/sampleinterview2.wav';
-    
 
-    // Reads a local audio file and converts it to base64
-    const file = fs.readFileSync(fileName);
-    const audioBytes = file.toString('base64');
-    
+        let config = {
+            encoding: 'LINEAR16',
+            sampleRateHertz: 32000,
+            languageCode: 'en-US',
+            audioChannelCount: 2,
+            enableSeparateRecognitionPerChannel: true,
+        };
 
-    // The audio file's encoding, sample rate in hertz, and BCP-47 language code
-    const audio = {
-        content: audioBytes,
-    };
-    const config = {
-        encoding: 'LINEAR16',
-        sampleRateHertz: 44100,
-        languageCode: 'en-US',
-        audioChannelCount: 2,
-        enableSeparateRecognitionPerChannel: true,
-    };
-    const request = {
-        audio: audio,
-        config: config,
-    };
+        let audio = {
+            uri: 'gs://uploadhermesaudio/2minSample.wav',
+        };
 
-    // Detects speech in the audio file
-    const [response] = await client.recognize(request);
-    const transcription = response.results
-        .map(result => result.alternatives[0].transcript)
-        .join('\n');
-    console.log(`Transcription: ${transcription}`);
-    res.send(transcription);
+        let request = {
+            config: config,
+            audio: audio,
+        };
+
+        // Detects speech in the audio file. This creates a recognition job that you
+        // can wait for now, or get its result later.
+        let [operation] = await client.longRunningRecognize(request);
+        // Get a Promise representation of the final result of the job
+        let [response] = await operation.promise();
+        let transcription = response.results
+            .map(result => result.alternatives[0].transcript)
+            .join('\n');
+        console.log(`Transcription: ${transcription}`);
+        // [END speech_transcribe_async_gcs]
+        res.send(transcription);
+
+    // asyncRecognizeGCS().catch(console.error);
 });
 
 module.exports = router;
