@@ -39,6 +39,14 @@ router.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 // this is to get authorization for our selves ie user dose not need to use this function
 router.get('/login_podbean', function(req, res) {
+    res.setHeader('Acces-Control_Allow_Origin', 'https://api.podbean.com/v1/dialog/oauth?' +
+    querystring.stringify({
+      response_type: 'code',
+      client_id: client_id,
+      scope: scope,
+      redirect_uri: redirect_uri,
+      state: state
+    }))
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
   // your application requests authorization
