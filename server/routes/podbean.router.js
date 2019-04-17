@@ -43,7 +43,7 @@ router.get('/login_podbean', function(req, res) {
   res.cookie(stateKey, state);
   // your application requests authorization
   var scope = 'episode_publish'; // this is what we are requesting to use from the API
-  res.redirect('https://api.podbean.com/v1/dialog/oauth' +
+  res.redirect('https://api.podbean.com/v1/dialog/oauth?' +
     querystring.stringify({
       response_type: 'code',
       client_id: client_id,
