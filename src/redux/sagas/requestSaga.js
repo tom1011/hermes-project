@@ -3,7 +3,13 @@ import axios from 'axios';
 function* send(action){
     if (action.type == 'SEND_REQUEST'){
         
-       const response = yield axios.get('podbean/login_podbean')
+       const response = yield axios({
+          method: 'GET',
+          url: 'podbean/login_podbean',
+          headers: {
+            "Access-Control-Allow-Origin": "*"
+          }
+       })
     console.log(response)
 }
 }
