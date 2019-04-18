@@ -10,12 +10,11 @@ class InfoPage extends Component{
 sendRequest=()=>{
   this.props.dispatch({type: 'SEND_REQUEST'})
 }
-
   render(){
   return(
   <div>
-    <button onClick={this.sendRequest}>Podbean</button>
-    <p>
+    <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>Podbean</a>
+    <p> 
       Info Page
     </p>
   </div>
