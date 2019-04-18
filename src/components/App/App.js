@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import EditPage from '../EditPage/EditPage';
+import ReviewPage from '../ReviewPage/ReviewPage';
 
 import './App.css';
 
@@ -60,6 +61,11 @@ class App extends Component {
               exact
               path="/edit-page"
               component={EditPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/review-page"
+              component={ReviewPage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

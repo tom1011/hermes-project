@@ -11,7 +11,7 @@ class EditPage extends Component {
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
-        //this.props.history.push('/publish-page');
+        this.props.history.push('/review-page');
     }
 
     render() {
