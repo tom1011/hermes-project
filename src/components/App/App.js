@@ -18,7 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import Wordpress from '../Wordpress/Wordpress';
-import EditPage from '../EditPage/EditPage';
+import EditPage from '../TranscriptPage/TranscriptPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
 
 
