@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 
 import ConnectPage from '../ConnectPage/connect';
 import PlatformsPage from '../PlatformsPage/platforms';
+import UploadPage from '../UploadPage/upload';
 import Wordpress from '../Wordpress/Wordpress';
 import EditPage from '../EditPage/EditPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
@@ -71,6 +72,11 @@ class App extends Component {
               exact
               path="/platforms"
               component={PlatformsPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/upload"
+              component={UploadPage}
             />
             <ProtectedRoute
               exact
