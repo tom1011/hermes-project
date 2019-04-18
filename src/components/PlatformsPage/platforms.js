@@ -8,23 +8,28 @@ class PlatformsPage extends Component {
     handleSelectPlatformsButton = () => {
         console.log('handleSelectPlatformsButton hit');
         // hit sweet alert --> if user clicks continue, direct user to next step: Upload.
-        // if user clicks cancel, stay on this page and keep users checked options
+        // if user clicks cancel, stay on this page and keep users previously checked options
     }
 
     render() {
         return (
             <>
                 <div>
+                    Which platforms would you like to publish to?
+                </div>
+                <div>
                     Blog
                     <div>
-                        <input type="checkbox" />WordPress
+                        <input type="checkbox" id="WordPress" name="WordPress"/>
+                        <label for="WordPress">WordPress</label>
                     </div>
                 </div>
 
                 <div>
                     Podcast
                     <div>
-                        <input type="checkbox" />PodBean
+                        <input type="checkbox" id="PodBean" name="PodBean"/>
+                        <label for="PodBean">PodBean</label>
                     </div>
                 </div>
                 
