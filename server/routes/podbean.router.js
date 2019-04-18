@@ -1,9 +1,9 @@
 let express = require('express');
-let request = require('request');
-let querystring = require('querystring');
-const pool = require('../modules/pool');
 
-const axios = require('axios');
+let querystring = require('querystring');
+
+
+
 require('dotenv').config()
 
 var cookieParser = require('cookie-parser');
@@ -34,12 +34,11 @@ router.use(express.static(__dirname + '/public'))
     .use(cookieParser());
 router.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, XMLHttpRequest, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next()
 });
 // this is to get authorization for our selves ie user dose not need to use this function
 router.get('/login_podbean', function (req, res, next) {
-  
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
     // your application requests authorization
@@ -52,10 +51,11 @@ router.get('/login_podbean', function (req, res, next) {
             redirect_uri: redirect_uri,
             state: state
         }));
+        console.log(res)
 });
 // main authorization steeps this is where the user inputed information is sent along.
-router.get('/callback_podbean', function (req, res, next) {
-    console.log('call back was hit')
+router.post('/callback_podbean', function (req, res, next) {
+    console.log('call back was hit', req.body)
     // your application requests refresh and access tokens
     // after checking the state parameter
     var code = req.query.code || null;
