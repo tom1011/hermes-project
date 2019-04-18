@@ -1,5 +1,7 @@
 
 const pool = require('../modules/pool');
+var request = require("request"); //this is the request for authorization access token
+
 
 require('dotenv').config();
 
@@ -58,16 +60,42 @@ router.get('/login_wordpress', function(req, res) {
 // main authorization steeps this is where the user inputed information is sent along.
 router.get('/callback_wordpress', function(req, res) {
   console.log('call back wordpress was hit')
+  console.log(req.body);
+  
   // your application requests refresh and access tokens
   // after checking the state parameter
   var code = req.query.code || null; // this is the token we got back form wordpress
 //   var blogId = req.query.blog_id || null;
 //   var blogUrl = req.query.blog_url || null;
 
+
+
+//execute an authorization code grant flow using ga post
+  var options = {
+    method: 'POST',
+    url: 'https://public-api.wordpress.com/oauth2/token',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    body:
+    {
+      grant_type: 'authorization_code',
+      client_id: 'client_id',
+      client_secret: 'client_secret',
+      code: req.body.code,
+      redirect_uri: 'https://localhost:5000/wordpress/callback_wordpress'
+    },
+    json: true
+  };
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+  });//end wordpress post
+
+
     var authOptions = {
-      url: 'https://public-api.wordpress.com/oauth2/token',// I might need ot add post
+      url: 'https://public-api.wordpress.com/oauth2/token',// I might need to add post
       form: {// I might have to do parameter instead of form.
-        code: code, // this is the podbean response code.
+        code: code, // this is the wordpress response code.
         redirect_uri: redirect_uri,
         grant_type: 'authorization_code'
       },// up to here I think this will work
