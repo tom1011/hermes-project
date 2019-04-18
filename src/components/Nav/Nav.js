@@ -22,6 +22,15 @@ const Nav = (props) => (
           <Link className="nav-link" to="/info">
             Info Page
           </Link>
+          <Link className="nav-link" to="/connect">
+            Connect Page
+          </Link>
+          <Link className="nav-link" to="/platforms">
+            Platforms Page
+          </Link>
+          <Link className="nav-link" to="/upload">
+            Upload Page
+          </Link>
           <Link className="nav-link" to="/review-page">
             Review Page
           </Link>
