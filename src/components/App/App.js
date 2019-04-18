@@ -17,7 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
-import PlatformsPage from '../PlatformsPage/platforms';
+import ConnectPage from '../ConnectPage/connect';
 import Wordpress from '../Wordpress/Wordpress';
 import EditPage from '../EditPage/EditPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
@@ -63,8 +63,8 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/platforms"
-              component={PlatformsPage}
+              path="/connect"
+              component={ConnectPage}
             />
             <ProtectedRoute
               exact
