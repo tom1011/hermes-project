@@ -18,7 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 
 import Wordpress from '../Wordpress/Wordpress';
-import EditPage from '../TranscriptPage/TranscriptPage';
+import TranscriptPage from '../TranscriptPage/TranscriptPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
 
 
@@ -65,8 +65,8 @@ class App extends Component {
               path="/wordpress"
               component={Wordpress}
 
-              path="/edit-page"
-              component={EditPage}
+              path="/transcript-page"
+              component={TranscriptPage}
             />
             <ProtectedRoute
               exact

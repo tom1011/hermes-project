@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Editor from './TranscriptEditor';
+import TranscriptEditor from './TranscriptEditor';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 
-class EditPage extends Component {
+class TranscriptPage extends Component {
 
     handleClick = (event) => {
         event.preventDefault();
@@ -19,7 +19,7 @@ class EditPage extends Component {
             <>
                 <div>
                     <h1>Edit Text for WordPress</h1>
-                    <Editor />
+                    <TranscriptEditor />
                 </div>
                 <div>
                     <button onClick={this.handleClick}>Submit Edits</button>
@@ -33,4 +33,4 @@ const mapReduxStateToProps = reduxState => ({
     reduxState
 });
 
-export default connect(mapReduxStateToProps)(EditPage);
+export default connect(mapReduxStateToProps)(TranscriptPage);
