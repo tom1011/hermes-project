@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const podbeanRouter = require('./routes/podbean.router');
 const wordpressRouter = require('./routes/wordpress.router');
+const googleRouter = require('./routes/google.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/podbean', podbeanRouter);
 app.use('/wordpress', wordpressRouter);
+app.use('/googleCloud', googleRouter);
 
 // Serve static files
 app.use(express.static('build'));
