@@ -9,22 +9,23 @@ class UploadPage extends Component {
         console.log('handleUploadButton hit');
         // hit sweet alert --> if user clicks continue, direct user to next step: Edit.
         // if user clicks cancel, stay on this page and keep previously chosen file
-    }
-
-    handleChooseFileButton = () => {
-        console.log('handleChooseFileButton hit');
         // upload file to GC Storage
+
     }
     
 
     render() {
         return (
             <>
-                <button onClick={this.handleChooseFileButton}>Choose File</button>
+                
                 <div>
-                    <button>Cancel</button>
-                    <button onClick={this.handleUploadButton}>Upload</button>
+                    <label for="userfile">Choose file:</label>
+                    <input type="file" id="userfile" name="userfile" />
                 </div>
+            
+                
+                <button>Cancel</button>
+                <button onClick={this.handleUploadButton}>Upload</button>
             </>
         );
     };
