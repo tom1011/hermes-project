@@ -1,7 +1,7 @@
 
 const pool = require('../modules/pool');
 var request = require("request"); //this is the request for authorization access token
-
+let user = require('./user.router')
 
 require('dotenv').config();
 
@@ -68,8 +68,10 @@ router.get('/callback_wordpress', function(req, res) {
 //   var blogId = req.query.blog_id || null;
 //   var blogUrl = req.query.blog_url || null;
 
-
-
+const queryText=`SELECT 'current' FROM "current_user";`
+pool.query(queryText) //attempt to grab the current user form the database
+console.log(result)
+let userId=result
 //execute an authorization code grant flow using ga post
   var options = {
     method: 'POST',
@@ -104,5 +106,36 @@ router.get('/callback_wordpress', function(req, res) {
       },// I think this will work however it might need to be called something else/put in url diffrently.
       json: true
     }
+    checkStorage(acces_token, userId)
 });
+
+checkStorage =(access_token,userId)=>{ //checks if user has accounts
+    const queryText=`SELECT * FROM "storage" WHERE "id"=$1;`
+    pool.query(queryText, [userId]) //hardcoded
+    .then((result) => {
+        // add user if not in database
+        if (!result.rows[0]) {
+postToStorage(access_token, userId) //if no account, create one
+}
+else{
+updateToStorage(acces_token, userId) // if account update db
+}
+})
+}
+updateToStorage =(access_token, userId)=>{
+    const queryText = `UPDATE "storage" SET "podbean"=$1 WHERE "id"=$2;` //update access token by user id
+    pool.query(queryText, [access_token, userId]).then(() => {
+      console.log('access token added to database');
+    }).catch(error => {
+      console.log('there was an error adding access_token to database', error);
+    })
+  }
+  postToStorage =(access_token, userId)=>{
+    const queryText = `INSERT INTO "storage" ("user_id", "podbean") VALUES ($1,$2)` //create access token by user id
+    pool.query(queryText, [userId, access_token,]).then(() => { 
+      console.log('access token added to database');
+    }).catch(error => {
+      console.log('there was an error adding access_token to database', error);
+    })
+  }
 module.exports = router;
