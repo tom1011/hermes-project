@@ -1,9 +1,5 @@
 let express = require('express');
 
-let querystring = require('querystring');
-
-
-
 require('dotenv').config()
 
 var cookieParser = require('cookie-parser');
