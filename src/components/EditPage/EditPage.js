@@ -12,7 +12,7 @@ class EditPage extends Component {
     handleClick = (event) => {
         event.preventDefault();
         console.log('Next button clicked on edit page');
-        // this.props.history.push('/review-page');
+        this.props.history.push('/transcript-page');
     }
 
     //use the same function as the other pages for this button

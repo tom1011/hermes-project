@@ -22,9 +22,6 @@ const Nav = (props) => (
           <Link className="nav-link" to="/info">
             Info Page
           </Link>
-          <Link className="nav-link" to="/edit-page">
-            Edit Page
-          </Link>
           <Link className="nav-link" to="/connect">
             Connect Page
           </Link>
@@ -33,6 +30,9 @@ const Nav = (props) => (
           </Link>
           <Link className="nav-link" to="/upload">
             Upload Page
+          </Link>
+          <Link className="nav-link" to="/edit-page">
+            Edit Page
           </Link>
           <Link className="nav-link" to="/review-page">
             Review Page
