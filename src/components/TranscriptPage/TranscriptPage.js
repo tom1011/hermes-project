@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TranscriptEditor from './TranscriptEditor';
 
+import swal from 'sweetalert';
 import 'react-quill/dist/quill.snow.css';
 
 
@@ -13,6 +14,26 @@ class TranscriptPage extends Component {
         this.props.history.push('/review-page');
     }
 
+    handleCancelButton = () => {
+        console.log('in SweetAlert Cancel Button');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    }
+
     render() {
         return (
             <>
@@ -21,6 +42,7 @@ class TranscriptPage extends Component {
                     <TranscriptEditor />
                 </div>
                 <div>
+                    <button onClick={this.handleCancelButton}>Cancel</button>
                     <button onClick={this.handleClick}>Submit Edits</button>
                 </div>
             </>

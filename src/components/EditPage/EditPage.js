@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import EditPodBeanForm from './EditPodBeanForm';
 import EditWordPressForm from './EditWordPressForm';
 
+import swal from 'sweetalert';
 
 class EditPage extends Component {
 
@@ -15,10 +16,24 @@ class EditPage extends Component {
     }
 
     //use the same function as the other pages for this button
-    handleCancel = (event) => {
-        event.preventDefault();
-        console.log('cancel button clicked on Edit page');
-        // this.props.history.push('/');
+    handleCancelButton = () => {
+        console.log('in SweetAlert Cancel Button');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
     }
 
     render() {
@@ -33,7 +48,7 @@ class EditPage extends Component {
                 <div>
                     <EditPodBeanForm />
                     <EditWordPressForm props={this.props}/>
-                    <button onClick={this.handleCancel}>Cancel</button>
+                    <button onClick={this.handleCancelButton}>Cancel</button>
                     <button onClick={this.handleClick}>Next</button>
                 </div>
             </>
