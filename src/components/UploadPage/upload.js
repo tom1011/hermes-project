@@ -56,7 +56,7 @@ class UploadPage extends Component {
             <>
                 
                 <div>
-                    <label for="userFile">Choose file:</label>
+                    <label htmlFor="userFile">Choose file:</label>
                     <input
                         id="userFile"
                         type="file"

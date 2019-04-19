@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import swal from 'sweetalert';
+
+
 //this page will need to send the post requests to the selected platforms
 
 //this is just the bare bones layout
@@ -19,6 +22,26 @@ class ReviewPage extends Component {
         this.props.history.push('/edit-page');
     }
 
+    handleCancelButton = () => {
+        console.log('in SweetAlert Cancel Button');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+    }
+
     render() {
         return (
             <>
@@ -31,6 +54,7 @@ class ReviewPage extends Component {
                     <button onClick={this.handleClickEdit}>Edit</button>
                 </div>
                 <div>
+                    <button onClick={this.handleCancelButton}>Cancel</button>
                     <button onClick={this.handleClick}>Publish Your Project</button>
                 </div>
             </>
