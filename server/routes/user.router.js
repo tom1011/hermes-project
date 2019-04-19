@@ -5,11 +5,14 @@ const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
-
+let user = ''
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
+  const queryText = `UPDATE "current_user" SET "current"=$1`;
+  pool.query(queryText, [req.user.id])
+console.log(req.user.id)
 });
 
 // Handles POST request with new user data
@@ -31,6 +34,7 @@ router.post('/register', (req, res, next) => {
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
+
 });
 
 // clear all server session information about this user
@@ -39,5 +43,5 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
-
-module.exports = router;
+console.log('user',user)
+module.exports = router
