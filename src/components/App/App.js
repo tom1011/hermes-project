@@ -24,7 +24,12 @@ import Wordpress from '../Wordpress/Wordpress';
 import EditPage from '../EditPage/EditPage';
 import TranscriptPage from '../TranscriptPage/TranscriptPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
+
+import wordpresscallback from '../Wordpress/Wordpress'
+
+
 import PublishPage from '../PublishPage/PublishPage';
+
 
 import './App.css';
 
@@ -101,8 +106,13 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
+
+              path="/wordpress/callback_wordpress"
+              component={wordpresscallback}
+
               path="/publish-page"
               component={PublishPage}
+
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
