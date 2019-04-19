@@ -1,6 +1,10 @@
 
 const pool = require('../modules/pool');
 var request = require("request"); //this is the request for authorization access token
+
+let user = require('./user.router')
+
+
 require('dotenv').config();
 const axios = require('axios');
 
@@ -28,11 +32,29 @@ router.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
-router.get('/callback_wordpress', function(req, res) {
 
-  console.log('logging req.query', req.query.code) // this pulls from the url and gives us the auth code
-  // that we will trade in for the auth token.
-  var authOptions = {
+
+
+
+// main authorization steeps this is where the user inputed information is sent along.
+router.get('/callback_wordpress', function(req, res) {
+  console.log('call back wordpress was hit')
+  console.log(req.body);
+  
+  // your application requests refresh and access tokens
+  // after checking the state parameter
+  var code = req.query.code || null; // this is the token we got back form wordpress
+//   var blogId = req.query.blog_id || null;
+//   var blogUrl = req.query.blog_url || null;
+
+const queryText=`SELECT 'current' FROM "current_user";`
+pool.query(queryText) //attempt to grab the current user form the database
+console.log(result)
+let userId=result
+//execute an authorization code grant flow using ga post
+  var options = {
+    method: 'POST',
+
     url: 'https://public-api.wordpress.com/oauth2/token',
     // headers: { 'Authorization': 'Bearer' + ((client_id + ':' + client_secret).toString('base64')) },
     // it might be basic instead of bearer. or try { authorization: 'Bearer ACCESS_TOKEN',
@@ -60,24 +82,25 @@ router.get('/callback_wordpress', function(req, res) {
   })
   
 });
-userId= 1
+
 // main authorization steeps this is where the user inputed information is sent along.
 
-checkStorage =(access_token)=>{ //checks if user has accounts
+
+checkStorage =(access_token,userId)=>{ //checks if user has accounts
     const queryText=`SELECT * FROM "storage" WHERE "id"=$1;`
     pool.query(queryText, [userId]) //hardcoded
     .then((result) => {
         // add user if not in database
         if (!result.rows[0]) {
-postToStorage(access_token) //if no account, create one
+postToStorage(access_token, userId) //if no account, create one
 }
 else{
-updateToStorage(acces_token) // if account update db
+updateToStorage(acces_token, userId) // if account update db
 }
 })
 }
+updateToStorage =(access_token, userId)=>{
 
-updateToStorage = (access_token)=>{
     const queryText = `UPDATE "storage" SET "podbean"=$1 WHERE "id"=$2;` //update access token by user id
     pool.query(queryText, [access_token, userId]).then(() => {
       console.log('access token added to database');
@@ -85,7 +108,9 @@ updateToStorage = (access_token)=>{
       console.log('there was an error adding access_token to database', error);
     })
   }
-  postToStorage =(access_token)=>{
+
+  postToStorage =(access_token, userId)=>{
+
     const queryText = `INSERT INTO "storage" ("user_id", "podbean") VALUES ($1,$2)` //create access token by user id
     pool.query(queryText, [userId, access_token,]).then(() => { 
       console.log('access token added to database');

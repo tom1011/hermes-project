@@ -5,7 +5,7 @@ const app = express();
 
 
 router.post('/transcription', async function (req, res) {
-
+    
 
     // [START speech_transcribe_async_gcs]
     // Imports the Google Cloud client library

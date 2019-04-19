@@ -6,7 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 
 
 //creating the text editor and making functionality
-class Editor extends Component {
+class TranscriptEditor extends Component {
     state = {
         text: "",
     }
@@ -23,7 +23,6 @@ class Editor extends Component {
             ['bold', 'italic', 'underline', 'strike', 'blockquote'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
             ['link', 'image'],
-            ['clean']
         ],
     }
 
@@ -51,4 +50,4 @@ const mapReduxStateToProps = reduxState => ({
     reduxState
 });
 
-export default connect(mapReduxStateToProps)(Editor);
+export default connect(mapReduxStateToProps)(TranscriptEditor);
