@@ -1,3 +1,5 @@
+// https://www.woolha.com/tutorials/node-js-upload-file-to-google-cloud-storage
+
 const GoogleCloudStorage = require('@google-cloud/storage');
 
 const GOOGLE_CLOUD_PROJECT_ID = 'my-hermes-237600'; // Replace with your project ID
@@ -8,9 +10,26 @@ const storage = GoogleCloudStorage({
     keyFilename: GOOGLE_CLOUD_KEYFILE,
 });
 
-const bucketName = 'uploadhermesaudio';
-const fileName = '2minSample.wav';
+// const bucketName = 'uploadhermesaudio';
+// const fileName = '2minSample.wav';
 
 // Get public URL of a file. The file must have public access
-exports.getPublicUrl = (bucketName, fileName) => `https://storage.googleapis.com/${bucketName}/${fileName}`;
+// might need the public URL -- TBD
+// exports.getPublicUrl = (bucketName, fileName) => `https://storage.googleapis.com/${bucketName}/${fileName}`;
 
+
+
+// Copy file from local to a GCS bucket.
+// Uploaded file will be made publicly accessible.
+
+exports.copyFileToGCS = (localFilePath, bucketName, options) => {
+    options = options || {};
+
+    const bucket = storage.bucket(bucketName);
+    const fileName = path.basename(localFilePath);
+    const file = bucket.file(fileName);
+
+    return bucket.upload(localFilePath, options)
+        // .then(() => file.makePublic()) --> keep file private
+        .then(() => exports.getPublicUrl(bucketName, gcsName));
+};

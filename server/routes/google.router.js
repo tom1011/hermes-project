@@ -2,7 +2,7 @@ const express = require('express'); // Express web server framework
 const router = express.Router();
 const app = express();
 
-
+https://www.woolha.com/tutorials/node-js-google-speech-to-text-recognition-api-examples
 
 router.post('/transcription', async function (req, res) {
     
@@ -13,6 +13,25 @@ router.post('/transcription', async function (req, res) {
 
     // Creates a client
     let client = new speech.SpeechClient();
+
+    // The path to the audio file to transcribe
+    const filePath = '/Users/marifelangeles/AtomProjects/2minSample.wav';
+
+    // Google Cloud storage 
+    const bucketName = 'uploadhermesaudio'; 
+
+    const uploadToGcs = async () => {
+        const storage = cloudStorage({
+            projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+        });
+
+        const bucket = storage.bucket(bucketName);
+        const fileName = path.basename(filePath);
+
+        await bucket.upload(filePath);
+
+        return `gs://${bucketName}/${fileName}`;
+    };
 
 
     let config = {
