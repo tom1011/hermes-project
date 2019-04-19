@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-const Nav = (props) => {
-  return(<div>
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
-    </div>
+const Nav = (props) => (
+  <div className="nav">
+    <Link to="/home">
+      <h2 className="nav-title">Hermes</h2>
+    </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
@@ -18,53 +16,48 @@ const Nav = (props) => {
         and call this link 'Login / Register' if they are not */}
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
-    </div>
-    <div>
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
-<div>
-        <Link className="nav-link" to="/info">
-          Info Page
+        <>
+          <Link className="nav-link" to="/info">
+            Info Page
+          </Link>
+          <Link className="nav-link" to="/edit-page">
+            Edit Page
+          </Link>
+          <Link className="nav-link" to="/connect">
+            Connect Page
+          </Link>
+          <Link className="nav-link" to="/platforms">
+            Platforms Page
+          </Link>
+          <Link className="nav-link" to="/upload">
+            Upload Page
+          </Link>
+          <Link className="nav-link" to="/review-page">
+            Review Page
           </Link>
 
-        <Link className="nav-link" to="/edit-page">
-          Edit Page
-        </Link>
-        <Link className="nav-link" to="/connect">
-          Connect Page
-          </Link>
-        <Link className="nav-link" to="/platforms">
-          Platforms Page
-          </Link>
-        <Link className="nav-link" to="/upload">
-          Upload Page
-
-          </Link>
-        <Link className="nav-link" to="/review-page">
-          Review Page
-          </Link>
-          
-        <LogOutButton className="nav-link" />
-        </div>
-        )}
-    </div>
-
-    {/* Always show this link since the about page is not protected */}
-    <div>
+          <LogOutButton className="nav-link" />
+        </>
+      )}
+      {/* Always show this link since the about page is not protected */}
+      {/* <div>
       <Link className="nav-link" to="/about">
         About
       </Link>
-    </div></div>
+    </div> */}
+    </div>
+  </div>
+);
 
-    )};
-
-    // Instead of taking everything from state, we just want the user
-    // object to determine if they are logged in
-    // if they are logged in, we show them a few more links
-    // if you wanted you could write this code like this:
+// Instead of taking everything from state, we just want the user
+// object to determine if they are logged in
+// if they are logged in, we show them a few more links
+// if you wanted you could write this code like this:
 // const mapStateToProps = ({user}) => ({user});
 const mapStateToProps = state => ({
-      user: state.user,
+  user: state.user,
 });
- 
+
 export default connect(mapStateToProps)(Nav);
