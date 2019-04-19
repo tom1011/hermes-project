@@ -40,9 +40,9 @@ router.get('/callback_wordpress', function(req, res) {
     body: // i have changed this from body, parameter(s), and some more I forgot. 
     {
       grant_type: 'authorization_code',
-      client_id: '65413',
-      client_secret: 'debFHMj2kRbpZsucMOg5O5OFp6zLP5mTL24dkU95Aj5rkYN4UWCA0MtgS2Wgm3bh',
-      code: 'BiCNn0pqYc',
+      client_id: client_id,
+      client_secret: client_secret,
+      code: req.query.code,
       redirect_uri: 'https://localhost:5000/wordpress/callback_wordpress'
     },
     // this is the json object  (above)
