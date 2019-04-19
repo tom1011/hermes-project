@@ -21,7 +21,7 @@ class PlatformsPage extends Component {
                     Blog
                     <div>
                         <input type="checkbox" id="WordPress" name="WordPress"/>
-                        <label for="WordPress">WordPress</label>
+                        <label htmlFor="WordPress">WordPress</label>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@ class PlatformsPage extends Component {
                     Podcast
                     <div>
                         <input type="checkbox" id="PodBean" name="PodBean"/>
-                        <label for="PodBean">PodBean</label>
+                        <label htmlFor="PodBean">PodBean</label>
                     </div>
                 </div>
                 
