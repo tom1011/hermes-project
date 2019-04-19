@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import EditPodBeanForm from './EditPodBeanForm';
 import EditWordPressForm from './EditWordPressForm';
 
+import swal from 'sweetalert';
 
 class EditPage extends Component {
 
