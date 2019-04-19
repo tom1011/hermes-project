@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TranscriptEditor from './TranscriptEditor';
 
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 
