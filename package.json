@@ -28,7 +28,9 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.16.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^8.8.5"
   },
   "scripts": {
     "start": "node server/server.js",
