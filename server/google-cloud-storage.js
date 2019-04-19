@@ -8,9 +8,9 @@ const storage = GoogleCloudStorage({
     keyFilename: GOOGLE_CLOUD_KEYFILE,
 });
 
-const bucketName = 'uploadhermesaudio';
-const fileName = '2minSample.wav';
+// const bucketName = 'uploadhermesaudio';
+// const fileName = '2minSample.wav';
 
 // Get public URL of a file. The file must have public access
-exports.getPublicUrl = (bucketName, fileName) => `https://storage.googleapis.com/${bucketName}/${fileName}`;
+exports.getPublicUrl = (bucketName, fileName) => `https://storage.googleapis.com/uploadhermesaudio/2minSample.wav`;
 
