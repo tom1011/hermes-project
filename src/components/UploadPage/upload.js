@@ -5,7 +5,7 @@ import '../App/App.css';
 
 
 class UploadPage extends Component {
-    
+
     state = {
         file: '',
     }
@@ -25,15 +25,15 @@ class UploadPage extends Component {
         let filePath = event.target.value;
         console.log('fileName', filePath);
         // send file to redux
-        this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath});
+        this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
     };
-    
-    
+
+
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Careful, you will lose all progress and information forever!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -43,18 +43,19 @@ class UploadPage extends Component {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });
+                    this.props.history.push('/platforms');
                 } else {
                     swal("Your imaginary file is safe!");
                 }
             });
 
-        
+
     }
 
     render() {
         return (
             <>
-                
+
                 <div>
                     <label htmlFor="userFile">Choose file:</label>
                     <input
@@ -66,8 +67,8 @@ class UploadPage extends Component {
                     <button onClick={this.handleCancelButton}>Cancel</button>
                     <button onClick={this.handleUploadButton}>Upload</button>
                 </div>
-            
-                
+
+
                 <button>Cancel</button>
                 <button onClick={this.handleUploadButton}>Upload</button>
             </>
