@@ -18,7 +18,7 @@ class TranscriptPage extends Component {
         console.log('in SweetAlert Cancel Button');
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Careful, you will lose all progress and information forever!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
