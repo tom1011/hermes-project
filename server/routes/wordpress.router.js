@@ -48,9 +48,12 @@ router.get('/callback_wordpress', function(req, res) {
 //   var blogUrl = req.query.blog_url || null;
 
 const queryText=`SELECT 'current' FROM "current_user";`
-pool.query(queryText) //attempt to grab the current user form the database
-console.log(result)
-let userId=result
+pool.query(queryText)
+.then((result)=>{
+  console.log(result)
+  userId=result
+ //attempt to grab the current user form the database
+
 //execute an authorization code grant flow using ga post
   var options = {
     method: 'POST',
@@ -76,12 +79,12 @@ let userId=result
     blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
     blogurl = body.blog_url
     tokentype = 'Bearer'
-    checkStorage(acces_token)// this updates the database with the token.
+    checkStorage(acces_token, userId)// this updates the database with the token.
     res.redirect('http://localhost:3000/#/home')
     // to DB
   })
   
-});
+})})
 
 // main authorization steeps this is where the user inputed information is sent along.
 
