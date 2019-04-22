@@ -1,8 +1,6 @@
 require('dotenv').config()
 let express = require('express');
 const pool = require('../modules/pool');
-
-var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 
 var client_id = '7ae314124aac5c7de467d'; // Your client id
