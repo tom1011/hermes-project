@@ -4,6 +4,11 @@ const router = express.Router();
 const { Storage } = require('@google-cloud/storage');
 const speech = require('@google-cloud/speech');
 const fs = require('fs');
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
+const path = require('path');
+
+
 
 
 
@@ -11,7 +16,7 @@ const fs = require('fs');
 // https://cloud.google.com/nodejs/docs/reference/storage/2.3.x/File
 // https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-nodejs
 
-router.get('/transcription', async function (req, res) {
+router.post('/transcription', async function (req, res) {
     // Using the cloud client library
     // Your Google Cloud Platform project ID
     const projectId = 'process.env.GOOGLE_CLOUD_PROJECT_ID';
@@ -22,51 +27,77 @@ router.get('/transcription', async function (req, res) {
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
     // The name of the audio file to transcribe
-    const fileName = '2minSamplecopy.wav';
+    const fileName = '/Users/marifelangeles/AtomProjects/2minSamplecopy.wav';
 
     // Uploads a local file to the bucket
-    await storage.bucket(bucketName).upload(fileName);
+    await storage.bucket(bucketName).upload(filename, {
+        // Support for HTTP requests made with `Accept-Encoding: gzip`
+        gzip: true,
+        // By setting the option `destination`, you can change the name of the
+        // object you are uploading to a bucket.
+        metadata: {
+            // Enable long-lived HTTP caching headers
+            // Use only if the contents of the file will never change
+            // (If the contents will change, use cacheControl: 'no-cache')
+            cacheControl: 'public, max-age=31536000',
+        },
+    });
     await console.log(`${fileName} uploaded to ${bucketName}.`);
 
     // Creates a speech client
     const client = new speech.SpeechClient();
 
-    // // The audio file's encoding, sample rate in hertz, and BCP-47 language code
+    // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
         uri: `gs://${bucketName}/${fileName}`,
     };
 
-    // // Reads a local audio file and converts it to base64
-    // // const file = fs.readFileSync(fileName);
-    // // const audioBytes = file.toString('base64');
-    // // const audio = {
-    // //     content: audioBytes,
-    // // };
-    // const config = {
-    //     encoding: 'LINEAR16',
-    //     sampleRateHertz: 32000,
-    //     languageCode: 'en-US',
-    //     audioChannelCount: 2,
-    //     enableSeparateRecognitionPerChannel: true,
+    // Reads a local audio file and converts it to base64
+    // const file = fs.readFileSync(fileName);
+    // const audioBytes = file.toString('base64');
+    // const audio = {
+    //     content: audioBytes,
     // };
-    // const request = {
-    //     config: config,
-    //     audio: audio,
-    // };
+    const config = {
+        encoding: 'LINEAR16',
+        sampleRateHertz: 32000,
+        languageCode: 'en-US',
+        audioChannelCount: 2,
+        enableSeparateRecognitionPerChannel: true,
+    };
+    const request = {
+        config: config,
+        audio: audio,
+    };
     
-    // // Detects speech in the audio file. This creates a recognition job that you
-    // // can wait for now, or get its result later.
-    // const [operation] = await client.longRunningRecognize(request);
-    // // Get a Promise representation of the final result of the job
-    // const [response] = await operation.promise();
-    // const transcription = response.results
-    //     .map(result => result.alternatives[0].transcript)
-    //     .join('\n');
-    // console.log(`Transcription: ${transcription}`);
-    // // [END speech_transcribe_async_gcs]
-    // res.send(transcription);
+    // Detects speech in the audio file. This creates a recognition job that you
+    // can wait for now, or get its result later.
+    const [operation] = await client.longRunningRecognize(request);
+    // Get a Promise representation of the final result of the job
+    const [response] = await operation.promise();
+    const transcription = response.results
+        .map(result => result.alternatives[0].transcript)
+        .join('\n');
+    console.log(`Transcription: ${transcription}`);
+    // [END speech_transcribe_async_gcs]
+    res.send(transcription);
 
     
 });
+
+
+// router.post('/upload', (req, res, next) => {
+//     console.log(req);
+//     let uploadedFile = req.files.file;
+
+//     uploadedFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function (err) {
+//         if (err) {
+//             return res.status(500).send(err);
+//         }
+
+//         res.json({ file: `public/${req.body.filename}.jpg` });
+//     });
+
+// })
 
 module.exports = router;
