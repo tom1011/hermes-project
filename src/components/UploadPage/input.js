@@ -13,7 +13,7 @@ class Input extends Component {
             name: '2 minute sample'
         })
     }
-}
+
 
 
 render() {
