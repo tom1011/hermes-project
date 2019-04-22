@@ -16,7 +16,7 @@ const path = require('path');
 // https://cloud.google.com/nodejs/docs/reference/storage/2.3.x/File
 // https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-nodejs
 
-router.post('/transcription', async function (req, res) {
+router.get('/transcription', async function (req, res) {
     // Using the cloud client library
     // Your Google Cloud Platform project ID
     const projectId = 'process.env.GOOGLE_CLOUD_PROJECT_ID';
@@ -24,10 +24,25 @@ router.post('/transcription', async function (req, res) {
     const storage = new Storage({
         projectId: projectId,
     });
+
+    // // Makes an authenticated API request.
+    // storage.getBuckets()
+    //     .then((results) => {
+    //         const buckets = results[0];
+
+    //         console.log('Buckets:');
+    //         buckets.forEach((bucket) => {
+    //             console.log(bucket.name);
+    //         });
+    //     })
+    //     .catch((err) => {
+    //         console.error('ERROR:', err);
+    //     });
+
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
-    // The name of the audio file to transcribe
-    const fileName = '/Users/marifelangeles/AtomProjects/2minSamplecopy.wav';
+    // local file to upload
+    const filename = '/Users/marifelangeles/AtomProjects/2minSamplecopy.wav';
 
     // Uploads a local file to the bucket
     await storage.bucket(bucketName).upload(filename, {
@@ -42,14 +57,14 @@ router.post('/transcription', async function (req, res) {
             cacheControl: 'public, max-age=31536000',
         },
     });
-    await console.log(`${fileName} uploaded to ${bucketName}.`);
+    await console.log(`${filename} uploaded to ${bucketName}.`);
 
     // Creates a speech client
     const client = new speech.SpeechClient();
 
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
-        uri: `gs://${bucketName}/${fileName}`,
+        uri: `gs://${bucketName}/${filename}`,
     };
 
     // Reads a local audio file and converts it to base64
