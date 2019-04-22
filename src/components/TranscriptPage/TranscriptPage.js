@@ -18,7 +18,7 @@ class TranscriptPage extends Component {
         console.log('in SweetAlert Cancel Button');
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Careful, you will lose all progress and information forever!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -28,7 +28,7 @@ class TranscriptPage extends Component {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });
-                    this.props.history.push('/platforms');
+                    this.props.history.push('/connect');
                 } else {
                     swal("Your imaginary file is safe!");
                 }

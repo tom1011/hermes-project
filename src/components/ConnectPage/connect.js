@@ -15,9 +15,11 @@ class ConnectPage extends Component {
         // direct user to PodBean auth
     }
 
-    handleStartPostButton = () => {
+    handleStartPostButton = (event) => {
         console.log('handleStartPostButton hit');
         // direct to next step: Select Platform
+        event.preventDefault();
+        this.props.history.push('/platforms');
     }
 
     render() {
