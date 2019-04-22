@@ -56,7 +56,7 @@ checkStorage =(access_token,userId)=>{ //checks if user has accounts
 postToStorage(access_token, userId) //if no account, create one
 }
 else{
-updateToStorage(acces_token, userId) // if account update db
+updateToStorage(access_token, userId) // if account update db
 }
 })
 }
