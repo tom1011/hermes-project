@@ -54,7 +54,6 @@ let userId=result
 //execute an authorization code grant flow using ga post
   var options = {
     method: 'POST',
-
     url: 'https://public-api.wordpress.com/oauth2/token',
     // headers: { 'Authorization': 'Bearer' + ((client_id + ':' + client_secret).toString('base64')) },
     // it might be basic instead of bearer. or try { authorization: 'Bearer ACCESS_TOKEN',
