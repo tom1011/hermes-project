@@ -16,7 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import ConnectPage from '../ConnectPage/connect';
+import ConnectPage from '../ConnectPage/ConnectPage';
 import PlatformsPage from '../PlatformsPage/platforms';
 import UploadPage from '../UploadPage/upload';
 import Wordpress from '../Wordpress/Wordpress';
@@ -66,10 +66,12 @@ class App extends Component {
   }
 
   render() {
+    
     return (
+      
       <MuiThemeProvider theme={theme}>
       <Router>
-        <div>
+        <div> 
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
