@@ -22,9 +22,6 @@ var redirect_uri = 'http://localhost:5000/wordpress/callback_wordpress'; // Your
 
 const router = express.Router();
 
-router.use(express.static(__dirname + '/public'))
-  .use(cors())
-  .use(cookieParser());
 // main authorization steeps this is where the user inputed information is sent along.
 router.get('/callback_wordpress', function (req, res) {
   console.log('call back wordpress was hit')
@@ -44,19 +41,21 @@ router.get('/callback_wordpress', function (req, res) {
 
       //execute an authorization code grant flow using ga post
       var authOptions = {
-        method: 'POST',
         url: 'https://public-api.wordpress.com/oauth2/token',
         // headers: { 'Authorization': 'Bearer' + ((client_id + ':' + client_secret).toString('base64')) },
         // it might be basic instead of bearer. or try { authorization: 'Bearer ACCESS_TOKEN',
         // 'content-type': 'application/json' }
-        body: // i have changed this from body, parameter(s), and some more I forgot. 
+        form: // i have changed this from body, parameter(s), and some more I forgot. 
         {
           grant_type: 'authorization_code',
+          code: code,
           client_id: client_id,
           client_secret: client_secret,
-          code: code,
           redirect_uri: redirect_uri,
         },
+        headers: {
+          'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
+      },
         // this is the json object  (above)
         json: true
       };
@@ -65,12 +64,10 @@ router.get('/callback_wordpress', function (req, res) {
         let access_token = body.access_token
         // let blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
         // let blogurl = body.blog_url
-        tokentype = 'Bearer'
         checkStorage(access_token, userId)// this updates the database with the token.
         res.redirect('http://localhost:3000/#/home')
         // to DB
       })
-
     })
 })
 
@@ -86,7 +83,7 @@ checkStorage = (access_token, userId) => { //checks if user has accounts
         postToStorage(access_token, userId) //if no account, create one
       }
       else {
-        updateToStorage(acces_token, userId) // if account update db
+        updateToStorage(access_token, userId) // if account update db
       }
     })
 }
