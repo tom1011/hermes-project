@@ -57,9 +57,8 @@ class UploadPage extends Component {
         }).catch(error => {
             console.log('error with post to /upload', error);
         });
-    }
     
-        this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
+        // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
     };
 
 
@@ -111,11 +110,12 @@ class UploadPage extends Component {
 
         
                     <button onClick={this.handleUploadButton}>Upload</button>
+                    </div>
                 </form>
             
                 
                
-                </div>
+                
 
             </>
         );
