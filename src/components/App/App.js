@@ -106,14 +106,15 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-
               path="/wordpress/callback_wordpress"
               component={wordpresscallback}
-
+            />
+            <ProtectedRoute
+            exact
               path="/publish-page"
               component={PublishPage}
-
-            />
+              />
+              
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

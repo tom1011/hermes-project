@@ -6,7 +6,10 @@ import '../App/App.css';
 
 
 class UploadPage extends Component {
+
     
+
+
 
     handleUploadButton = () => {
         console.log('handleUploadButton hit');
@@ -30,6 +33,7 @@ class UploadPage extends Component {
         data.append('fileName', this.fileName.value);
 
         // send file to redux
+
         // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
 
         // send file to server
@@ -50,12 +54,16 @@ class UploadPage extends Component {
         });
     }
     
-    
+        this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
+    };
+
+
+
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Careful, you will lose all progress and information forever!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -65,19 +73,25 @@ class UploadPage extends Component {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });
+                    this.props.history.push('/platforms');
                 } else {
                     swal("Your imaginary file is safe!");
                 }
             });
 
-        
+
     }
 
     render() {
         return (
             <>
+
                 {JSON.stringify(this.props.reduxState)}
                 <form onSubmit={this.handleUploadButton}>
+
+
+                <div>
+
                     <label htmlFor="userFile">Choose file:</label>
                     <input
                         id="userFile"
@@ -87,11 +101,16 @@ class UploadPage extends Component {
                         ref={(ref) => { this.uploadInput = ref; }}
                     />
                     <button onClick={this.handleCancelButton}>Cancel</button>
-                    <button >Upload</button>
+
+        
+                    <button onClick={this.handleUploadButton}>Upload</button>
                 </form>
             
                 
-                
+               
+                </div>
+
+       
             </>
         );
     };
