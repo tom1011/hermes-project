@@ -6,21 +6,14 @@ import './ConnectPage.css';
 
 class ConnectPage extends Component {
 
-    handleWordPressClick = () => {
-        console.log('handleWordPressClick hit');
-        // direct user to WordPress auth
-    }
-
-    handlePodBeanClick = () => {
-        console.log('handlePodBeanClick hit');
-        // direct user to PodBean auth
-    }
-
     handleStartPostButton = (event) => {
         console.log('handleStartPostButton hit');
         // direct to next step: Select Platform
         event.preventDefault();
         this.props.history.push('/platforms');
+    }
+    componentDidMount () {
+        this.props.dispatch({type: 'CHECK_TOKEN'})
     }
 
     render() {
@@ -40,7 +33,8 @@ class ConnectPage extends Component {
                         Connect with 
                     </div>
                     <div>
-                        WordPress
+                    <a href= 'https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
+                    wordpress</a>
                     </div>
                 </div>
                 <div onClick={this.handlePodBeanClick} className="platforms-connect">
@@ -48,7 +42,8 @@ class ConnectPage extends Component {
                         Connect with
                     </div>
                     <div>
-                        PodBean
+                    <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                    Podbean</a>
                     </div>
                 </div>
                 <div>
