@@ -25,20 +25,6 @@ router.get('/transcription', async function (req, res) {
         projectId: projectId,
     });
 
-    // // Makes an authenticated API request.
-    // storage.getBuckets()
-    //     .then((results) => {
-    //         const buckets = results[0];
-
-    //         console.log('Buckets:');
-    //         buckets.forEach((bucket) => {
-    //             console.log(bucket.name);
-    //         });
-    //     })
-    //     .catch((err) => {
-    //         console.error('ERROR:', err);
-    //     });
-
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
     // local file to upload
@@ -101,18 +87,6 @@ router.get('/transcription', async function (req, res) {
 });
 
 
-// router.post('/upload', (req, res, next) => {
-//     console.log(req);
-//     let uploadedFile = req.files.file;
 
-//     uploadedFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function (err) {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-
-//         res.json({ file: `public/${req.body.filename}.jpg` });
-//     });
-
-// })
 
 module.exports = router;
