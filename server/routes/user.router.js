@@ -9,10 +9,21 @@ let user = ''
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  res.send(req.user);
-  const queryText = `UPDATE "current_user" SET "current"=$1`;
+  const query=`SELECT 'current' FROM "current_user";`
+pool.query(query).then((result)=>{
+
+
+if(!result.rows[0]){
+  const queryText = `INSERT INTO "current_user" ("current") VALUES ($1);`
+  pool.query(queryText, [req.user.id])
+}
+
+else{  const queryText = `UPDATE "current_user" SET "current"=$1;`
   pool.query(queryText, [req.user.id])
 console.log(req.user.id)
+res.send(req.user);
+}
+})
 });
 
 // Handles POST request with new user data

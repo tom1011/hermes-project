@@ -11,7 +11,7 @@ class TranscriptPage extends Component {
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
-        this.props.history.push('/review-page');
+        this.props.history.push('/edit-page');
     }
 
     handleCancelButton = () => {
@@ -28,6 +28,7 @@ class TranscriptPage extends Component {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });
+                    this.props.history.push('/platforms');
                 } else {
                     swal("Your imaginary file is safe!");
                 }
