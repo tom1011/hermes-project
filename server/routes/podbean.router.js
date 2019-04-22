@@ -2,14 +2,18 @@ require('dotenv').config()
 let express = require('express');
 const pool = require('../modules/pool');
 var request = require('request'); // "Request" library
+const router = express.Router();
 
 var client_id = '7ae314124aac5c7de467d'; // Your client id
 var client_secret = process.env.CLIENT_SECRET_PODBEAN; // Your secret
 var redirect_uri = 'https://hermes-host.herokuapp.com/podbean/callback_podbean'; // Your redirect uri
-const router = express.Router();
 
+// router.get('/callback_podbean', function (req, res){
+//   console.log('get callback podbean was hit'),
+//   res.redirect('https://hermes-host.herokuapp.com/#/info')
+// })
 // main authorization steeps this is where the user inputed information is sent along.
-router.post('/callback_podbean', function (req, res, next) {
+router.get('/callback_podbean', function (req, res, next) {
     console.log('call back was hit', req.body)
     // your application requests refresh and access tokens
     // after checking the state parameter
@@ -28,7 +32,7 @@ router.post('/callback_podbean', function (req, res, next) {
             grant_type: 'authorization_code'
         },// up to here I think this will work
         headers: {
-            'Authorization': 'Basic ' + (client_id + ':' + client_secret).toString('base64')
+            'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
         },// I think this will work however it might need to be called something else/put in url diffrently.
         json: true
     };
@@ -37,7 +41,7 @@ router.post('/callback_podbean', function (req, res, next) {
         let access_token = body.access_token
         // let expires = body.expires_in
         checkStorage(access_token, userId)// this updates the database with the token.
-        res.redirect('https://hermes-host.herokuapp.com/callback_podbean')
+        res.redirect('https://hermes-host.herokuapp.com/#/info')
         // to DB
       })
     })   
