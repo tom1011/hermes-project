@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './LoginPage.css';
 
 class LoginPage extends Component {
   state = {
@@ -32,6 +33,9 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
+        <div className="hermesLoginLogo">
+        <img  src="images/logo.png" alt="HERMES LOGO" /> 
+        </div> 
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -41,10 +45,10 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
+          <h1>LOGIN</h1>
           <div>
             <label htmlFor="username">
-              Username:
+              USERNAME:
               <input
                 type="text"
                 name="username"
@@ -53,9 +57,9 @@ class LoginPage extends Component {
               />
             </label>
           </div>
-          <div>
+          <div className = "pwInput">
             <label htmlFor="password">
-              Password:
+              PASSWORD:
               <input
                 type="password"
                 name="password"
@@ -66,10 +70,10 @@ class LoginPage extends Component {
           </div>
           <div>
             <input
-              className="log-in"
+              className="buttonClass"
               type="submit"
               name="submit"
-              value="Log In"
+              value="LOG IN"
             />
           </div>
         </form>

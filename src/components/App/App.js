@@ -16,7 +16,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-
 import ConnectPage from '../ConnectPage/connect';
 import PlatformsPage from '../PlatformsPage/platforms';
 import UploadPage from '../UploadPage/upload';
@@ -24,14 +23,42 @@ import Wordpress from '../Wordpress/Wordpress';
 import EditPage from '../EditPage/EditPage';
 import TranscriptPage from '../TranscriptPage/TranscriptPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
-
 import wordpresscallback from '../Wordpress/Wordpress'
-
-
 import PublishPage from '../PublishPage/PublishPage';
-
-
 import './App.css';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import { createMuiTheme } from '@material-ui/core/styles';
+
+//importing Mui Theme so that the project is wrapped in our chosen color swatches and access fonts throughout app
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#33ab9f',
+      main: '#F27935',
+      dark: '#D35400',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+  typography: {
+    fontFamily: [
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+    fontSize: '18',
+    useNextVariants: true,
+  },
+});
+
+
+
 
 class App extends Component {
   componentDidMount () {
@@ -40,6 +67,7 @@ class App extends Component {
 
   render() {
     return (
+      <MuiThemeProvider theme={theme}>
       <Router>
         <div>
           <Nav />
@@ -121,6 +149,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
+      </MuiThemeProvider>
   )}
 }
 

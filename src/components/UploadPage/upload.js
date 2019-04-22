@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import swal from 'sweetalert';
 import '../App/App.css';
+import StepperBar from '../StepperBar/StepperBar'
 
 
 class UploadPage extends Component {
@@ -89,6 +90,7 @@ class UploadPage extends Component {
     render() {
         return (
             <>
+                <StepperBar/>
 
                 {JSON.stringify(this.props.reduxState)}
                 <form onSubmit={this.handleUploadButton}>
