@@ -1,0 +1,11 @@
+.hermesNavLogo{
+  display: none;
+}
+
+.hermesLoginLogo {
+    text-align: center;
+}
+
+.hermesLoginLogo img {
+    height: 200px;
+}

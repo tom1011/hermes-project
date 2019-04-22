@@ -1,6 +1,8 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-family:'Lato', sans-serif; */
+    font-family: 'Roboto', sans-serif;
     margin: 0px;
+    font-size: 1.5em;
 }
 
 .alert {
@@ -9,17 +11,32 @@ body {
 }
 
 form {
-    background-color: #dbd5d5;
-    width: 30%;
+    background-color: #f0f0f0;
+    width: 40%;
     height: 250px;
     margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
+    padding: 35px 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 2px #cccccc;
+    
+}
+
+form h1 {
+    margin-top: 0;
 }
 
 input {
     margin: 5px;
     margin-bottom: 10px;
+    padding: 4px 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: left;
+}
+
+.pwInput{
+    margin-bottom: 20px;
 }
 
 .log-in, .log-out, .register {
@@ -52,4 +69,21 @@ input {
     cursor: pointer;
     width: 300px;
     height: 150px;
+}
+
+.buttonClass{
+    font-family: 'Roboto', sans-serif;
+    background: #F27935;
+    color: white;
+    font-size: 20px;
+    padding: 10px 35px;
+    border-radius: 5px;
+    transition: all .3s;
+    
+}
+.buttonClass:hover{
+    
+    background: rgb(182, 91, 39);
+   
+    
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 import '../App/App.css';
+import StepperBar from '../StepperBar/StepperBar'
 
 
 class UploadPage extends Component {
@@ -54,7 +55,7 @@ class UploadPage extends Component {
     render() {
         return (
             <>
-                
+                <StepperBar/>
                 <div>
                     <label htmlFor="userFile">Choose file:</label>
                     <input

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App/App.css';
-
+import StepperBar from '../StepperBar/StepperBar';
 
 class PlatformsPage extends Component {
 
     handleSelectPlatformsButton = () => {
         console.log('handleSelectPlatformsButton hit');
+        this.props.history.push('/upload')
         // hit sweet alert --> if user clicks continue, direct user to next step: Upload.
         // if user clicks cancel, stay on this page and keep users previously checked options
     }
@@ -14,8 +15,9 @@ class PlatformsPage extends Component {
     render() {
         return (
             <>
+                <StepperBar/>
                 <div>
-                    Which platforms would you like to publish to?
+                    WHICH PLATFORM WOULD YOU LIKE TO POST TO?
                 </div>
                 <div>
                     Blog
@@ -34,8 +36,8 @@ class PlatformsPage extends Component {
                 </div>
                 
                 <div>
-                    <button>Cancel</button>
-                    <button onClick={this.handleSelectPlatformsButton}>Select Platforms</button>
+                    <button>CANCEL</button>
+                    <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
                 </div>
             </>
         );
