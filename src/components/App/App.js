@@ -17,7 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import ConnectPage from '../ConnectPage/connect';
-import PlatformsPage from '../PlatformsPage/platforms';
+import PlatformsPage from '../PlatformsPage/PlatformsPage';
 import UploadPage from '../UploadPage/upload';
 import Wordpress from '../Wordpress/Wordpress';
 import EditPage from '../EditPage/EditPage';

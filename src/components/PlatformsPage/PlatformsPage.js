@@ -5,6 +5,7 @@ import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
 
 
+
 class PlatformsPage extends Component {
 
     handleSelectPlatformsButton = (event) => {
