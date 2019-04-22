@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './LoginPage.css';
 
+
 class LoginPage extends Component {
   state = {
     username: '',
@@ -33,6 +34,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div>
+       
         <div className="hermesLoginLogo">
         <img  src="images/logo.png" alt="HERMES LOGO" /> 
         </div> 

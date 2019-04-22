@@ -77,8 +77,7 @@ class PlatformsPage extends Component {
                 <div>
                     <button>CANCEL</button>
                     <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
-                    <button onClick={this.handleCancelButton}>Cancel</button>
-                    <button onClick={this.handleSelectPlatformsButton}>Select Platforms</button>
+                   
                 </div>
             </>
         );
