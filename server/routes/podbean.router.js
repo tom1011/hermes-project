@@ -1,6 +1,9 @@
-let express = require('express');
-
 require('dotenv').config()
+let express = require('express');
+const pool = require('../modules/pool');
+
+var express = require('express'); // Express web server framework
+var request = require('request'); // "Request" library
 
 var client_id = '7ae314124aac5c7de467d'; // Your client id
 var client_secret = process.env.CLIENT_SECRET_PODBEAN; // Your secret
@@ -12,6 +15,11 @@ router.post('/callback_podbean', function (req, res, next) {
     console.log('call back was hit', req.body)
     // your application requests refresh and access tokens
     // after checking the state parameter
+    const queryText = `SELECT * FROM "current_user";`
+  pool.query(queryText)
+    .then((result) => {
+      console.log(result.rows[0].current)
+      userId = result.rows[0].current
     var code = req.query.code || null;
     var authOptions = {
         url: 'https://api.podbean.com/v1/oauth/token',// I might need ot add post
@@ -30,12 +38,11 @@ router.post('/callback_podbean', function (req, res, next) {
         access_token = body.access_token
         blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
         blogurl = body.blog_url
-        checkStorage(acces_token)// this updates the database with the token.
+        checkStorage(acces_token, userId)// this updates the database with the token.
         res.redirect('https://hermes-host.herokuapp.com/callback_podbean')
         // to DB
       })
-      
-    
+    })   
 });
 
 checkStorage =(access_token,userId)=>{ //checks if user has accounts
