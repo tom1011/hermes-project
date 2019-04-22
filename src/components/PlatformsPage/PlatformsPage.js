@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import '../App/App.css';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
+import Grid from '@material-ui/core/Grid';
+
+import './PlatformsPage.css';
+
 
 
 class PlatformsPage extends Component {
@@ -40,26 +44,36 @@ class PlatformsPage extends Component {
     render() {
         return (
             <>
-                <StepperBar/>
+                <StepperBar />
                 <div>
                     WHICH PLATFORM WOULD YOU LIKE TO POST TO?
                 </div>
-                <div>
-                    Blog
+                <Grid
+                    container
+                    alignItems="center"
+                    direction="row"
+                    justify="space-evenly"
+                >
+                    <Grid item>
+                        <div className="blog-rectangle">
+                            Blog
+                            <p className="line"></p>
                     <div>
-                        <input type="checkbox" id="WordPress" name="WordPress" />
-                        <label htmlFor="WordPress">WordPress</label>
-                    </div>
-                </div>
-
-                <div>
-                    Podcast
+                                <input type="checkbox" id="WordPress" name="WordPress" />
+                                <label htmlFor="WordPress" className="wordpress-label">WordPress</label>
+                            </div>
+                        </div>
+                    </Grid>
+                    <Grid item>
+                        <div>
+                            Podcast
                     <div>
-                        <input type="checkbox" id="PodBean" name="PodBean" />
-                        <label htmlFor="PodBean">PodBean</label>
-                    </div>
-                </div>
-
+                                <input type="checkbox" id="PodBean" name="PodBean" />
+                                <label htmlFor="PodBean">PodBean</label>
+                            </div>
+                        </div>
+                    </Grid>
+                </Grid>
                 <div>
                     <button>CANCEL</button>
                     <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
