@@ -28,7 +28,7 @@ class TranscriptPage extends Component {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });
-                    this.props.history.push('/platforms');
+                    this.props.history.push('/connect');
                 } else {
                     swal("Your imaginary file is safe!");
                 }

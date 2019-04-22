@@ -11,7 +11,7 @@ class PublishPage extends Component {
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
-        this.props.history.push('/connect-page');
+        this.props.history.push('/connect');
     }
 
 

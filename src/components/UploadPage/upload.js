@@ -10,14 +10,15 @@ class UploadPage extends Component {
         file: '',
     }
 
-    handleUploadButton = () => {
+    handleUploadButton = (event) => {
         console.log('handleUploadButton hit');
+        event.preventDefault();
+        this.props.history.push('/edit-page');
         // hit sweet alert --> if user clicks continue, 
         // send file to GL storage and make get transcript request
         // direct user to next step: Edit
         // if user clicks cancel, stay on this page and keep previously chosen file
         // upload file to GC Storage
-
     }
 
     handleFileUpload = (event) => {
@@ -43,7 +44,7 @@ class UploadPage extends Component {
                     swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                     });
-                    this.props.history.push('/platforms');
+                    this.props.history.push('/connect');
                 } else {
                     swal("Your imaginary file is safe!");
                 }
@@ -64,13 +65,10 @@ class UploadPage extends Component {
                         name="userFile"
                         onChange={this.handleFileUpload}
                     />
+                    <br />
                     <button onClick={this.handleCancelButton}>Cancel</button>
                     <button onClick={this.handleUploadButton}>Upload</button>
                 </div>
-
-
-                <button>Cancel</button>
-                <button onClick={this.handleUploadButton}>Upload</button>
             </>
         );
     };
