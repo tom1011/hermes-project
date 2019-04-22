@@ -62,11 +62,11 @@ router.get('/callback_wordpress', function (req, res) {
       };
       request.post(authOptions, function (error, response, body) {
         console.log('log body', body)
-        access_token = body.access_token
-        blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
-        blogurl = body.blog_url
+        let access_token = body.access_token
+        // let blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
+        // let blogurl = body.blog_url
         tokentype = 'Bearer'
-        checkStorage(acces_token, userId)// this updates the database with the token.
+        checkStorage(access_token, userId)// this updates the database with the token.
         res.redirect('http://localhost:3000/#/home')
         // to DB
       })

@@ -19,8 +19,9 @@ router.post('/callback_podbean', function (req, res, next) {
   pool.query(queryText)
     .then((result) => {
       console.log(result.rows[0].current)
-      userId = result.rows[0].current
+     let userId = result.rows[0].current
     var code = req.query.code || null;
+
     var authOptions = {
         url: 'https://api.podbean.com/v1/oauth/token',// I might need ot add post
         form: {// I might have to do parameter instead of form.
@@ -35,10 +36,9 @@ router.post('/callback_podbean', function (req, res, next) {
     };
     request.post(authOptions, function (error, response, body) {
         console.log('log body', body)
-        access_token = body.access_token
-        blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
-        blogurl = body.blog_url
-        checkStorage(acces_token, userId)// this updates the database with the token.
+        let access_token = body.access_token
+        // let expires = body.expires_in
+        checkStorage(access_token, userId)// this updates the database with the token.
         res.redirect('https://hermes-host.herokuapp.com/callback_podbean')
         // to DB
       })
