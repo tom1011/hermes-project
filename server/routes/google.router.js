@@ -1,5 +1,6 @@
 const express = require('express'); // Express web server framework
 const router = express.Router();
+require('dotenv').config();
 // Imports the Google Cloud client library
 const { Storage } = require('@google-cloud/storage');
 const speech = require('@google-cloud/speech');
@@ -12,14 +13,16 @@ const path = require('path');
 
 
 
+
 // https://www.woolha.com/tutorials/node-js-google-speech-to-text-recognition-api-examples
 // https://cloud.google.com/nodejs/docs/reference/storage/2.3.x/File
 // https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-nodejs
 
-router.post('/transcription', async function (req, res) {
+router.get('/transcription', async function (req, res) {
     // Using the cloud client library
     // Your Google Cloud Platform project ID
-    const projectId = 'process.env.GOOGLE_CLOUD_PROJECT_ID';
+    console.log(req.query)
+    const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
     // Creates a storage client
     const storage = new Storage({
         projectId: projectId,
@@ -27,10 +30,10 @@ router.post('/transcription', async function (req, res) {
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
     // The name of the audio file to transcribe
-    const fileName = '/Users/marifelangeles/AtomProjects/2minSamplecopy.wav';
+    const fileName = req.query.file;
 
     // Uploads a local file to the bucket
-    await storage.bucket(bucketName).upload(filename, {
+    await storage.bucket(bucketName).upload(fileName, {
         // Support for HTTP requests made with `Accept-Encoding: gzip`
         gzip: true,
         // By setting the option `destination`, you can change the name of the
@@ -43,8 +46,12 @@ router.post('/transcription', async function (req, res) {
         },
     });
     await console.log(`${fileName} uploaded to ${bucketName}.`);
+res.send({bucketName:bucketName, 
+    fileName:fileName})
+})
+  router.get('/transcript', async function (req, res){
 
-    // Creates a speech client
+  // Creates a speech client
     const client = new speech.SpeechClient();
 
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
