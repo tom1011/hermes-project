@@ -89,7 +89,7 @@ checkStorage = (access_token, userId) => { //checks if user has accounts
 }
 updateToStorage = (access_token, userId) => {
 
-  const queryText = `UPDATE "storage" SET "podbean"=$1 WHERE "id"=$2;` //update access token by user id
+  const queryText = `UPDATE "storage" SET "wordpress"=$1 WHERE "id"=$2;` //update access token by user id
   pool.query(queryText, [access_token, userId]).then(() => {
     console.log('access token added to database');
   }).catch(error => {
@@ -99,7 +99,7 @@ updateToStorage = (access_token, userId) => {
 
 postToStorage = (access_token, userId) => {
 
-  const queryText = `INSERT INTO "storage" ("user_id", "podbean") VALUES ($1,$2)` //create access token by user id
+  const queryText = `INSERT INTO "storage" ("user_id", "wordpress") VALUES ($1,$2)` //create access token by user id
   pool.query(queryText, [userId, access_token,]).then(() => {
     console.log('access token added to database');
   }).catch(error => {

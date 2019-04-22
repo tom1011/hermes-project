@@ -10,20 +10,16 @@ import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import ConnectPage from '../ConnectPage/connect';
 import PlatformsPage from '../PlatformsPage/platforms';
 import UploadPage from '../UploadPage/upload';
-import Wordpress from '../Wordpress/Wordpress';
 import EditPage from '../EditPage/EditPage';
 import TranscriptPage from '../TranscriptPage/TranscriptPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
-import wordpresscallback from '../Wordpress/Wordpress'
 import PublishPage from '../PublishPage/PublishPage';
 import './App.css';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
@@ -114,11 +110,6 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/wordpress"
-              component={Wordpress}
-            />
-            <ProtectedRoute
-              exact
               path="/transcript-page"
               component={TranscriptPage}
             />
@@ -131,11 +122,6 @@ class App extends Component {
               exact
               path="/review-page"
               component={ReviewPage}
-            />
-            <ProtectedRoute
-              exact
-              path="/wordpress/callback_wordpress"
-              component={wordpresscallback}
             />
             <ProtectedRoute
             exact
