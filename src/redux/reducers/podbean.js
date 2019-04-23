@@ -3,30 +3,29 @@ const podbean = (state = {
   type: 'public'
   //if it doesn't work, check 'type'
 }, action) => {
-    switch (action.type) {
-      case 'SET_PODBEAN_TOKEN':
-      state = {...state,
+  switch (action.type) {
+    case 'SET_PODBEAN_TOKEN':
+      return {
+        ...state,
         podbean_token: action.payload
-    }// is this mutating state?
-    return state
+      }
     case 'UPDATE_PODBEAN':
-    state = {
-      ...state,
-      title: action.payload
-    }
-    return state
-    case 'UPDATE_PODBEAN_CONTENT':
-    state = {
-      ...state,
-      content: action.payload.content
-    }
-        return state;
-        case 'GET_PODBEAN':
-        return state;
-      default:
-        return state;
-    }
-  };
+      return {
+        ...state,
+        title: action.payload.title,
+        description: action.payload.description
+      }
+    case 'UPDATE_PODBEAN_MEDIA':
+      return state = {
+        ...state,
+        media: 'Users/david/Downloads/harrywav.wav'
+      };
+    case 'GET_PODBEAN':
+      return state;
+    default:
+      return state;
+  }
+};
 
 
-  export default podbean;
+export default podbean;
