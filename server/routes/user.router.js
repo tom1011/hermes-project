@@ -9,27 +9,28 @@ let user = ''
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  const query=`SELECT 'current' FROM "current_user";`
-pool.query(query).then((result)=>{
+  const query = `SELECT 'current' FROM "current_user";`
+  pool.query(query).then((result) => {
 
 
-if(!result.rows[0]){
-  const queryText = `INSERT INTO "current_user" ("current") VALUES ($1);`
-  pool.query(queryText, [req.user.id])
-}
+    if (!result.rows[0]) {
+      const queryText = `INSERT INTO "current_user" ("current") VALUES ($1);`
+      pool.query(queryText, [req.user.id])
+    }
 
-else{  const queryText = `UPDATE "current_user" SET "current"=$1;`
-  pool.query(queryText, [req.user.id])
-console.log(req.user.id)
-res.send(req.user);
-}
-})
+    else {
+      const queryText = `UPDATE "current_user" SET "current"=$1;`
+      pool.query(queryText, [req.user.id])
+      console.log(req.user.id)
+      res.send(req.user);
+    }
+  })
 });
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
-router.post('/register', (req, res, next) => {  
+router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
@@ -51,8 +52,16 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
 // clear all server session information about this user
 router.post('/logout', (req, res) => {
   // Use passport's built-in method to log out the user
-  req.logout();
-  res.sendStatus(200);
+  const query = `SELECT * FROM "current_user";`
+  pool.query(query).then((result) => {
+    console.log('logging results.rows[0]', result.rows[0])
+    const queryText = 'DELETE FROM "storage" WHERE "user_id" = $1;';
+    pool.query(queryText, [result.rows[0].current])
+  }).then(() => {
+    req.logout();
+    res.sendStatus(200);
+  })
+  
 });
-console.log('user',user)
+console.log('user', user)
 module.exports = router
