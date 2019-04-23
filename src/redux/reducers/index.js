@@ -3,7 +3,7 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 
-import fileUpload from './fileUploadReducer';
+// import fileUpload from './fileUploadReducer';
 import podbean from './podbean';
 import wordpress from './wordpressReducer';
 
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 
   // will have audio file and name
 
-  fileUpload, // will have audio file and name
+  // fileUpload, // will have audio file and name
   podbean,
   wordpress,
 
