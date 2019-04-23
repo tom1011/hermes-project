@@ -10,6 +10,11 @@ import './Upload.css';
 class UploadPage extends Component {
 
 
+    componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_TWO"})
+    }
+
+
     handleUploadButton = (event) => {
         console.log('handleUploadButton hit');
 

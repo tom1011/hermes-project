@@ -21,6 +21,7 @@ function* sendAudio(action){
 }}
 
 function* getTranscript(action){
+    console.log(action.payload.bucketName)
     try{
     const response = yield axios.get(`googleCloud/transcript`, {
         params: {
@@ -34,6 +35,8 @@ console.log(response)
 
 catch (err){}
 }
+
+
 function* googleSaga() {
     yield takeLatest('SEND_AUDIO', sendAudio);
     yield takeLatest('GET_TRANSCRIPT', getTranscript);

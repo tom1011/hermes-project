@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 //this is just the bare bones layout
 
 class PublishPage extends Component {
-
+componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_FIVE"})
+}
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
