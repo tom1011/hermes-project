@@ -19,7 +19,7 @@ class EditPodBeanForm extends Component {
 
     addNewPodcast = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'UPDATE_PODBEAN', payload: this.state.title })
+        this.props.dispatch({ type: 'UPDATE_PODBEAN', payload: this.state })
         console.log(this.state);
     }
 
