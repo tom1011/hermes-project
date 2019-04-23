@@ -22,19 +22,13 @@ class ConnectPage extends Component {
         return (
             <>
             <div>
-                    <div>
-                        {/* <h1 id="welcome">
-                            Welcome, {props.user.username}!
-                        </h1>
-                        <p>Your ID is: {props.user.id}</p> */}
-                        <LogOutButton className="log-in" />
-                    </div>
+                    
             </div>
                 <div onClick={this.handleWordPressClick} className="platforms-connect">
                     <div>
                         Connect with 
                     </div>
-                    <div>
+                    <div className="wordpressBox">
                     <a href= 'https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
                     wordpress</a>
                     </div>
@@ -51,7 +45,10 @@ class ConnectPage extends Component {
                 <div>
                     <button onClick={this.handleStartPostButton}>Start Posting</button>
                 </div>
-                
+                <div>
+
+                    <LogOutButton className="log-in" />
+                </div>
             </>
         );
     };

@@ -1,0 +1,14 @@
+.wordpressBox{
+background-color: #DADFE1;
+position: absolute;
+width: 508px;
+height: 238px;
+left: 505px;
+top: 332px;
+border-radius: 4px;
+  color: #f8f8f8;
+  min-height: 50px;
+  min-width: 100px;
+  outline:5;
+  cursor: pointer;
+}
