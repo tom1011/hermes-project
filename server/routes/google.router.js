@@ -35,7 +35,7 @@ router.get('/transcription', async function (req, res) {
     // Uploads a local file to the bucket
     await storage.bucket(bucketName).upload(fileName, {
         // Support for HTTP requests made with `Accept-Encoding: gzip`
-        gzip: true,
+        
         // By setting the option `destination`, you can change the name of the
         // object you are uploading to a bucket.
         metadata: {
@@ -50,13 +50,14 @@ res.send({bucketName:bucketName,
     fileName:fileName})
 })
   router.get('/transcript', async function (req, res){
-
+console.log(req.query)
   // Creates a speech client
     const client = new speech.SpeechClient();
 
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
-        uri: `gs://${bucketName}/${fileName}`,
+        uri: `gs://${req.query.bucketName}/2minSamplecopy.wav`,
+     
     };
 
     // Reads a local audio file and converts it to base64
@@ -79,9 +80,12 @@ res.send({bucketName:bucketName,
     
     // Detects speech in the audio file. This creates a recognition job that you
     // can wait for now, or get its result later.
+    
     const [operation] = await client.longRunningRecognize(request);
+   
     // Get a Promise representation of the final result of the job
     const [response] = await operation.promise();
+    console.log(response)
     const transcription = response.results
         .map(result => result.alternatives[0].transcript)
         .join('\n');

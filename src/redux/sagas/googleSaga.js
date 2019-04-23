@@ -21,6 +21,7 @@ function* sendAudio(action){
 }}
 
 function* getTranscript(action){
+    console.log(action.payload.bucketName)
     try{
     const response = yield axios.get(`googleCloud/transcript`, {
         params: {
