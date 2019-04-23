@@ -16,19 +16,20 @@ class UploadPage extends Component {
     }
 
     handleOnChange = (e) => {
-        console.log('handleOnChange');
+
+        console.log('handleOnChange',  Array.from(e.target.files));
         console.log(e.target.files)
         const file = e.target.files;
         console.log('file', file[0]);
         this.setState({
-            file: FileList
+            file: file[0]
         });
-
+    }
 
 
     componentDidMount=()=>{
     this.props.dispatch({type: "STEP_TWO"})
-    }
+    
 
 
         // const files = Array.from(e.target.files)
@@ -60,17 +61,17 @@ class UploadPage extends Component {
         console.log('file', this.state.file);
         
         // send file to googleSaga
-        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.fileList});
+        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.file['name']});
 
         // this.props.history.push('/edit-page');
 
-        const data = new FormData();
-        data.append('file', this.uploadInput.files[0]);
-        data.append('fileName', this.fileName.value);
-        // send file to redux
-        // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
-        // send file to server
-        this.addNewFile(data)
+        // const data = new FormData();
+        // data.append('file', this.uploadInput.files[0]);
+        // data.append('fileName', this.fileName.value);
+        // // send file to redux
+        // // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
+        // // send file to server
+        // this.addNewFile(data)
 
     };
 
@@ -128,7 +129,7 @@ class UploadPage extends Component {
                     <div>
 
                 {/* {JSON.stringify(this.props.reduxState)} */}
-                <form onSubmit={this.handleUploadButton}>
+                <button onSubmit={this.handleUploadButton}/>
 
                         <label htmlFor="userFile">Choose file:</label>
                         <input
@@ -146,12 +147,12 @@ class UploadPage extends Component {
                         <button onClick={this.fileUpload}>Upload</button>
                     </div>                    
                     
-                {/* </form> */}
+                <form>
             
                 
                
                 
-
+<div>
 
                             // onChange={this.handleFileUpload}
                             ref={(ref) => { this.uploadInput = ref; }}
