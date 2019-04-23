@@ -53,7 +53,7 @@ class EditPage extends Component {
                 <Grid
                     container
                     alignItems="center"
-                    direction="row"
+                    direction="column"
                     justify="space-evenly"
                 >
                     <div>

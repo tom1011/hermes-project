@@ -31,7 +31,7 @@ class EditPodBeanForm extends Component {
     render() {
         return (
             <>
-                <div>
+                <div className="podbean-box">
                     (insert fancy PodBean logo)
                     <h4>Edit Required Information for PodBean Podcast</h4>
                     <form onSubmit={this.addNewPodcast}>
