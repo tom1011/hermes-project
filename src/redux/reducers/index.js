@@ -3,9 +3,14 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 
+
 // import fileUpload from './fileUploadReducer';
+
+
+
 import podbean from './podbean';
 import wordpress from './wordpressReducer';
+import stepperReducer from './stepperReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +25,12 @@ const rootReducer = combineReducers({
 
   // will have audio file and name
 
+
   // fileUpload, // will have audio file and name
+
+stepperReducer,
+  // will have audio file and name
+
   podbean,
   wordpress,
 

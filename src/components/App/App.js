@@ -22,6 +22,7 @@ import TranscriptPage from '../TranscriptPage/TranscriptPage';
 import ReviewPage from '../ReviewPage/ReviewPage';
 import PublishPage from '../PublishPage/PublishPage';
 import './App.css';
+//material UI installs
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import { createMuiTheme } from '@material-ui/core/styles';
 

@@ -8,6 +8,7 @@ import './Upload.css';
 
 
 class UploadPage extends Component {
+
     
     state = {
         file: '',
@@ -22,6 +23,13 @@ class UploadPage extends Component {
         this.setState({
             file: FileList
         });
+
+
+
+    componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_TWO"})
+    }
+
 
         // const files = Array.from(e.target.files)
         // console.log('files', files);
@@ -45,6 +53,7 @@ class UploadPage extends Component {
         console.log('fileUpload hit');
         event.preventDefault();
 
+
         // const data = new FormData('upload');
         // data.append('file', this.state.file);
         // console.log('data', data);
@@ -54,10 +63,37 @@ class UploadPage extends Component {
         await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.fileList});
 
         // this.props.history.push('/edit-page');
+
+        const data = new FormData();
+        data.append('file', this.uploadInput.files[0]);
+        data.append('fileName', this.fileName.value);
+        // send file to redux
+        // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
+        // send file to server
+        this.addNewFile(data)
+
+    };
+
+    addNewFile = (file) => {
+        // send to server
+        axios({
+            method: 'POST',
+            url: '/upload',
+            data: file,
+        }).then(response => {
+            console.log('posting:', response);
+        }).catch(error => {
+            console.log('error with post to /upload', error);
+        });
+
+        // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
+
     };
 
 
 
+
+    //Sweet Alert Code
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
@@ -84,16 +120,22 @@ class UploadPage extends Component {
     render() {
         return (
             <>
-                <StepperBar/>
+                <StepperBar />
+
 
                 {JSON.stringify(this.state)}
                 {/* <form id="upload" name="upload"> */}
                     <div>
+
+                {/* {JSON.stringify(this.props.reduxState)} */}
+                <form onSubmit={this.handleUploadButton}>
+
                         <label htmlFor="userFile">Choose file:</label>
                         <input
                             id="userFile"
                             type="file"
                             name="userFile"
+
                         // webkitdirectory
                             onChange={this.handleOnChange}
                             // ref={(ref) => { this.uploadInput = ref; }}
@@ -109,6 +151,18 @@ class UploadPage extends Component {
                 
                
                 
+
+
+                            // onChange={this.handleFileUpload}
+                            ref={(ref) => { this.uploadInput = ref; }}
+                        />
+
+                        <br />
+                        
+                        <button onClick={this.handleCancelButton}>Cancel</button>
+                        <button onClick={this.handleUploadButton}>Upload</button>
+                    </div>
+                </form>
 
             </>
         );
