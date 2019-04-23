@@ -8,6 +8,7 @@ class EditPodBeanForm extends Component {
         title_of_podcast: '',
         producer: '',
         description: '',
+        status: 'publish'
     }
 
     handleChange = (key) => (event) => {
@@ -22,12 +23,6 @@ class EditPodBeanForm extends Component {
         event.preventDefault();
         //this.props.dispatch({ type: 'ADD_DOG', payload: this.state })
         console.log(this.state);
-
-        this.setState({
-            title_of_podcast: '',
-            producer: '',
-            description: '',
-        })
     }
 
 
