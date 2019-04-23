@@ -27,10 +27,15 @@ router.get('/transcription', async function (req, res) {
     const storage = new Storage({
         projectId: projectId,
     });
+
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
+
     // The name of the audio file to transcribe
     const fileName = req.query.file;
+
+    // local file to upload
+   
 
     // Uploads a local file to the bucket
     await storage.bucket(bucketName).upload(fileName, {
@@ -45,17 +50,24 @@ router.get('/transcription', async function (req, res) {
             cacheControl: 'public, max-age=31536000',
         },
     });
+
     await console.log(`${fileName} uploaded to ${bucketName}.`);
 res.send({bucketName:bucketName, 
     fileName:fileName})
 })
   router.get('/transcript', async function (req, res){
+
 console.log(req.query)
+
+
+
+
   // Creates a speech client
     const client = new speech.SpeechClient();
 
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
+
         uri: `gs://${req.query.bucketName}/2minSamplecopy.wav`,
      
     };
@@ -97,18 +109,6 @@ console.log(req.query)
 });
 
 
-// router.post('/upload', (req, res, next) => {
-//     console.log(req);
-//     let uploadedFile = req.files.file;
 
-//     uploadedFile.mv(`${__dirname}/public/${req.body.filename}.jpg`, function (err) {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-
-//         res.json({ file: `public/${req.body.filename}.jpg` });
-//     });
-
-// })
 
 module.exports = router;

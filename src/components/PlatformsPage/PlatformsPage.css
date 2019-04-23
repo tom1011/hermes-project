@@ -1,0 +1,28 @@
+/* Rectangle 3.1 */
+.blog-rectangle {
+    width: 421px;
+    height: 424px;
+    
+    /* background: #FAFAFA; */
+    opacity: 0.1;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+
+.wordpress-label {
+    width: 322px;
+    height: 74px;
+    left: 144px;
+    top: 561px;
+
+    /* background: url(WordPress-logotype-standard.png); */
+}
+
+.line {
+    width: 298.24px;
+    height: 0px;
+    text-align: center;
+
+    border: 1px solid #000000;
+    transform: rotate(0.17deg);
+}

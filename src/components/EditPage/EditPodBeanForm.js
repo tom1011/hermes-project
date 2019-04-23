@@ -6,8 +6,9 @@ class EditPodBeanForm extends Component {
 
     state = {
         title_of_podcast: '',
-        producer: '',
-        description: '',
+        status: 'publish',
+        type: 'public'
+        //if it doesn't work, check 'type'
     }
 
     handleChange = (key) => (event) => {
@@ -22,12 +23,6 @@ class EditPodBeanForm extends Component {
         event.preventDefault();
         //this.props.dispatch({ type: 'ADD_DOG', payload: this.state })
         console.log(this.state);
-
-        this.setState({
-            title_of_podcast: '',
-            producer: '',
-            description: '',
-        })
     }
 
 
@@ -44,18 +39,7 @@ class EditPodBeanForm extends Component {
                                 value={this.state.title_of_podcast}
                                 onChange={this.handleChange('title_of_podcast')} />
                         </label>
-                        <label>
-                            Producer
-                        <input placeholder="producer"
-                                value={this.state.producer}
-                                onChange={this.handleChange('producer')} />
-                        </label>
-                        <label>
-                            Description
-                        <input placeholder="description"
-                                value={this.state.description}
-                                onChange={this.handleChange('description')} />
-                        </label>
+                        
                         <button onClick={this.handleChange}>Add PodBean Podcast</button>
                     </form>
                 </div>

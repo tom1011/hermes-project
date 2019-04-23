@@ -4,6 +4,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import '../App/App.css';
 import StepperBar from '../StepperBar/StepperBar'
+import './Upload.css';
 
 
 class UploadPage extends Component {
