@@ -22,6 +22,26 @@ var redirect_uri = 'http://localhost:5000/wordpress/callback_wordpress'; // Your
 
 const router = express.Router();
 
+router.get('/token_check', function (req, res) {// this is the route to check to 
+  // see if we have a token for the account.
+  // we should delete an entry when someone loggs out.
+  const queryText = `SELECT * FROM "current_user";`
+  pool.query(queryText)// get current user id
+    .then((result) => {
+      let userId = result.rows[0].current// set user id
+      const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
+      pool.query(queryText, [userId] )// query to get the token and then send a bolien.
+      .then((results) => {
+        if (results.rows[0].wordpress){
+        res.send(true)
+        }
+        else {
+        res.send(false)
+        }
+      })
+    })
+})
+
 // main authorization steeps this is where the user inputed information is sent along.
 router.get('/callback_wordpress', function (req, res) {
   console.log('call back wordpress was hit')
