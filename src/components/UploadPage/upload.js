@@ -9,9 +9,6 @@ import './Upload.css';
 
 class UploadPage extends Component {
 
-    
-
-
 
     handleUploadButton = (event) => {
         console.log('handleUploadButton hit');
@@ -37,14 +34,11 @@ class UploadPage extends Component {
         const data = new FormData();
         data.append('file', this.uploadInput.files[0]);
         data.append('fileName', this.fileName.value);
-
         // send file to redux
-
         // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
-
         // send file to server
         this.addNewFile(data)
-        
+
     };
 
     addNewFile = (file) => {
@@ -58,12 +52,14 @@ class UploadPage extends Component {
         }).catch(error => {
             console.log('error with post to /upload', error);
         });
-    
+
         // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
     };
 
 
 
+
+    //Sweet Alert Code
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
@@ -90,34 +86,26 @@ class UploadPage extends Component {
     render() {
         return (
             <>
-                <StepperBar/>
+                <StepperBar />
 
-                {JSON.stringify(this.props.reduxState)}
+                {/* {JSON.stringify(this.props.reduxState)} */}
                 <form onSubmit={this.handleUploadButton}>
+                    <div className = "uploadBox">
+                        <label htmlFor="userFile">Choose file:</label>
+                        <input
+                            id="userFile"
+                            type="file"
+                            name="userFile"
+                            // onChange={this.handleFileUpload}
+                            ref={(ref) => { this.uploadInput = ref; }}
+                        />
 
-
-                <div>
-
-                    <label htmlFor="userFile">Choose file:</label>
-                    <input
-                        id="userFile"
-                        type="file"
-                        name="userFile"
-                        // onChange={this.handleFileUpload}
-                        ref={(ref) => { this.uploadInput = ref; }}
-                    />
-                    <br />
-                    <button onClick={this.handleCancelButton}>Cancel</button>
-
-        
-                    <button onClick={this.handleUploadButton}>Upload</button>
+                        <br />
+                        
+                        <button onClick={this.handleCancelButton}>Cancel</button>
+                        <button onClick={this.handleUploadButton}>Upload</button>
                     </div>
                 </form>
-            
-                
-               
-                
-
             </>
         );
     };
