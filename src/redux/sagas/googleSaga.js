@@ -35,6 +35,8 @@ console.log(response)
 
 catch (err){}
 }
+
+
 function* googleSaga() {
     yield takeLatest('SEND_AUDIO', sendAudio);
     yield takeLatest('GET_TRANSCRIPT', getTranscript);

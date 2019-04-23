@@ -6,6 +6,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -22,25 +23,25 @@ const styles = theme => ({
 });
 
 function getSteps() {
-    return ['SELECT FORMS', 'UPLOAD', 'EDIT', 'REVIEW','PUBLISHED'];
+    return [{step:'SELECT FORMS', number: 1}, {step:'UPLOAD', number: 2}, {step:'EDIT', number: 3}, {step:'REVIEW',number: 4},{step:'PUBLISHED',number: 5}];
 }
 
 function getStepContent(stepIndex) {
-    switch (stepIndex) {
-        case 0:
-            return 'SELECT FORMS';
-        case 1:
-            return 'UPLOAD';
-        case 2:
-            return 'EDIT';
-        default:
-            return 'Unknown stepIndex';
-    }
+    // switch (stepIndex) {
+    //     case 0:
+    //         return 'SELECT FORMS';
+    //     case 1:
+    //         return 'UPLOAD';
+    //     case 2:
+    //         return 'EDIT';
+    //     default:
+    //         return 'Unknown stepIndex';
+    // }
 }
 
 class StepperBar extends React.Component {
     state = {
-        activeStep: 0,
+        activeStep: this.props.reduxStore.stepReducer,
     };
 
     handleSelectPlatformsButton = () => {
@@ -51,21 +52,21 @@ class StepperBar extends React.Component {
 
   
 
-    handleBack = () => {
-        this.setState(state => ({
-            activeStep: state.activeStep - 1,
-        }));
-    };
+    // handleBack = () => {
+    //     this.setState(state => ({
+    //         activeStep: state.activeStep - 1,
+    //     }));
+    // };
 
-    handleReset = () => {
-        this.setState({
-            activeStep: 0,
-        });
-    };
+    // handleReset = () => {
+    //     this.setState({
+    //         activeStep: 0,
+    //     });
+    // };
 
     render() {
         const { classes } = this.props;
-        const steps = getSteps();
+        const steps = getSteps()
         const { activeStep } = this.state;
 
         return (
@@ -73,7 +74,7 @@ class StepperBar extends React.Component {
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map(label => (
                         <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
+                            <StepLabel className={label.number}>{label.step}</StepLabel>
                         </Step>
                     ))}
                 </Stepper>
@@ -87,16 +88,16 @@ class StepperBar extends React.Component {
                             <div>
                                 <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
                                 <div>
-                                    <Button
+                                    {/* <Button
                                         disabled={activeStep === 0}
                                         onClick={this.handleBack}
                                         className={classes.backButton}
                                     >
                                         Back
-                </Button>
-                                    <Button variant="contained" color="primary" onClick={this.handleNext}>
+                </Button> */}
+                                    {/* <Button variant="contained" color="primary" onClick={this.handleNext}>
                                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                    </Button>
+                                    </Button> */}
                                 </div>
                             </div>
                         )}
@@ -109,5 +110,8 @@ class StepperBar extends React.Component {
 StepperBar.propTypes = {
     classes: PropTypes.object,
 };
+const mapReduxStoreToProps = (reduxStore) => ({
+    reduxStore: reduxStore
+})
 
-export default withStyles(styles)(StepperBar);
+export default withStyles(styles)(connect(mapReduxStoreToProps)(StepperBar));
