@@ -4,11 +4,13 @@ import EditPodBeanForm from './EditPodBeanForm';
 import EditWordPressForm from './EditWordPressForm';
 
 import swal from 'sweetalert';
+import Grid from '@material-ui/core/Grid';
+import './EditPage.css';
 
 class EditPage extends Component {
-componentDidMount=()=>{
-    this.props.dispatch({type: "STEP_THREE"})
-}
+    componentDidMount = () => {
+        this.props.dispatch({ type: "STEP_THREE" })
+    }
     //need to conditionally send it either to the transcript page
     //or to the review page
     handleClick = (event) => {
@@ -48,12 +50,23 @@ componentDidMount=()=>{
 
                     (insert progress bar here)
                 </div>
-                <div>
-                    <EditPodBeanForm />
-                    <EditWordPressForm props={this.props}/>
-                    <button onClick={this.handleCancelButton}>Cancel</button>
-                    <button onClick={this.handleClick}>Next</button>
-                </div>
+                <Grid
+                    container
+                    alignItems="center"
+                    direction="row"
+                    justify="space-evenly"
+                >
+                    <div>
+                        <Grid item xs={12}>
+                            <EditPodBeanForm />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <EditWordPressForm />
+                        </Grid>
+                        <button onClick={this.handleCancelButton}>Cancel</button>
+                        <button onClick={this.handleClick}>Next</button>
+                    </div>
+                </Grid>
             </>
         )
     }
