@@ -10,7 +10,9 @@ import './PlatformsPage.css';
 
 
 class PlatformsPage extends Component {
-
+componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_ONE"})
+}
     handleSelectPlatformsButton = (event) => {
         console.log('handleSelectPlatformsButton hit');
         this.props.history.push('/upload')

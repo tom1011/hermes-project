@@ -11,9 +11,11 @@ class ConnectPage extends Component {
         // direct to next step: Select Platform
         event.preventDefault();
         this.props.history.push('/platforms');
+        this.props.dispatch({type: "STEP_ONE"})
     }
     componentDidMount () {
         this.props.dispatch({type: 'CHECK_TOKEN'})
+       
     }
 
     render() {
