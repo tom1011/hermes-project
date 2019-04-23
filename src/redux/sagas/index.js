@@ -4,6 +4,7 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 
 import podbean from './podbean';
+import wordpress from './wordpress';
 
 import googleSaga from './googleSaga';
 
@@ -22,6 +23,6 @@ export default function* rootSaga() {
     userSaga(),
     podbean(),
     googleSaga(),
-
+    wordpress(),
   ]);
 }

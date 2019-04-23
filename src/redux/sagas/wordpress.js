@@ -9,9 +9,9 @@ function* checktoken () {
     try {
         const tokenCheck = yield axios({
             method: 'GET',
-            url: '/podbean/token_check',
+            url: '/wordpress/token_check',
         })
-        yield put ({ type: 'SET_PODBEAN_TOKEN', payload: tokenCheck.data})// data should be a bowlean.
+        yield put ({ type: 'SET_WORDPRESS_TOKEN', payload: tokenCheck.data})// data should be a bowlean.
         // will send to podbean reducer and change the token value
     }
     catch(error){
@@ -19,8 +19,8 @@ function* checktoken () {
     }
 }
 
-function* podbeanSaga() {
+function* wordpressSaga() {
     yield takeLatest('CHECK_TOKEN', checktoken);
   }
   
-  export default podbeanSaga;
+  export default wordpressSaga;

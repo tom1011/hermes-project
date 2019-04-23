@@ -15,16 +15,13 @@ var redirect_uri = 'https://hermes-host.herokuapp.com/podbean/callback_podbean';
 // main authorization steeps this is where the user inputed information is sent along.
 
 router.get('/token_check', function (req, res) {
-  console.log('podbean token check was hit.')
   const queryText = `SELECT * FROM "current_user";`
   pool.query(queryText)
     .then((result) => {
-      console.log(result.rows[0].current)
       let userId = result.rows[0].current
       const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
       pool.query(queryText, [userId] )
       .then((results) => {
-        console.log('podbean second then statement hit')
         if (results.rows[0].podbean){
         res.send(true)
         }
