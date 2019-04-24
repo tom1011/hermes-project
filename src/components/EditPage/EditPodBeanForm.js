@@ -34,16 +34,18 @@ class EditPodBeanForm extends Component {
                 <div className="podbean-box">
                     (insert fancy PodBean logo)
                     <h4>Edit Required Information for PodBean Podcast</h4>
-                    <form onSubmit={this.addNewPodcast}>
-                        <label>
+                    <form onSubmit={this.addNewPodcast} className="podbean-form">
+                        <label className="title">
                             Title of Podcast
-                            <input placeholder="title"
+                            <input className="title-input"
+                                placeholder="title"
                                 value={this.state.titleOfPodbean}
                                 onChange={this.handleChange('titleOfPodbean')} />
                         </label>
-                        <label>
+                        <label className="description">
                             Description
-                            <input placeholder="description"
+                            <input className="description-input"
+                                placeholder="description"
                                 value={this.state.description}
                                 onChange={this.handleChange('description')} />
                         </label> 

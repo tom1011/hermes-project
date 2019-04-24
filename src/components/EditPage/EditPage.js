@@ -50,23 +50,23 @@ class EditPage extends Component {
 
                     (insert progress bar here)
                 </div>
-                <Grid
+                {/* <Grid
                     container
                     alignItems="center"
                     direction="column"
                     justify="space-evenly"
-                >
+                > */}
                     <div>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}> */}
                             <EditPodBeanForm />
-                        </Grid>
-                        <Grid item xs={12}>
+                        {/* </Grid> */}
+                        {/* <Grid item xs={12}> */}
                             <EditWordPressForm />
-                        </Grid>
+                        {/* </Grid> */}
                         <button onClick={this.handleCancelButton}>Cancel</button>
                         <button onClick={this.handleClick}>Next</button>
                     </div>
-                </Grid>
+                {/* </Grid> */}
             </>
         )
     }
