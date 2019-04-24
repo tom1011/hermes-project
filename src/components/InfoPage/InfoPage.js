@@ -13,6 +13,10 @@ sendRequest=()=>{
 fileUpload=()=>{
   this.props.dispatch({type: 'SEND_AUDIO'})
 }
+
+  fileTest = () => {
+    this.props.dispatch({ type: 'PUBLISH_WORDPRESS' })
+  }
   render(){
   return(
   <div>
@@ -20,6 +24,7 @@ fileUpload=()=>{
 
     <button onClick={this.fileUpload}> Test transcript</button>
     <br></br>
+    <button onClick= {this.fileTest} > push this for WP</button>
     <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>Podbean</a>
 
     <p> 
