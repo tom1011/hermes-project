@@ -10,48 +10,61 @@ import './Upload.css';
 class UploadPage extends Component {
     
     state = {
-        file: '',
+        file: null,
         uploading: false,
     }
 
     handleOnChange = (e) => {
         console.log('handleOnChange');
-        console.log(e.target.files)
-        const file = e.target.files;
-        console.log('file', file[0]);
-        this.setState({
-            file: FileList
-        });
-
-        // const files = Array.from(e.target.files)
-        // console.log('files', files);
-        
-        // this.setState({ uploading: true })
-
-        // const formData = new FormData()
-        // console.log('new FormData', new FormData() );
-        
-        // files.forEach((file, i) => {
-        //     formData.append(i, file)
+        console.log(e.target.files);
+        console.log(e.target.files[0]);
+        const file = e.target.files[0];
+        console.log('file', file);
+        // this.setState({
+        //     file: file
         // });
-        // console.log('formData', formData);
         
+        // const file = e.target.files[0];
+        // console.log(e.target.files);
+        // console.log(e.target.files[0]);
+        // let file = e.target.files[0];
+        // this.setState({file: file});
         
+        // console.log('file', file);
         
+        this.uploadRequest(file);
+    
     }
     
  
-    fileUpload = async (event) => {
-        console.log('fileUpload hit');
-        event.preventDefault();
+    uploadRequest =  (file) => {
+        console.log('uploadRequest hit');
+        // event.preventDefault();
 
-        // const data = new FormData('upload');
-        // data.append('file', this.state.file);
-        // console.log('data', data);
-        console.log('file', this.state.file);
+        console.log(this.state, 'STATE _____________');
         
-        // send file to googleSaga
-        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.fileList});
+        let data = new FormData();
+        data.append('file', file );
+        console.log('data', data);
+        
+        // see what's in FormData
+        for (var pair of data.entries()) {
+            console.log('in formdata', pair[0] + ', ' + pair[1]);
+        }
+
+        // // send file to googleSaga
+        //  this.props.dispatch({ type: 'SEND_AUDIO', payload: data});
+        axios({
+            method: 'POST',
+            data: data,
+            url: '/googleCloud/uploadfile'
+        }).then( response => {
+            console.log('back from POST to /uploadfile', response);
+            
+        }).catch(error => {
+            console.log('error with POST to /uploadfile', error);
+            
+        })
 
         // this.props.history.push('/edit-page');
     };
@@ -87,29 +100,21 @@ class UploadPage extends Component {
                 <StepperBar/>
 
                 {JSON.stringify(this.state)}
-                {/* <form id="upload" name="upload"> */}
+                <form action="/googleCloud/uploadfile" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
                     <div>
                         <label htmlFor="userFile">Choose file:</label>
                         <input
                             id="userFile"
                             type="file"
                             name="userFile"
-                        // webkitdirectory
                             onChange={this.handleOnChange}
-                            // ref={(ref) => { this.uploadInput = ref; }}
                         />
                     </div>
                     <div>
-                        <button onClick={this.handleCancelButton}>Cancel</button>
-                        <button onClick={this.fileUpload}>Upload</button>
-                    </div>                    
-                    
-                {/* </form> */}
-            
-                
-               
-                
-
+                    <button onClick={this.handleCancelButton}>Cancel</button>
+                    <input type="submit" value="Upload" />
+                    </div>  
+                </form>                  
             </>
         );
     };
