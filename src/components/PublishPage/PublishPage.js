@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import StepperBar from "../StepperBar/StepperBar";
 
 //this page will need to send the post requests to the selected platforms
 
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class PublishPage extends Component {
 componentDidMount=()=>{
     this.props.dispatch({type: "STEP_FIVE"})
-}
+}//this button is when we are sending off both files to each site
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
@@ -20,6 +20,7 @@ componentDidMount=()=>{
     render() {
         return (
             <>
+            <StepperBar activeStep='4'></StepperBar>
                 <div>
                     <h1>Congratulations! Your post was successful!</h1>
                     <br />

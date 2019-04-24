@@ -15,9 +15,27 @@ class UploadPage extends Component {
         uploading: false,
     }
 
+
     componentDidMount = () => {
         this.props.dispatch({ type: "STEP_TWO" })
     }
+
+    handleOnChange = (e) => {
+
+        console.log('handleOnChange',  Array.from(e.target.files));
+        console.log(e.target.files)
+        const file = e.target.files;
+        console.log('file', file[0]);
+        this.setState({
+            file: file[0]
+        });
+    }
+
+
+    componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_TWO"})
+    
+
 
     handleOnChange = (e) => {
         console.log('handleOnChange');
@@ -64,6 +82,7 @@ class UploadPage extends Component {
         console.log('data', data);
 
         
+
         // see what's in FormData
         for (var pair of data.entries()) {
             console.log('in formdata', pair[0] + ', ' + pair[1]);
@@ -91,6 +110,12 @@ class UploadPage extends Component {
         // send file to redux
         // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
         // send file to server
+
+        // send file to googleSaga
+        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.file['name']});
+
+        
+
         // this.addNewFile(data)
 
     };
@@ -140,11 +165,12 @@ class UploadPage extends Component {
 
     render() {
         return (
-            <>
-                <StepperBar />
-
-
+            <div>
+                <StepperBar activeStep='2'></StepperBar>
+                <form onSubmit={this.handleUploadButton}>
+                
                 {JSON.stringify(this.state)}
+
                 <form action="/googleCloud/uploadfile" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
 
                         <label htmlFor="userFile">Choose file:</label>
@@ -155,11 +181,13 @@ class UploadPage extends Component {
                             onChange={this.handleOnChange}
                         />
                     <div>
+
                     <button onClick={this.handleCancelButton}>Cancel</button>
                     <input type="submit" value="Upload" />
                     </div>  
                 </form>                  
             </>
+
         );
     };
 };

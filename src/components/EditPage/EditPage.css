@@ -1,0 +1,7 @@
+.podbean-box {
+    width: 75%;
+    height: 50%;
+
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}

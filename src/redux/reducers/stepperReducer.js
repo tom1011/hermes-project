@@ -11,6 +11,8 @@ const stepperReducer = (state = 1, action) => {
             return 4;
         case 'STEP_FIVE':
             return 5;
+        case 'GET_STEPPER':
+            return state;
         default:
             return state;
     }
