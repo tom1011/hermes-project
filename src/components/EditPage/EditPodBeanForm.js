@@ -5,10 +5,7 @@ import { connect } from 'react-redux';
 class EditPodBeanForm extends Component {
 
     state = {
-        title_of_podcast: '',
-        status: 'publish',
-        type: 'public'
-        //if it doesn't work, check 'type'
+        titleOfPodbean: this.props.reduxState.podbean.title,
     }
 
     handleChange = (key) => (event) => {
@@ -21,8 +18,12 @@ class EditPodBeanForm extends Component {
 
     addNewPodcast = (event) => {
         event.preventDefault();
-        //this.props.dispatch({ type: 'ADD_DOG', payload: this.state })
+        this.props.dispatch({ type: 'UPDATE_PODBEAN', payload: this.state.titleOfPodbean })
         console.log(this.state);
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'GET_PODBEAN'})
     }
 
 
@@ -36,10 +37,9 @@ class EditPodBeanForm extends Component {
                         <label>
                             Title of Podcast
                             <input placeholder="title"
-                                value={this.state.title_of_podcast}
-                                onChange={this.handleChange('title_of_podcast')} />
-                        </label>
-                        
+                                value={this.state.titleOfPodbean}
+                                onChange={this.handleChange('titleOfPodbean')} />
+                        </label> 
                         <button onClick={this.handleChange}>Add PodBean Podcast</button>
                     </form>
                 </div>
@@ -49,7 +49,7 @@ class EditPodBeanForm extends Component {
 }
 
 const mapReduxStateToProps = reduxState => ({
-    reduxState
+    reduxState: reduxState
 });
 
 export default connect(mapReduxStateToProps)(EditPodBeanForm);

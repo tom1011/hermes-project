@@ -53,7 +53,13 @@ router.get('/transcription', async function (req, res) {
     // Uploads a local file to the bucket
     await storage.bucket(bucketName).upload(fileName, {
         // Support for HTTP requests made with `Accept-Encoding: gzip`
-        
+        // Gets the metadata for the file
+//    const [metadata] = await storage
+//        .bucket(bucketName)
+//        .file(fileName)
+//        .getMetadata();
+
+   // await console.log(‘metadata’, metadata);
         // By setting the option `destination`, you can change the name of the
         // object you are uploading to a bucket.
         metadata: {

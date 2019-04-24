@@ -8,10 +8,15 @@ import './Upload.css';
 
 
 class UploadPage extends Component {
+
     
     state = {
         file: null,
         uploading: false,
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: "STEP_TWO" })
     }
 
     handleOnChange = (e) => {
@@ -22,6 +27,17 @@ class UploadPage extends Component {
         console.log('file', file);
         // this.setState({
         //     file: file
+
+        // const files = Array.from(e.target.files)
+        // console.log('files', files);
+        
+        // this.setState({ uploading: true })
+
+        // const formData = new FormData()
+        // console.log('new FormData', new FormData() );
+        
+        // files.forEach((file, i) => {
+        //     formData.append(i, file)
         // });
         
         // const file = e.target.files[0];
@@ -46,6 +62,7 @@ class UploadPage extends Component {
         let data = new FormData();
         data.append('file', file );
         console.log('data', data);
+
         
         // see what's in FormData
         for (var pair of data.entries()) {
@@ -67,10 +84,37 @@ class UploadPage extends Component {
         })
 
         // this.props.history.push('/edit-page');
+
+        const data = new FormData();
+        data.append('file', this.uploadInput.files[0]);
+        data.append('fileName', this.fileName.value);
+        // send file to redux
+        // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
+        // send file to server
+        // this.addNewFile(data)
+
     };
 
+    // addNewFile = (file) => {
+    //     // send to server
+    //     axios({
+    //         method: 'POST',
+    //         url: '/upload',
+    //         data: file,
+    //     }).then(response => {
+    //         console.log('posting:', response);
+    //     }).catch(error => {
+    //         console.log('error with post to /upload', error);
+    //     });
+
+    //     // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
+
+    // };
 
 
+
+
+    //Sweet Alert Code
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
@@ -97,11 +141,12 @@ class UploadPage extends Component {
     render() {
         return (
             <>
-                <StepperBar/>
+                <StepperBar />
+
 
                 {JSON.stringify(this.state)}
                 <form action="/googleCloud/uploadfile" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
-                    <div>
+
                         <label htmlFor="userFile">Choose file:</label>
                         <input
                             id="userFile"
@@ -109,7 +154,6 @@ class UploadPage extends Component {
                             name="userFile"
                             onChange={this.handleOnChange}
                         />
-                    </div>
                     <div>
                     <button onClick={this.handleCancelButton}>Cancel</button>
                     <input type="submit" value="Upload" />

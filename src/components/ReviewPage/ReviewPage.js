@@ -9,7 +9,9 @@ import swal from 'sweetalert';
 //this is just the bare bones layout
 
 class ReviewPage extends Component {
-
+    componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_FOUR"})
+    }
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');

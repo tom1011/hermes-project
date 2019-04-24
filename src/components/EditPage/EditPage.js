@@ -6,7 +6,9 @@ import EditWordPressForm from './EditWordPressForm';
 import swal from 'sweetalert';
 
 class EditPage extends Component {
-
+componentDidMount=()=>{
+    this.props.dispatch({type: "STEP_THREE"})
+}
     //need to conditionally send it either to the transcript page
     //or to the review page
     handleClick = (event) => {
