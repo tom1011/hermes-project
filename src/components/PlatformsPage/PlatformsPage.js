@@ -3,16 +3,15 @@ import { connect } from 'react-redux';
 import '../App/App.css';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
-import Grid from '@material-ui/core/Grid';
+
 
 import './PlatformsPage.css';
 
-
-
 class PlatformsPage extends Component {
-componentDidMount=()=>{
-    this.props.dispatch({type: "STEP_ONE"})
-}
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: "STEP_ONE" })
+    }
     handleSelectPlatformsButton = (event) => {
         console.log('handleSelectPlatformsButton hit');
         this.props.history.push('/upload')
@@ -44,43 +43,52 @@ componentDidMount=()=>{
     }
 
     render() {
+        const { classes} = this.props;
         return (
             <>
-                <StepperBar />
-                <div>
+               
+                <h2 className="platform-heading">
                     WHICH PLATFORM WOULD YOU LIKE TO POST TO?
-                </div>
-                <Grid
-                    container
-                    alignItems="center"
-                    direction="row"
-                    justify="space-evenly"
-                >
-                    <Grid item>
-                        <div className="blog-rectangle">
-                            Blog
-                            <p className="line"></p>
-                    <div>
-                                <input type="checkbox" id="WordPress" name="WordPress" />
-                                <label htmlFor="WordPress" className="wordpress-label">WordPress</label>
-                            </div>
+                </h2>
+                <div className="grid-container">
+
+                    <div className="item-box grid-item1">
+                        <div className="boxHeader">
+                        <img className="icons" src="images/icons/BLOG.png" alt="blog" />
+                        Blog
                         </div>
-                    </Grid>
-                    <Grid item>
+                    <p className="line"></p>
+                    <div>
+                        <input type="checkbox" id="WordPress" name="WordPress" />
+                        <label htmlFor="WordPress" className="wordpress-label">WordPress</label>
+                    </div>
+                </div>
+
+                <div className="item-box grid-item2">
+                        <img className="icons" src="images/icons/MICROPHONE.png" alt="Podcast" />
+                    Podcast
+                    <div>
+                        <input type="checkbox" id="PodBean" name="PodBean" />
+                        <label htmlFor="PodBean">PodBean</label>
+                    </div>
+                </div>
+
+                <div className="item-box grid-item3">
+                        <img className="icons" src="images/icons/VIDEO.png" alt="Podcast" />
+                    Coming Soon
                         <div>
-                            Podcast
-                    <div>
-                                <input type="checkbox" id="PodBean" name="PodBean" />
-                                <label htmlFor="PodBean">PodBean</label>
-                            </div>
-                        </div>
-                    </Grid>
-                </Grid>
-                <div>
-                    <button>CANCEL</button>
-                    <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
-                   
+                        <input type="checkbox" id="PodBean" name="PodBean" />
+                        <label htmlFor="PodBean">PodBean</label>
+                    </div>
                 </div>
+
+            </div>
+
+            <div>
+                <button>CANCEL</button>
+                <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
+
+            </div>
             </>
         );
     };

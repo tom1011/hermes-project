@@ -120,8 +120,11 @@ class UploadPage extends Component {
 
     render() {
         return (
-            <>
-                <StepperBar />
+
+                <StepperBar/>
+{/* 
+                {JSON.stringify(this.props.reduxState)} */}
+                <form onSubmit={this.handleUploadButton}>
 
 
                 {JSON.stringify(this.state)}
