@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditPodBeanForm from './EditPodBeanForm';
 import EditWordPressForm from './EditWordPressForm';
-
+import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
 import Grid from '@material-ui/core/Grid';
 import './EditPage.css';
@@ -45,7 +45,7 @@ class EditPage extends Component {
         return (
             <>
                 <div>
-                    (insert stepper here)
+                <StepperBar activeStep='3'></StepperBar>
                     <h2>Edit Page</h2>
 
                     (insert progress bar here)

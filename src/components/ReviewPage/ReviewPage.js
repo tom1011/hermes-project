@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
 
 
@@ -49,6 +49,7 @@ class ReviewPage extends Component {
         return (
             <>
                 <div>
+                <StepperBar activeStep='4'></StepperBar>
                     <h1>Review Your Post</h1>
                     <br />
                     <h4>Confirm the specific platforms you would like to publish to</h4>

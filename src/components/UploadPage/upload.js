@@ -120,9 +120,10 @@ class UploadPage extends Component {
 
     render() {
         return (
-
+            <div>
+                <StepperBar activeStep='2'></StepperBar>
                 <form onSubmit={this.handleUploadButton}>
-
+                
                 {JSON.stringify(this.state)}
                 {/* <form id="upload" name="upload"> */}
                     <div>
@@ -163,7 +164,7 @@ class UploadPage extends Component {
                         <button onClick={this.handleUploadButton}>Upload</button>
                     </div>
                 </form>
-
+                </div>
             // </>
         );
     };
