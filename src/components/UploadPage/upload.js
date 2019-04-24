@@ -11,8 +11,13 @@ class UploadPage extends Component {
 
     
     state = {
-        file: '',
+        file: null,
         uploading: false,
+    }
+
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: "STEP_TWO" })
     }
 
     handleOnChange = (e) => {
@@ -32,6 +37,15 @@ class UploadPage extends Component {
     
 
 
+    handleOnChange = (e) => {
+        console.log('handleOnChange');
+        console.log(e.target.files);
+        console.log(e.target.files[0]);
+        const file = e.target.files[0];
+        console.log('file', file);
+        // this.setState({
+        //     file: file
+
         // const files = Array.from(e.target.files)
         // console.log('files', files);
         
@@ -43,53 +57,84 @@ class UploadPage extends Component {
         // files.forEach((file, i) => {
         //     formData.append(i, file)
         // });
-        // console.log('formData', formData);
         
+        // const file = e.target.files[0];
+        // console.log(e.target.files);
+        // console.log(e.target.files[0]);
+        // let file = e.target.files[0];
+        // this.setState({file: file});
         
+        // console.log('file', file);
         
+        this.uploadRequest(file);
+    
     }
     
  
-    fileUpload = async (event) => {
-        console.log('fileUpload hit');
-        event.preventDefault();
+    uploadRequest =  (file) => {
+        console.log('uploadRequest hit');
+        // event.preventDefault();
 
-
-        // const data = new FormData('upload');
-        // data.append('file', this.state.file);
-        // console.log('data', data);
-        console.log('file', this.state.file);
+        console.log(this.state, 'STATE _____________');
         
-        // send file to googleSaga
-        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.file['name']});
+        let data = new FormData();
+        data.append('file', file );
+        console.log('data', data);
+
+        
+
+        // see what's in FormData
+        for (var pair of data.entries()) {
+            console.log('in formdata', pair[0] + ', ' + pair[1]);
+        }
+
+        // // send file to googleSaga
+        //  this.props.dispatch({ type: 'SEND_AUDIO', payload: data});
+        axios({
+            method: 'POST',
+            data: data,
+            url: '/googleCloud/uploadfile'
+        }).then( response => {
+            console.log('back from POST to /uploadfile', response);
+            
+        }).catch(error => {
+            console.log('error with POST to /uploadfile', error);
+            
+        })
 
         // this.props.history.push('/edit-page');
 
-        // const data = new FormData();
-        // data.append('file', this.uploadInput.files[0]);
-        // data.append('fileName', this.fileName.value);
-        // // send file to redux
-        // // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
-        // // send file to server
+        const data = new FormData();
+        data.append('file', this.uploadInput.files[0]);
+        data.append('fileName', this.fileName.value);
+        // send file to redux
+        // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
+        // send file to server
+
+        // send file to googleSaga
+        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.file['name']});
+
+        
+
         // this.addNewFile(data)
 
     };
 
-    addNewFile = (file) => {
-        // send to server
-        axios({
-            method: 'POST',
-            url: '/upload',
-            data: file,
-        }).then(response => {
-            console.log('posting:', response);
-        }).catch(error => {
-            console.log('error with post to /upload', error);
-        });
+    // addNewFile = (file) => {
+    //     // send to server
+    //     axios({
+    //         method: 'POST',
+    //         url: '/upload',
+    //         data: file,
+    //     }).then(response => {
+    //         console.log('posting:', response);
+    //     }).catch(error => {
+    //         console.log('error with post to /upload', error);
+    //     });
 
-        // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
+    //     // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
 
-    };
+    // };
 
 
 
@@ -125,47 +170,24 @@ class UploadPage extends Component {
                 <form onSubmit={this.handleUploadButton}>
                 
                 {JSON.stringify(this.state)}
-                {/* <form id="upload" name="upload"> */}
-                    <div>
 
-                {/* {JSON.stringify(this.props.reduxState)} */}
-                <button onSubmit={this.handleUploadButton}/>
+                <form action="/googleCloud/uploadfile" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
 
                         <label htmlFor="userFile">Choose file:</label>
                         <input
                             id="userFile"
                             type="file"
                             name="userFile"
-
-                        // webkitdirectory
                             onChange={this.handleOnChange}
-                            // ref={(ref) => { this.uploadInput = ref; }}
                         />
-                    </div>
                     <div>
-                        <button onClick={this.handleCancelButton}>Cancel</button>
-                        <button onClick={this.fileUpload}>Upload</button>
-                    </div>                    
-                    
-                {/* <form> */}
-            
-                
-               
-                
-<div>
 
-                            // onChange={this.handleFileUpload}
-                            ref={(ref) => { this.uploadInput = ref; }}
-                        />
+                    <button onClick={this.handleCancelButton}>Cancel</button>
+                    <input type="submit" value="Upload" />
+                    </div>  
+                </form>                  
+            </>
 
-                        <br />
-                        
-                        <button onClick={this.handleCancelButton}>Cancel</button>
-                        <button onClick={this.handleUploadButton}>Upload</button>
-                    </div>
-                </form>
-                </div>
-            // </>
         );
     };
 };
