@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class PublishPage extends Component {
 componentDidMount=()=>{
     this.props.dispatch({type: "STEP_FIVE"})
-}
+}//this button is when we are sending off both files to each site
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
