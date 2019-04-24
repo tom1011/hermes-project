@@ -30,15 +30,15 @@ router.get('/token_check', function (req, res) {// this is the route to check to
     .then((result) => {
       let userId = result.rows[0].current// set user id
       const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
-      pool.query(queryText, [userId] )// query to get the token and then send a bolien.
-      .then((results) => {
-        if (results.rows[0].wordpress){
-        res.send(true)
-        }
-        else {
-        res.send(false)
-        }
-      })
+      pool.query(queryText, [userId])// query to get the token and then send a bolien.
+        .then((results) => {
+          if (results.rows[0].wordpress) {
+            res.send(true)
+          }
+          else {
+            res.send(false)
+          }
+        })
     })
 })
 
@@ -49,8 +49,7 @@ router.get('/callback_wordpress', function (req, res) {
   // your application requests refresh and access tokens
   // after checking the state parameter
   var code = req.query.code || null; // this is the token we got back form wordpress
-  //   var blogId = req.query.blog_id || null;
-  //   var blogUrl = req.query.blog_url || null;
+
 
   const queryText = `SELECT * FROM "current_user";`
   pool.query(queryText)
@@ -75,16 +74,16 @@ router.get('/callback_wordpress', function (req, res) {
         },
         headers: {
           'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
-      },
+        },
         // this is the json object  (above)
         json: true
       };
       request.post(authOptions, function (error, response, body) {
         console.log('log body', body)
         let access_token = body.access_token
-        // let blogId = body.blog_id // we will make this a global varabile and update it every time they auth.
-        // let blogurl = body.blog_url
-        checkStorage(access_token, userId)// this updates the database with the token.
+        let blogId = body.blog_id // we will make this a global variable and update it every time they auth.
+        let blogurl = body.blog_url
+        checkStorage(access_token, userId, blogId, blogurl)// this updates the database with the token.
         res.redirect('http://localhost:3000/#/home')
         // to DB
       })
@@ -93,34 +92,114 @@ router.get('/callback_wordpress', function (req, res) {
 
 // main authorization steeps this is where the user inputed information is sent along.
 
+//post rout for Wordpress
+router.post('/post_episode', function (req, res) {
+  console.log('logging', req.body)
+  // let title = req.body.title;
+  // let status = req.body.status;
+  // let type = req.body.type;
+  // let content = req.body.content;
+  // let featured_media =req.body.featured_media;
 
-checkStorage = (access_token, userId) => { //checks if user has accounts
+  let title = "Hermes the coding god"
+
+
+
+  const queryText = `SELECT * FROM "current_user";`
+  pool.query(queryText)
+    .then((data) => {
+      let userId =  data.rows[0].current
+   
+  getuserID() // function to get user ID.
+  console.log('hit getuserID', );
+  
+  const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
+  pool.query(queryText, [userId])
+    .then((results) => {
+      if (results.rows[0].wordpress) {
+        console.log('inside pool query', results.rows);
+        let access_token = results.rows[0].wordpress; //second pool query getting authorization token
+        let blogurl = results.rows[0].blog_url;
+        let author = results.rows[0].blog_id;
+
+        var authOptions = {
+          header: { 'authorization': 'BEARER' + access_token },
+          url: `https://public-api.wordpress.com/rest/v1/sites/${blogurl}/posts/new`, // I might need to add method:post
+          form: {
+            access_token: access_token, // this is the wordpress response code.
+            date: 04 / 16 / 2019,
+            title: 'eatmyshorts',
+            content: 'this content is short on words',
+            excerpt: 'because when she saw the dark blue water she could only thing of his eyes at night',
+            author: 'charmed butts',
+            publicize_message: 'meow',
+            sticky: 'true',
+            password: 'mama',
+            parent: 1,
+            categories: ['things we sometimes say'],
+            tags: ['tags'],
+            featured_image: '',
+            media: 'Users/juliasugarman/Desktop/TESTWordPressFile.docx', //this will be our acutal file path when we get it
+            media_urls: [],
+            comments_open: 'true',
+            menu_order: 0,
+          }, // this is the stuff require to post a podcast.
+          json: true
+        };
+        request.post(authOptions, function (error, response, body) {
+      
+          console.log('post blog was hit?')
+          res.redirect('https://localhost:3000/#/home') //this is a local host for wordpress instead of / but for presentation we will have to use redirect
+        }).catch(error => {
+          console.log('please hit the local host', error);
+        })}
+      else {
+        res.send(500)
+      }
+    }).catch(error => {
+      console.log('please hit the local two', error);
+    })
+    }).catch(error => {
+      console.log('please hit the local three', error);
+    })
+})// this is untested. 
+
+//this get's our users id on our app
+// getuserID = () => {
+//   const queryText = `SELECT * FROM "current_user";`
+//   pool.query(queryText)
+//     .then((result) => {
+//       return result.rows[0].current
+//     })
+// }
+
+checkStorage = (access_token, userId, blogId, blogurl) => { //checks if user has accounts
   const queryText = `SELECT * FROM "storage" WHERE "id"=$1;`
   pool.query(queryText, [userId]) //hardcoded
     .then((result) => {
       // add user if not in database
       if (!result.rows[0]) {
-        postToStorage(access_token, userId) //if no account, create one
+        postToStorage(access_token, userId, blogId, blogurl) //if no account, create one
       }
       else {
-        updateToStorage(access_token, userId) // if account update db
+        updateToStorage(access_token, userId, blogId, blogurl) // if account update db
       }
     })
 }
-updateToStorage = (access_token, userId) => {
+updateToStorage = (access_token, userId, blogId, blogurl) => {
 
-  const queryText = `UPDATE "storage" SET "wordpress"=$1 WHERE "id"=$2;` //update access token by user id
-  pool.query(queryText, [access_token, userId]).then(() => {
+  const queryText = `UPDATE "storage" SET "wordpress"=$1, "blog_id"=$3, "blog_url"=$4 WHERE "id"=$2;` //update access token by user id
+  pool.query(queryText, [access_token, userId, blogId, blogurl]).then(() => {
     console.log('access token added to database');
   }).catch(error => {
     console.log('there was an error adding access_token to database', error);
   })
 }
 
-postToStorage = (access_token, userId) => {
+postToStorage = (access_token, userId, blogId, blogurl) => {
 
-  const queryText = `INSERT INTO "storage" ("user_id", "wordpress") VALUES ($1,$2)` //create access token by user id
-  pool.query(queryText, [userId, access_token,]).then(() => {
+  const queryText = `INSERT INTO "storage" ("user_id", "wordpress", "blog_id", "blog_url") VALUES ($1,$2, $3, $4)` //create access token by user id
+  pool.query(queryText, [userId, access_token, blogId, blogurl]).then(() => {
     console.log('access token added to database');
   }).catch(error => {
     console.log('there was an error adding access_token to database', error);

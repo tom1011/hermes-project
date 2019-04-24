@@ -3,14 +3,30 @@ import { connect } from 'react-redux';
 
 
 class EditWordPressForm extends Component {
+    //held in reducer and in local state and is required for the Api to work
 
     state = {
-        title_of_blog: '',
-        blog_name: '',
-        tags: '',
-        categories: '',
-        transcription: '',
+        date:'', //need
+        title: '', //need
+        content: '',  //need
+        excerpt:'', //need
+        slug:'', //need
+        author: '',//need
+        publicize_message: '',//need
+        status: '',//need
+        sticky: '',//need
+        password: '',//need
+        parent: '',//need
+        categories: '',//need
+        tags: '',//need
+        featured_image: '',//need
+        media: '',//need
+        media_urls: '',//need
+        comments_open: '',//need
+        menu_order: '',//need
     }
+
+        
 
     handleChange = (key) => (event) => {
         console.log('event happened')
