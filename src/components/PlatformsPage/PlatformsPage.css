@@ -1,12 +1,26 @@
 /* Rectangle 3.1 */
-.blog-rectangle {
-    width: 421px;
-    height: 424px;
-    
-    /* background: #FAFAFA; */
-    opacity: 0.1;
+.item-box {
     border: 1px solid #000000;
     box-sizing: border-box;
+    border-radius: 4px;
+    padding: 10px;
+
+}
+
+
+.boxHeader{
+    text-align: center;
+}
+
+.icons{
+    height: 60px;
+
+}
+
+
+.platform-heading {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .wordpress-label {
@@ -22,7 +36,35 @@
     width: 298.24px;
     height: 0px;
     text-align: center;
-
+    margin: 10px auto;
     border: 1px solid #000000;
-    transform: rotate(0.17deg);
+    /* transform: rotate(0.17deg); */
+}
+
+.grid-container {
+    display: grid;
+    margin: 40px 40px;
+    grid-template-columns: repeat(3, 12fr);
+    grid-template-rows: repeat(1, 30vw);
+    grid-gap: 15px;
+}
+
+.grid-item1 {
+    grid-column-start: 1;
+  
+
+
+}
+
+.grid-item2 {
+    grid-column-start: 2;
+  
+
+    
+}
+
+.grid-item3 {
+    grid-column-start: 3;
+ 
+   
 }
