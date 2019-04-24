@@ -8,7 +8,7 @@ import user from './userReducer';
 
 
 
-import podbean from './podbean';
+import podbean from './podbeanReducer';
 import wordpress from './wordpressReducer';
 import stepperReducer from './stepperReducer'
 

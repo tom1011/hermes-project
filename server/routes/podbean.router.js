@@ -32,6 +32,7 @@ router.get('/token_check', function (req, res) {
     })
 })
 
+
 router.get('/callback_podbean', function (req, res, next) {
   console.log('call back was hit', req.body)
   // your application requests refresh and access tokens
@@ -66,6 +67,8 @@ router.get('/callback_podbean', function (req, res, next) {
     })
 });
 
+
+//podbean router when this router get's hit we are posting form our client to here(server)
 router.post('/post_episode', function (req, res) {
   console.log('logging', req.body)
   let title = req.body.title;
@@ -74,27 +77,28 @@ router.post('/post_episode', function (req, res) {
   let content = req.body.description;
   let file = req.body.media;
 
+  
   let userId = getuserID() // function to get user ID.
   const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
   pool.query(queryText, [userId])
     .then((results) => {
       if (results.rows[0].podbean) {
-        let access_token = results.rows[0].podbean;
+        let access_token = results.rows[0].podbean; //second pool query getting authorization token
         var authOptions = {
-          url: 'https://api.podbean.com/v1/episodes',// I might need ot add post
+          url: 'https://api.podbean.com/v1/episodes', // I might need to add method:post
           form: {
             access_token: access_token, // this is the podbean response code.
             title: title,
             content: content,
             status: status,
             type: type,
-            media_key: file,
+            media_key: file, //this might need to be posted with an alt post rout that we get back a media key
           }, // this is the stuff require to post a podcast.
           json: true
         };
         request.post(authOptions, function (error, response, body) {
           console.log('post podcast was hit?')
-          res.redirect('https://hermes-host.herokuapp.com/#/home')
+          res.redirect('https://hermes-host.herokuapp.com/#/publish-page') //this is a local host for wordpress instead of / but for presentation we will have to use redirect
         })
       }
       else {
@@ -103,6 +107,7 @@ router.post('/post_episode', function (req, res) {
     })
 })// this is untested. 
 
+//this get's our users id on our app
 getuserID = () => {
   const queryText = `SELECT * FROM "current_user";`
   pool.query(queryText)

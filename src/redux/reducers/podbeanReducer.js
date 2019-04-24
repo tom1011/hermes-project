@@ -1,3 +1,4 @@
+//required and also default values to post
 const podbean = (state = {
   status: 'publish',
   type: 'public'
@@ -7,20 +8,20 @@ const podbean = (state = {
     case 'SET_PODBEAN_TOKEN':
       return {
         ...state,
-        podbean_token: action.payload
+        podbean_token: action.payload //this is a boolean to check that we have a token before moving forward / this is needed to publish /conditional rendering later
       }
-    case 'UPDATE_PODBEAN':
+    case 'UPDATE_PODBEAN': //get information from the form 
       return {
         ...state,
         title: action.payload.title,
         description: action.payload.description
       }
-    case 'UPDATE_PODBEAN_MEDIA':
+    case 'UPDATE_PODBEAN_MEDIA':  //this is now the actual file
       return state = {
         ...state,
-        media: 'Users/david/Downloads/harrywav.wav'
+        media: action.payload
       };
-    case 'GET_PODBEAN':
+    case 'GET_PODBEAN': //this holds the file in the reducer 
       return state;
     default:
       return state;
