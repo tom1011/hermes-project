@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import StepperBar from "../StepperBar/StepperBar";
 
 //this page will need to send the post requests to the selected platforms
 
@@ -20,6 +20,7 @@ componentDidMount=()=>{
     render() {
         return (
             <>
+            <StepperBar activeStep='4'></StepperBar>
                 <div>
                     <h1>Congratulations! Your post was successful!</h1>
                     <br />

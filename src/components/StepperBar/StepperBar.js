@@ -23,55 +23,38 @@ const styles = theme => ({
 });
 
 function getSteps() {
-
     return [{step:'SELECT FORMS', number: 1}, {step:'UPLOAD', number: 2}, {step:'EDIT', number: 3}, {step:'REVIEW',number: 4},{step:'PUBLISHED',number: 5}];
 }
 
 function getStepContent(stepIndex) {
-    // switch (stepIndex) {
-    //     case 0:
-    //         return 'SELECT FORMS';
-    //     case 1:
-    //         return 'UPLOAD';
-    //     case 2:
-    //         return 'EDIT';
-    //     default:
-    //         return 'Unknown stepIndex';
-    // }
+    switch (stepIndex) {
+        case 0:
+            return 'SELECT FORMS';
+        case 1:
+            return 'UPLOAD';
+        case 2:
+            return 'EDIT';
+        default:
+            return 'Unknown stepIndex';
+    }
 
 }
 
 class StepperBar extends React.Component {
     state = {
-        activeStep: this.props.reduxStore.stepReducer,
+        activeStep: this.props.activeStep,
     };
 
-    handleSelectPlatformsButton = () => {
-        this.setState(state => ({
-            activeStep: state.activeStep + 1,
-        }));
-    };
-
-
-    // handleBack = () => {
-    //     this.setState(state => ({
-    //         activeStep: state.activeStep - 1,
-    //     }));
-    // };
-
-    // handleReset = () => {
-    //     this.setState({
-    //         activeStep: 0,
-    //     });
-    // };
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'GET_STEPPER' })
+    }
 
     render() {
-        const { classes } = this.props;
         const steps = getSteps()
         const { activeStep } = this.state;
 
         return (
-            <div className={classes.root}>
+            <div>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map(label => (
                         <Step key={label}>
@@ -82,23 +65,13 @@ class StepperBar extends React.Component {
                 <div>
                     {this.state.activeStep === steps.length ? (
                         <div>
-                            <Typography className={classes.instructions}>All steps completed</Typography>
-                            {/* <Button onClick={this.handleReset}>Reset</Button> */}
+                            <Typography >All steps completed</Typography>
                         </div>
                     ) : (
                             <div>
-                                <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+                                <Typography >{getStepContent(activeStep)}</Typography>
                                 <div>
-                                    {/* <Button
-                                        disabled={activeStep === 0}
-                                        onClick={this.handleBack}
-                                        className={classes.backButton}
-                                    >
-                                        Back
-                </Button> */}
-                                    {/* <Button variant="contained" color="primary" onClick={this.handleNext}>
-                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                    </Button> */}
+
                                 </div>
                             </div>
                         )}
