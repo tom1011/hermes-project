@@ -26,20 +26,6 @@ function getSteps() {
     return [{step:'SELECT FORMS', number: 1}, {step:'UPLOAD', number: 2}, {step:'EDIT', number: 3}, {step:'REVIEW',number: 4},{step:'PUBLISHED',number: 5}];
 }
 
-function getStepContent(stepIndex) {
-    switch (stepIndex) {
-        case 0:
-            return 'SELECT FORMS';
-        case 1:
-            return 'UPLOAD';
-        case 2:
-            return 'EDIT';
-        default:
-            return 'Unknown stepIndex';
-    }
-
-}
-
 class StepperBar extends React.Component {
     state = {
         activeStep: this.props.activeStep,
@@ -69,10 +55,6 @@ class StepperBar extends React.Component {
                         </div>
                     ) : (
                             <div>
-                                <Typography >{getStepContent(activeStep)}</Typography>
-                                <div>
-
-                                </div>
                             </div>
                         )}
                 </div>
