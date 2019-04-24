@@ -20,15 +20,15 @@ router.get('/token_check', function (req, res) {
     .then((result) => {
       let userId = result.rows[0].current
       const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
-      pool.query(queryText, [userId] )
-      .then((results) => {
-        if (results.rows[0].podbean){
-        res.send(true)
-        }
-        else {
-        res.send(false)
-        }
-      })
+      pool.query(queryText, [userId])
+        .then((results) => {
+          if (results.rows[0].podbean) {
+            res.send(true)
+          }
+          else {
+            res.send(false)
+          }
+        })
     })
 })
 
@@ -66,6 +66,51 @@ router.get('/callback_podbean', function (req, res, next) {
     })
 });
 
+router.post('/post_episode', function (req, res) {
+  console.log('logging', req.body)
+  let title = req.body.title;
+  let status = req.body.status;
+  let type = req.body.type;
+  let content = req.body.description;
+  let file = req.body.media;
+
+  let userId = getuserID() // function to get user ID.
+  const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
+  pool.query(queryText, [userId])
+    .then((results) => {
+      if (results.rows[0].podbean) {
+        let access_token = results.rows[0].podbean;
+        var authOptions = {
+          url: 'https://api.podbean.com/v1/episodes',// I might need ot add post
+          form: {
+            access_token: access_token, // this is the podbean response code.
+            title: title,
+            content: content,
+            status: status,
+            type: type,
+            media_key: file,
+          }, // this is the stuff require to post a podcast.
+          json: true
+        };
+        request.post(authOptions, function (error, response, body) {
+          console.log('post podcast was hit?')
+          res.redirect('https://hermes-host.herokuapp.com/#/home')
+        })
+      }
+      else {
+        res.send(500)
+      }
+    })
+})// this is untested. 
+
+getuserID = () => {
+  const queryText = `SELECT * FROM "current_user";`
+  pool.query(queryText)
+    .then((result) => {
+      return result.rows[0].current
+    })
+}
+
 checkStorage = (access_token, userId) => { //checks if user has accounts
   const queryText = `SELECT * FROM "storage" WHERE "id"=$1;`
   pool.query(queryText, [userId]) //hardcoded
@@ -79,6 +124,7 @@ checkStorage = (access_token, userId) => { //checks if user has accounts
       }
     })
 }
+
 updateToStorage = (access_token, userId) => {
 
   const queryText = `UPDATE "storage" SET "podbean"=$1 WHERE "id"=$2;` //update access token by user id
@@ -90,7 +136,6 @@ updateToStorage = (access_token, userId) => {
 }
 
 postToStorage = (access_token, userId) => {
-
   const queryText = `INSERT INTO "storage" ("user_id", "podbean") VALUES ($1,$2)` //create access token by user id
   pool.query(queryText, [userId, access_token,]).then(() => {
     console.log('access token added to database');

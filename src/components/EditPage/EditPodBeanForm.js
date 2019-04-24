@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 class EditPodBeanForm extends Component {
 
     state = {
-        titleOfPodbean: this.props.reduxState.podbean.title,
+        title: this.props.reduxState.podbean.title,
+        description: this.props.reduxState.podbean.description,
     }
 
     handleChange = (key) => (event) => {
@@ -18,7 +19,7 @@ class EditPodBeanForm extends Component {
 
     addNewPodcast = (event) => {
         event.preventDefault();
-        this.props.dispatch({ type: 'UPDATE_PODBEAN', payload: this.state.titleOfPodbean })
+        this.props.dispatch({ type: 'UPDATE_PODBEAN', payload: this.state })
         console.log(this.state);
     }
 
@@ -30,7 +31,7 @@ class EditPodBeanForm extends Component {
     render() {
         return (
             <>
-                <div>
+                <div className="podbean-box">
                     (insert fancy PodBean logo)
                     <h4>Edit Required Information for PodBean Podcast</h4>
                     <form onSubmit={this.addNewPodcast}>
@@ -39,6 +40,12 @@ class EditPodBeanForm extends Component {
                             <input placeholder="title"
                                 value={this.state.titleOfPodbean}
                                 onChange={this.handleChange('titleOfPodbean')} />
+                        </label>
+                        <label>
+                            Description
+                            <input placeholder="description"
+                                value={this.state.description}
+                                onChange={this.handleChange('description')} />
                         </label> 
                         <button onClick={this.handleChange}>Add PodBean Podcast</button>
                     </form>

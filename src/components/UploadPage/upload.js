@@ -9,42 +9,70 @@ import './Upload.css';
 
 class UploadPage extends Component {
 
+    
+    state = {
+        file: '',
+        uploading: false,
+    }
+
+    handleOnChange = (e) => {
+
+        console.log('handleOnChange',  Array.from(e.target.files));
+        console.log(e.target.files)
+        const file = e.target.files;
+        console.log('file', file[0]);
+        this.setState({
+            file: file[0]
+        });
+    }
+
+
     componentDidMount=()=>{
     this.props.dispatch({type: "STEP_TWO"})
-    }
+    
 
-    handleUploadButton = (event) => {
-        console.log('handleUploadButton hit');
 
-        event.preventDefault();
-        this.props.history.push('/edit-page');
-
-        // send file to server
-        // const data = new FormData();
-        // data.append('file', this.state.)
-
-        // hit sweet alert --> if user clicks continue, 
-        // send file to GL storage and make get transcript request
-        // direct user to next step: Edit
-        // if user clicks cancel, stay on this page and keep previously chosen file
-        // upload file to GC Storage
-    }
-
-    handleFileUpload = async (event) => {
-        console.log('handleFileUpload hit');
-        event.preventDefault();
-
-        const data = new FormData();
-        data.append('file', this.uploadInput.files[0]);
-        data.append('fileName', this.fileName.value);
-
-        // send file to redux
-
-        // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
-
-        // send file to server
-        this.addNewFile(data)
+        // const files = Array.from(e.target.files)
+        // console.log('files', files);
         
+        // this.setState({ uploading: true })
+
+        // const formData = new FormData()
+        // console.log('new FormData', new FormData() );
+        
+        // files.forEach((file, i) => {
+        //     formData.append(i, file)
+        // });
+        // console.log('formData', formData);
+        
+        
+        
+    }
+    
+ 
+    fileUpload = async (event) => {
+        console.log('fileUpload hit');
+        event.preventDefault();
+
+
+        // const data = new FormData('upload');
+        // data.append('file', this.state.file);
+        // console.log('data', data);
+        console.log('file', this.state.file);
+        
+        // send file to googleSaga
+        await this.props.dispatch({ type: 'SEND_AUDIO', payload: this.state.file['name']});
+
+        // this.props.history.push('/edit-page');
+
+        // const data = new FormData();
+        // data.append('file', this.uploadInput.files[0]);
+        // data.append('fileName', this.fileName.value);
+        // // send file to redux
+        // // await this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: data });
+        // // send file to server
+        // this.addNewFile(data)
+
     };
 
     addNewFile = (file) => {
@@ -58,12 +86,15 @@ class UploadPage extends Component {
         }).catch(error => {
             console.log('error with post to /upload', error);
         });
-    
+
         // this.props.dispatch({ type: 'UPLOAD_DOCUMENT', payload: filePath });
+
     };
 
 
 
+
+    //Sweet Alert Code
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
@@ -89,34 +120,53 @@ class UploadPage extends Component {
 
     render() {
         return (
-            <>
+
                 <StepperBar/>
 {/* 
                 {JSON.stringify(this.props.reduxState)} */}
                 <form onSubmit={this.handleUploadButton}>
 
 
-                <div>
+                {JSON.stringify(this.state)}
+                {/* <form id="upload" name="upload"> */}
+                    <div>
 
-                    <label htmlFor="userFile">Choose file:</label>
-                    <input
-                        id="userFile"
-                        type="file"
-                        name="userFile"
-                        // onChange={this.handleFileUpload}
-                        ref={(ref) => { this.uploadInput = ref; }}
-                    />
-                    <br />
-                    <button onClick={this.handleCancelButton}>Cancel</button>
+                {/* {JSON.stringify(this.props.reduxState)} */}
+                <button onSubmit={this.handleUploadButton}/>
 
-        
-                    <button onClick={this.handleUploadButton}>Upload</button>
+                        <label htmlFor="userFile">Choose file:</label>
+                        <input
+                            id="userFile"
+                            type="file"
+                            name="userFile"
+
+                        // webkitdirectory
+                            onChange={this.handleOnChange}
+                            // ref={(ref) => { this.uploadInput = ref; }}
+                        />
                     </div>
-                </form>
+                    <div>
+                        <button onClick={this.handleCancelButton}>Cancel</button>
+                        <button onClick={this.fileUpload}>Upload</button>
+                    </div>                    
+                    
+                <form>
             
                 
                
                 
+<div>
+
+                            // onChange={this.handleFileUpload}
+                            ref={(ref) => { this.uploadInput = ref; }}
+                        />
+
+                        <br />
+                        
+                        <button onClick={this.handleCancelButton}>Cancel</button>
+                        <button onClick={this.handleUploadButton}>Upload</button>
+                    </div>
+                </form>
 
             </>
         );

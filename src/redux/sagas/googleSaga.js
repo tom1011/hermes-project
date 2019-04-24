@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 function* sendAudio(action){
-   
+   console.log(action.payload)
     try{
  
     // console.log(action.payload)
       const response = yield axios.get(`googleCloud/transcription`, {
           params: {
-        file: '/Users/newowner/Desktop/2minSamplecopy.wav',
+          file: action.payload,
 
           }}
 )

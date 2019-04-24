@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 
@@ -23,6 +23,7 @@ const styles = theme => ({
 });
 
 function getSteps() {
+
     return [{step:'SELECT FORMS', number: 1}, {step:'UPLOAD', number: 2}, {step:'EDIT', number: 3}, {step:'REVIEW',number: 4},{step:'PUBLISHED',number: 5}];
 }
 
@@ -37,6 +38,7 @@ function getStepContent(stepIndex) {
     //     default:
     //         return 'Unknown stepIndex';
     // }
+
 }
 
 class StepperBar extends React.Component {
@@ -50,7 +52,6 @@ class StepperBar extends React.Component {
         }));
     };
 
-  
 
     // handleBack = () => {
     //     this.setState(state => ({
@@ -82,7 +83,7 @@ class StepperBar extends React.Component {
                     {this.state.activeStep === steps.length ? (
                         <div>
                             <Typography className={classes.instructions}>All steps completed</Typography>
-                            <Button onClick={this.handleReset}>Reset</Button>
+                            {/* <Button onClick={this.handleReset}>Reset</Button> */}
                         </div>
                     ) : (
                             <div>

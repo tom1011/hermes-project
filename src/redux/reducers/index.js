@@ -4,6 +4,10 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 
 
+// import fileUpload from './fileUploadReducer';
+
+
+
 import podbean from './podbean';
 import wordpress from './wordpressReducer';
 import stepperReducer from './stepperReducer'
@@ -20,8 +24,13 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
 
   // will have audio file and name
+
+
+  // fileUpload, // will have audio file and name
+
 stepperReducer,
   // will have audio file and name
+
   podbean,
   wordpress,
 
