@@ -74,9 +74,7 @@ class UploadPage extends Component {
     uploadRequest =  (file) => {
         console.log('uploadRequest hit');
         // event.preventDefault();
-
         console.log(this.state, 'STATE _____________');
-        
         let data = new FormData();
         data.append('file', file );
         console.log('data', data);
