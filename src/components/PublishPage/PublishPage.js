@@ -15,12 +15,10 @@ componentDidMount=()=>{
         console.log('button clicked');
         this.props.history.push('/connect');
     }
-
-
     render() {
         return (
             <>
-            <StepperBar activeStep='4'></StepperBar>
+            <StepperBar activeStep='5'></StepperBar>
                 <div>
                     <h1>Congratulations! Your post was successful!</h1>
                     <br />
