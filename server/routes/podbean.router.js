@@ -67,7 +67,6 @@ router.get('/callback_podbean', function (req, res, next) {
     })
 });
 
-
 //podbean router when this router get's hit we are posting form our client to here(server)
 router.post('/post_episode', function (req, res) {
   console.log('logging', req.body)
@@ -112,15 +111,6 @@ router.post('/post_episode', function (req, res) {
       res.send(500)// not every require field was filled.
     }
 })// this is untested. 
-
-//this get's our users id on our app
-getuserID = () => {
-  const queryText = `SELECT * FROM "current_user";`
-  pool.query(queryText)
-    .then((result) => {
-      return result.rows[0].current
-    })
-}
 
 checkStorage = (access_token, userId) => { //checks if user has accounts
   const queryText = `SELECT * FROM "storage" WHERE "id"=$1;`
