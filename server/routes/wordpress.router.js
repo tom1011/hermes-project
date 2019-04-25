@@ -121,7 +121,7 @@ router.post('/post_episode', function (req, res) {
                 url: `https://public-api.wordpress.com/rest/v1/sites/${blogid}/posts/new`, // I might need to add method:post
                 form: {
                   title: 'this is a test post',
-                  content: 'this is the auctual post lets hope I see it.',
+                  content: 'this is the actual post lets hope I see it.',
                   tags: 'tests',
                   categories: 'API',
                   // access_token: access_token, // this is the wordpress response code.
