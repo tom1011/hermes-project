@@ -32,7 +32,7 @@ function getPublicUrl (filename) {
     });
   
     stream.on('finish', () => {
-      req.file.cloudStorageObject = gcsname;
+        const gcsname = req.file.cloudStorageObject
       file.makePublic().then(() => {
         req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
         next();
