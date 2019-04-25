@@ -3,7 +3,7 @@ const express = require('express');
 require('dotenv').config();
 
 const app = express();
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
 
 const passport = require('./strategies/user.strategy');
@@ -16,8 +16,8 @@ const wordpressRouter = require('./routes/wordpress.router');
 const googleRouter = require('./routes/google.router');
 
 // Body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 1000000 }));
 
 // Passport Session Configuration //
 app.use(sessionMiddleware);

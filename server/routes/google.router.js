@@ -8,45 +8,45 @@ const fs = require('fs');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const path = require('path');
+const upload = require('./upload')
+
+// set up a directory where all our files will be saved
+// give the files a new identifier
+// SET STORAGE
+const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
+// Creates a storage client
 
 
+// console.log(storage)
 
 
-
-
+// Creates a storage client
+const gStorage = new Storage({
+    projectId: projectId,
+});
+const bucketName = 'uploadhermesaudio';
+const bucket = gStorage.bucket(bucketName)
 // https://www.woolha.com/tutorials/node-js-google-speech-to-text-recognition-api-examples
 // https://cloud.google.com/nodejs/docs/reference/storage/2.3.x/File
 // https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-nodejs
 
+//   var upload = multer({ storage: storage })
 router.get('/transcription', async function (req, res) {
     // Using the cloud client library
     // Your Google Cloud Platform project ID
     console.log(req.query)
-    const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
-    // Creates a storage client
-    const storage = new Storage({
-        projectId: projectId,
-    });
-
+    // const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
+   
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
-
     // The name of the audio file to transcribe
     const fileName = req.query.file;
-
     // local file to upload
    
-
     // Uploads a local file to the bucket
-    await storage.bucket(bucketName).upload(fileName, {
+    await gStorage.bucket(bucketName).upload(fileName, {
         // Support for HTTP requests made with `Accept-Encoding: gzip`
-        // Gets the metadata for the file
-//    const [metadata] = await storage
-//        .bucket(bucketName)
-//        .file(fileName)
-//        .getMetadata();
-
-   // await console.log(‘metadata’, metadata);
+        
         // By setting the option `destination`, you can change the name of the
         // object you are uploading to a bucket.
         metadata: {
@@ -56,28 +56,19 @@ router.get('/transcription', async function (req, res) {
             cacheControl: 'public, max-age=31536000',
         },
     });
-
     await console.log(`${fileName} uploaded to ${bucketName}.`);
 res.send({bucketName:bucketName, 
     fileName:fileName})
 })
   router.get('/transcript', async function (req, res){
-
 console.log(req.query)
-
-
-
-
   // Creates a speech client
     const client = new speech.SpeechClient();
-
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
-
         uri: `gs://${req.query.bucketName}/2minSamplecopy.wav`,
      
     };
-
     // Reads a local audio file and converts it to base64
     // const file = fs.readFileSync(fileName);
     // const audioBytes = file.toString('base64');
@@ -110,11 +101,68 @@ console.log(req.query)
     console.log(`Transcription: ${transcription}`);
     // [END speech_transcribe_async_gcs]
     res.send(transcription);
-
     
 });
+//  GET route that renders the upload.js file
+router.get("/", (req, res) => {
+    res.sendFile(path.join(`${__dirname}/index.html`));
+  });
+router.post(
+    '/upload',
+   upload.multer.single('file'),
+    upload.sendUploadToGCS,
+    (req, res, next) => {
+        
+      let data = req.body;
+  
+      // Was an image uploaded? If so, we'll use its public URL
+      // in cloud storage.
+      if (req.file && req.file.cloudStoragePublicUrl) {
+        data.audioUrl = req.file.cloudStoragePublicUrl;
+      }
+  
+      // Save the data to the database.
+    //   getModel().create(data, (err, savedData) => {
+    //     if (err) {
+    //       next(err);
+    //       return;
+    //     }
+    //     res.redirect(`${req.baseUrl}/${savedData.id}`);
+    //   });
+    }
+  );
+// endpoint for POST request in form
+// router.post('/upload', upload.single("file"), (req, res, next) => {
+//     console.log(storage)
+//     console.log(req.body.file)
+//     // const file = req.file
+//     // if (!file) {
+//     //     const error = new Error('Please upload a file')
+//     //     error.httpStatusCode = 400
+//     //     return next(error)
+//     // }
+//     // res.send(file)
+//     const blob = bucket.file(req.body.file.originalname);
+//     console.log('blob',blob)
 
-
-
+//     const blobStream = blob.createWriteStream({
+//       metadata: {
+//         contentType: req.file.mimetype
+//       }
+     
+//     });
+//     blobStream.on("error", err => {
+//     });
+//     blobStream.on("finish", () => {
+//         // The public URL can be used to access the file via HTTP.
+//         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+          
+//         // Make the audio public to the web
+//         // .then(() => {
+//         // res.status(200).send(`Success!\n Image uploaded to ${publicUrl}`);
+//     // });
+//   });
+   
+//   });
 
 module.exports = router;
