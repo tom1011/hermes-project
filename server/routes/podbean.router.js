@@ -52,7 +52,7 @@ router.get('/callback_podbean', function (req, res, next) {
           grant_type: 'authorization_code'
         },// up to here I think this will work
         headers: {
-          'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
+          'Authorization': 'Basic' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
         },// I think this will work however it might need to be called something else/put in url diffrently.
         json: true
       };

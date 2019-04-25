@@ -20,3 +20,6 @@ CREATE TABLE "current_user"(
 "current" INT
 
 );
+
+ALTER TABLE "storage" ADD "blog_id" VARCHAR (200);
+ALTER TABLE "storage" ADD "blog_url" VARCHAR (200);

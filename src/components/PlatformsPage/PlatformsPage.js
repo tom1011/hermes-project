@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import '../App/App.css';
 
 import swal from 'sweetalert';
-
+import StepperBar from '../StepperBar/StepperBar'
 
 import './PlatformsPage.css';
 
