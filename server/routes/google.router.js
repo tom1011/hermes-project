@@ -54,21 +54,22 @@ res.send({bucketName:bucketName,
 
 
   router.get('/transcript', async function (req, res){
-console.log(req.query)
+console.log('57 google', req.query)
   // Creates a speech client
+
     const client = new speech.SpeechClient();
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
-        uri: `gs://${bucketName}/{2minSamplecopy.wav}`,
+        uri: `gs://${bucketName}/${req.query.fileName}`,
      
     };
    
     const config = {
         encoding: 'LINEAR16',
-        sampleRateHertz: 32000,
+        sampleRateHertz: 16000,
         languageCode: 'en-US',
-        audioChannelCount: 2,
-        enableSeparateRecognitionPerChannel: true,
+        // audioChannelCount: 2,
+        // enableSeparateRecognitionPerChannel: true,
     };
     const request = {
         config: config,
@@ -111,6 +112,7 @@ router.post(
       }
 var fileName = req.file.cloudStorage
   console.log('googlerouter', req.file.cloudStorageObject)
+  res.send(req.file.cloudStorageObject)
    
     }
   );

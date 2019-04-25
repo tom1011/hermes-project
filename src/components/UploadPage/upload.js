@@ -36,15 +36,13 @@ class UploadPage extends Component {
         data.append('file', file );
         console.log('data', data);
     
-        axios({
-            method: 'POST',
-            data: data,
-            url: '/googleCloud/upload'
-        }).then( response => {
-            console.log('back from POST to /uploadfile', response);
-        }).catch(error => {
-            console.log('error with POST to /uploadfile', error);
-        })
+        // axios({
+        //     method: 'POST',
+        //     data: data,
+        //     url: '/googleCloud/upload'
+        // })
+        this.props.dispatch({type: "SEND_AUDIO", payload: data })
+        this.props.dispatch({type: "UPDATE_PODBEAN_MEDIA", payload: data})
         this.props.history.push('/edit-page');
     };
 

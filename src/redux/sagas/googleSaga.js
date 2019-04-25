@@ -5,12 +5,12 @@ function* sendAudio(action){
     try{
  
     // console.log(action.payload)
-      const response = yield axios.get(`googleCloud/transcription`, {
-          params: {
-          file: action.payload,
+      const response =   yield axios({
+            method: 'POST',
+            data: action.payload,
+            url: '/googleCloud/upload'
+        })
 
-          }}
-)
     console.log(response.data)
     
      yield put({type: 'GET_TRANSCRIPT', payload: response.data })
@@ -21,12 +21,12 @@ function* sendAudio(action){
 }}
 
 function* getTranscript(action){
-    console.log(action.payload.bucketName)
+    // console.log(action.payload.bucketName)
     try{
     const response = yield axios.get(`googleCloud/transcript`, {
         params: {
-      fileName: action.payload.fileName,
-      bucketName: action.payload.bucketName
+      fileName: action.payload,
+     
 
         }}
 )

@@ -17,7 +17,7 @@ function getPublicUrl (filename) {
     }
   
    let gcsname = Date.now() + req.file.originalname;
-    console.log(gcsname)
+    console.log('20 upload', gcsname)
     const file = bucket.file(gcsname);
   
     const stream = file.createWriteStream({
