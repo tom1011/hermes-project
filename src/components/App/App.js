@@ -94,6 +94,11 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/info"
+              component={ConnectPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/test"
               component={InfoPage}
             />
             <ProtectedRoute
