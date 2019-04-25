@@ -94,84 +94,68 @@ router.get('/callback_wordpress', function (req, res) {
 
 //post rout for Wordpress
 router.post('/post_episode', function (req, res) {
-  console.log('logging', req.body)
+  // console.log('logging', req.body)-- logging this is dummy data right now
   // let title = req.body.title;
   // let status = req.body.status;
   // let type = req.body.type;
   // let content = req.body.content;
   // let featured_media =req.body.featured_media;
 
-  let title = "Hermes the coding god"
-
 
 
   const queryText = `SELECT * FROM "current_user";`
   pool.query(queryText)
     .then((data) => {
-      let userId =  data.rows[0].current
-   
-  getuserID() // function to get user ID.
-  console.log('hit getuserID', );
-  
-  const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
-  pool.query(queryText, [userId])
-    .then((results) => {
-      if (results.rows[0].wordpress) {
-        console.log('inside pool query', results.rows);
-        let access_token = results.rows[0].wordpress; //second pool query getting authorization token
-        let blogurl = results.rows[0].blog_url;
-        let author = results.rows[0].blog_id;
+      let userId = data.rows[0].current  // function to get user ID.
 
-        var authOptions = {
-          header: { 'authorization': 'BEARER' + access_token },
-          url: `https://public-api.wordpress.com/rest/v1/sites/${blogurl}/posts/new`, // I might need to add method:post
-          form: {
-            access_token: access_token, // this is the wordpress response code.
-            date: 04 / 16 / 2019,
-            title: 'eatmyshorts',
-            content: 'this content is short on words',
-            excerpt: 'because when she saw the dark blue water she could only thing of his eyes at night',
-            author: 'charmed butts',
-            publicize_message: 'meow',
-            sticky: 'true',
-            password: 'mama',
-            parent: 1,
-            categories: ['things we sometimes say'],
-            tags: ['tags'],
-            featured_image: '',
-            media: 'Users/juliasugarman/Desktop/TESTWordPressFile.docx', //this will be our acutal file path when we get it
-            media_urls: [],
-            comments_open: 'true',
-            menu_order: 0,
-          }, // this is the stuff require to post a podcast.
-          json: true
-        };
-        request.post(authOptions, function (error, response, body) {
-      
-          console.log('post blog was hit?')
-          res.redirect('https://localhost:3000/#/home') //this is a local host for wordpress instead of / but for presentation we will have to use redirect
-        }).catch(error => {
-          console.log('please hit the local host', error);
-        })}
+      const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
+      pool.query(queryText, [userId])
+        .then((results) => {
+          if (results.rows[0].wordpress) {
+            let access_token = results.rows[0].wordpress;
+            console.log('logging the results.rows', access_token) // we are sending the correct token. //second pool query getting authorization token
+            let blogurl = results.rows[0].blog_url;
+            let blogid = results.rows[0].blog_id;
+            var authOptions = {
+              header: { 'Authorization': 'Bearer ' + access_token },
+                url: `https://public-api.wordpress.com/rest/v1/sites/${blogid}/posts/new`, // I might need to add method:post
+                form: {
+                  title: 'this is a test post',
+                  content: 'this is the auctual post lets hope I see it.',
+                  tags: 'tests',
+                  categories: 'API',
+                  // access_token: access_token, // this is the wordpress response code.
+                  // date: 04 / 17 / 2019,
+                  // title: 'eatmyshorts',
+                  // content: 'this content is short on words',
+                  // excerpt: 'because when she saw the dark blue water she could only thing of his eyes at night',
+                  // author: 'charmed butts',
+                  // publicize_message: 'meow',
+                  // sticky: 'true',
+                  // password: 'mama',
+                  // parent: 1,
+                  // categories: ['things we sometimes say'],
+                  // tags: ['tags'],
+                  // featured_image: '',
+                  // media: 'Users/juliasugarman/Desktop/TESTWordPressFile.docx', //this will be our acutal file path when we get it
+                  // media_urls: [],
+                  // comments_open: 'true',
+                  // menu_order: 0,
+                }, // this is the stuff require to post a podcast.
+                json: true
+              };
+              request.post(authOptions, function (error, response, body) {
+                console.log('post blog was hit? logging body', body)
+                console.log('post blog was hit? logging response', response)
+                res.redirect('https://localhost:3000/#/home')  //this is a local host for wordpress instead of / but for presentation we will have to use redirect
+              })
+            }
       else {
-        res.send(500)
-      }
-    }).catch(error => {
-      console.log('please hit the local two', error);
-    })
-    }).catch(error => {
-      console.log('please hit the local three', error);
+              res.send(500)
+            }
+          })
     })
 })// this is untested. 
-
-//this get's our users id on our app
-// getuserID = () => {
-//   const queryText = `SELECT * FROM "current_user";`
-//   pool.query(queryText)
-//     .then((result) => {
-//       return result.rows[0].current
-//     })
-// }
 
 checkStorage = (access_token, userId, blogId, blogurl) => { //checks if user has accounts
   const queryText = `SELECT * FROM "storage" WHERE "id"=$1;`
