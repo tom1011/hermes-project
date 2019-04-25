@@ -59,7 +59,7 @@ router.get('/callback_podbean', function (req, res, next) {
         let access_token = body.access_token
         // let expires = body.expires_in
         checkStorage(access_token, userId)// this updates the database with the token.
-        res.redirect('https://hermes-host.herokuapp.com/#/connect')
+        res.redirect('http://localhost:3000/#/connect')
         // to DB
       })
     })
