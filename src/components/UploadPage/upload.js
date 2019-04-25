@@ -11,60 +11,45 @@ class UploadPage extends Component {
         file: null,
         uploading: false,
     }
+
+  componentDidMount = () => {
+        this.props.dispatch({ type: "STEP_TWO" })
+    }
+  
+
     handleOnChange = (e) => {
         console.log('handleOnChange');
         console.log(e.target.files);
         console.log(e.target.files[0]);
         const file = e.target.files[0];
         console.log('file', file);
-        // this.setState({
-        //     file: file
-        // });
-        
-        // const file = e.target.files[0];
-        // console.log(e.target.files);
-        // console.log(e.target.files[0]);
-        // let file = e.target.files[0];
-        // this.setState({file: file});
-        
-        // console.log('file', file);
-        
+
         this.uploadRequest(file);
-    
     }
-    fileUpload=()=>{
-        this.props.dispatch({type: 'SEND_AUDIO'})
-      }
+    
  
     uploadRequest =  (file) => {
         console.log(file)
         console.log('uploadRequest hit');
         // event.preventDefault();
-        console.log(this.state, 'STATE _____________');
         
         let data = new FormData();
         data.append('file', file );
         console.log('data', data);
-        
-        // see what's in FormData
-        for (var pair of data.entries()) {
-            console.log('in formdata', pair[0] + ', ' + pair[1]);
-        }
-        // // send file to googleSaga
-        //  this.props.dispatch({ type: 'SEND_AUDIO', payload: data});
+    
         axios({
             method: 'POST',
             data: data,
             url: '/googleCloud/upload'
         }).then( response => {
             console.log('back from POST to /uploadfile', response);
-            
         }).catch(error => {
             console.log('error with POST to /uploadfile', error);
-            
         })
-        // this.props.history.push('/edit-page');
+        this.props.history.push('/edit-page');
     };
+
+    //Sweet Alert Code
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
@@ -85,13 +70,14 @@ class UploadPage extends Component {
                 }
             });
     }
+    
     render() {
         return (
-            <>
-                <StepperBar/>
-                {JSON.stringify(this.state)}
+
+            <div>
+                <StepperBar activeStep='2'></StepperBar>
+                
                 <form action="/googleCloud/uploadfile" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
-                    <div>
                         <label htmlFor="userFile">Choose file:</label>
                         <input
                             id="userFile"
@@ -99,7 +85,6 @@ class UploadPage extends Component {
                             name="userFile"
                             onChange={this.handleOnChange}
                         />
-                    </div>
                     <div>
                     <button onClick={this.handleCancelButton}>Cancel</button>
                     <input type="submit" value="Upload" />

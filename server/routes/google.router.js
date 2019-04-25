@@ -18,6 +18,22 @@ const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
 
 
 // console.log(storage)
+const multer = require('multer');
+
+
+// set up a directory where all our files will be saved
+// give the files a new identifier
+// SET STORAGE
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploadfile/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.name + '-' + Date.now())
+    }
+})
+
+var upload = multer({ storage: storage })
 
 
 // Creates a storage client
@@ -26,16 +42,10 @@ const gStorage = new Storage({
 });
 const bucketName = 'uploadhermesaudio';
 const bucket = gStorage.bucket(bucketName)
-// https://www.woolha.com/tutorials/node-js-google-speech-to-text-recognition-api-examples
-// https://cloud.google.com/nodejs/docs/reference/storage/2.3.x/File
-// https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-nodejs
 
-//   var upload = multer({ storage: storage })
+
 router.get('/transcription', async function (req, res) {
-    // Using the cloud client library
-    // Your Google Cloud Platform project ID
     console.log(req.query)
-    // const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
    
     // The name for the bucket
     const bucketName = 'uploadhermesaudio';
@@ -45,10 +55,6 @@ router.get('/transcription', async function (req, res) {
    
     // Uploads a local file to the bucket
     await gStorage.bucket(bucketName).upload(fileName, {
-        // Support for HTTP requests made with `Accept-Encoding: gzip`
-        
-        // By setting the option `destination`, you can change the name of the
-        // object you are uploading to a bucket.
         metadata: {
             // Enable long-lived HTTP caching headers
             // Use only if the contents of the file will never change
@@ -60,6 +66,7 @@ router.get('/transcription', async function (req, res) {
 res.send({bucketName:bucketName, 
     fileName:fileName})
 })
+
   router.get('/transcript', async function (req, res){
 console.log(req.query)
   // Creates a speech client
@@ -103,10 +110,12 @@ console.log(req.query)
     res.send(transcription);
     
 });
+
 //  GET route that renders the upload.js file
 router.get("/", (req, res) => {
     res.sendFile(path.join(`${__dirname}/index.html`));
   });
+
 router.post(
     '/upload',
    upload.multer.single('file'),
@@ -164,5 +173,25 @@ router.post(
 //   });
    
 //   });
+
+//  GET route that renders the upload.js file
+router.get('/uploadfile', function (req, res) {
+    res.sendFile(__dirname + './upload.js');
+
+});
+
+
+// endpoint for POST request in form
+router.post('/uploadfile', upload.single('userFile'), (req, res, next) => {
+    const file = req.file
+    if (!file) {
+        const error = new Error('Please upload a file')
+        error.httpStatusCode = 400
+        return next(error)
+    }
+    res.send(file)
+
+})
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App/App.css';
-import StepperBar from '../StepperBar/StepperBar';
+
 import swal from 'sweetalert';
 
 
@@ -46,7 +46,7 @@ class PlatformsPage extends Component {
         const { classes} = this.props;
         return (
             <>
-               
+               <StepperBar ></StepperBar>
                 <h2 className="platform-heading">
                     WHICH PLATFORM WOULD YOU LIKE TO POST TO?
                 </h2>
