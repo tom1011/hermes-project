@@ -9,8 +9,8 @@ import swal from 'sweetalert';
 //this is just the bare bones layout
 
 class ReviewPage extends Component {
-    componentDidMount=()=>{
-    this.props.dispatch({type: "STEP_FOUR"})
+    componentDidMount = () => {
+        this.props.dispatch({ type: "STEP_FOUR" })
     }
     handleClick = (event) => {
         event.preventDefault();
@@ -49,16 +49,17 @@ class ReviewPage extends Component {
         return (
             <>
                 <div>
-                <StepperBar activeStep='4'></StepperBar>
-                    <h1>Review Your Post</h1>
-                    <br />
-                    <h4>Confirm the specific platforms you would like to publish to</h4>
-                    <p>PodBean</p>
-                    <p>WordPress</p>
-                    <button onClick={this.handleClickEdit}>Edit</button>
+                    <StepperBar activeStep='4'></StepperBar>
+                    <div className="box">
+                        <h1 className="header">Review sites to be published to</h1>
+                        <br />
+                        <p className="podbean">PodBean</p>
+                        <p>WordPress</p>
+                        <button onClick={this.handleClickEdit}>Edit</button>
+                    </div>
                 </div>
                 <div>
-                    <button onClick={this.handleCancelButton}>Cancel</button>
+                    <button className="cancelButton" onClick={this.handleCancelButton}>Cancel</button>
                     <button onClick={this.handleClick}>Publish Your Project</button>
                 </div>
             </>

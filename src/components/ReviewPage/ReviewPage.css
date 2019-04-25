@@ -1,0 +1,112 @@
+.box {
+    position: absolute;
+    width: 822px;
+    height: 520px;
+    left: 348px;
+    top: 321px;
+
+    background: #DADADA;
+    opacity: 0.5;
+    border-radius: 21px;
+}
+
+.header {
+    position: absolute;
+    width: 251px;
+    height: 22px;
+    left: 637px;
+    top: 408px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: normal;
+
+    color: #181818;
+}
+
+.podbean {
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    left: 824px;
+    top: 514px;
+
+    background: url(podbean logo.png);
+}
+
+.wordpress {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    left: 578px;
+    top: 509px;
+
+    background: url(34209.png);
+}
+
+.cancelButton {
+    position: absolute;
+    width: 219px;
+    height: 53px;
+    left: 486px;
+    top: 920px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: normal;
+    letter-spacing: 0.02em;
+
+    color: #000000;
+
+    opacity: 0.4;
+
+}
+
+.cancelButton {
+    position: absolute;
+    width: 289px;
+    height: 78px;
+    left: 433px;
+    top: 907px;
+
+    background: linear-gradient(0deg, #CFCFCF, #CFCFCF), #7B7B7B;
+    opacity: 0.5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 21px;
+}
+
+.publishText {
+    position: absolute;
+    width: 202px;
+    height: 53px;
+    left: 808px;
+    top: 919px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: normal;
+    letter-spacing: 0.02em;
+
+    color: #000000;
+
+    opacity: 0.4;
+}
+
+.publishButton {
+    position: absolute;
+    width: 279px;
+    height: 78px;
+    left: 769px;
+    top: 907px;
+
+    background: linear-gradient(0deg, #CFCFCF, #CFCFCF), #7B7B7B;
+    opacity: 0.5;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 21px;
+}
