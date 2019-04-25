@@ -89,7 +89,7 @@ class UploadPage extends Component {
                     <input type="submit" value="Upload" />
                     </div>  
                 </form>                  
-            </>
+            </div>
         );
     };
 };

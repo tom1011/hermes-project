@@ -18,22 +18,22 @@ const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
 
 
 // console.log(storage)
-const multer = require('multer');
+// const multer = require('multer');
 
 
 // set up a directory where all our files will be saved
 // give the files a new identifier
 // SET STORAGE
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploadfile/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.name + '-' + Date.now())
-    }
-})
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, 'uploadfile/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.name + '-' + Date.now())
+//     }
+// })
 
-var upload = multer({ storage: storage })
+// var upload = multer({ storage: storage })
 
 
 // Creates a storage client
@@ -124,74 +124,18 @@ router.post(
         
       let data = req.body;
   
-      // Was an image uploaded? If so, we'll use its public URL
+      // Was audio uploaded? If so, we'll use its public URL
       // in cloud storage.
       if (req.file && req.file.cloudStoragePublicUrl) {
         data.audioUrl = req.file.cloudStoragePublicUrl;
       }
+      
   
-      // Save the data to the database.
-    //   getModel().create(data, (err, savedData) => {
-    //     if (err) {
-    //       next(err);
-    //       return;
-    //     }
-    //     res.redirect(`${req.baseUrl}/${savedData.id}`);
-    //   });
+   
     }
   );
-// endpoint for POST request in form
-// router.post('/upload', upload.single("file"), (req, res, next) => {
-//     console.log(storage)
-//     console.log(req.body.file)
-//     // const file = req.file
-//     // if (!file) {
-//     //     const error = new Error('Please upload a file')
-//     //     error.httpStatusCode = 400
-//     //     return next(error)
-//     // }
-//     // res.send(file)
-//     const blob = bucket.file(req.body.file.originalname);
-//     console.log('blob',blob)
-
-//     const blobStream = blob.createWriteStream({
-//       metadata: {
-//         contentType: req.file.mimetype
-//       }
-     
-//     });
-//     blobStream.on("error", err => {
-//     });
-//     blobStream.on("finish", () => {
-//         // The public URL can be used to access the file via HTTP.
-//         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
-          
-//         // Make the audio public to the web
-//         // .then(() => {
-//         // res.status(200).send(`Success!\n Image uploaded to ${publicUrl}`);
-//     // });
-//   });
-   
-//   });
-
-//  GET route that renders the upload.js file
-router.get('/uploadfile', function (req, res) {
-    res.sendFile(__dirname + './upload.js');
-
-});
 
 
-// endpoint for POST request in form
-router.post('/uploadfile', upload.single('userFile'), (req, res, next) => {
-    const file = req.file
-    if (!file) {
-        const error = new Error('Please upload a file')
-        error.httpStatusCode = 400
-        return next(error)
-    }
-    res.send(file)
-
-})
 
 
 module.exports = router;
