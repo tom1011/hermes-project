@@ -5,4 +5,18 @@
 
 .hermesLoginLogo img {
     height: 200px;
+    animation-name: 'fade-in-logo';
+    animation-duration: 2s;
+}
+
+@keyframes fade-in-logo {
+  0% {
+    opacity: 0;
+    margin-left: 50px;
+  }
+
+  100% {
+    opacity: 1;
+    margin-left: 0px;
+  }
 }
