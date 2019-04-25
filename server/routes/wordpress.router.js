@@ -84,7 +84,7 @@ router.get('/callback_wordpress', function (req, res) {
         let blogId = body.blog_id // we will make this a global variable and update it every time they auth.
         let blogurl = body.blog_url
         checkStorage(access_token, userId, blogId, blogurl)// this updates the database with the token.
-        res.redirect('http://localhost:3000/#/home')
+        res.redirect('http://localhost:3000/#/connect')
         // to DB
       })
     })
@@ -100,16 +100,12 @@ router.post('/post_episode', function (req, res) {
   // let type = req.body.type;
   // let content = req.body.content;
   // let featured_media =req.body.featured_media;
-
-
-
   const queryText = `SELECT * FROM "current_user";`
   pool.query(queryText)
     .then((data) => {
-      let userId = data.rows[0].current  // function to get user ID.
-
+      let userId = data.rows[0].current  
       const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
-      pool.query(queryText, [userId])
+      pool.query(queryText, [userId]) // this is to get the user ID.
         .then((results) => {
           if (results.rows[0].wordpress) {
             let access_token = results.rows[0].wordpress;
@@ -117,9 +113,10 @@ router.post('/post_episode', function (req, res) {
             let blogurl = results.rows[0].blog_url;
             let blogid = results.rows[0].blog_id;
             var authOptions = {
-              header: { 'Authorization': 'Bearer ' + access_token },
+              header: { 'Authorization': 'bearer ' + access_token },
                 url: `https://public-api.wordpress.com/rest/v1/sites/${blogid}/posts/new`, // I might need to add method:post
                 form: {
+                  access_token: access_token,
                   title: 'this is a test post',
                   content: 'this is the auctual post lets hope I see it.',
                   tags: 'tests',
@@ -155,7 +152,15 @@ router.post('/post_episode', function (req, res) {
             }
           })
     })
-})// this is untested. 
+})// this is untested.
+
+// this is ot auth token.
+// router.get('/test_token', function (req, res) {
+
+//   request.get(`https://public-api.wordpress.com/oauth2/token-info?client_id=${client_id}&token=${}`, function (error, response, body){
+
+//   })
+
 
 checkStorage = (access_token, userId, blogId, blogurl) => { //checks if user has accounts
   const queryText = `SELECT * FROM "storage" WHERE "id"=$1;`

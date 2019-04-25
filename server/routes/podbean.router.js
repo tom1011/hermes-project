@@ -32,7 +32,6 @@ router.get('/token_check', function (req, res) {
     })
 })
 
-
 router.get('/callback_podbean', function (req, res, next) {
   console.log('call back was hit', req.body)
   // your application requests refresh and access tokens
@@ -43,7 +42,6 @@ router.get('/callback_podbean', function (req, res, next) {
       console.log(result.rows[0].current)
       let userId = result.rows[0].current
       var code = req.query.code || null;
-
       var authOptions = {
         url: 'https://api.podbean.com/v1/oauth/token',// I might need ot add post
         form: {
@@ -61,7 +59,7 @@ router.get('/callback_podbean', function (req, res, next) {
         let access_token = body.access_token
         // let expires = body.expires_in
         checkStorage(access_token, userId)// this updates the database with the token.
-        res.redirect('https://hermes-host.herokuapp.com/#/info')
+        res.redirect('http://localhost:3000/#/connect')
         // to DB
       })
     })
@@ -100,7 +98,7 @@ router.post('/post_episode', function (req, res) {
         };
         request.post(authOptions, function (error, response, body) {
           console.log('post podcast was hit? logging response', response)
-          res.redirect('https://hermes-host.herokuapp.com/#/publish-page') //this is a local host for wordpress instead of / but for presentation we will have to use redirect
+          res.redirect('http://localhost:3000/#/home') //this is a local host for wordpress instead of / but for presentation we will have to use redirect
         })
       }
       else {
