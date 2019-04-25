@@ -67,7 +67,6 @@ router.get('/callback_podbean', function (req, res, next) {
     })
 });
 
-
 //podbean router when this router get's hit we are posting form our client to here(server)
 router.post('/post_episode', function (req, res) {
   console.log('logging', req.body)
@@ -77,8 +76,11 @@ router.post('/post_episode', function (req, res) {
   let content = req.body.description;
   let file = req.body.media;
 
-  
-  let userId = getuserID() // function to get user ID.
+  if (title, status, type, content, file){
+    const queryText = `SELECT * FROM "current_user";`
+    pool.query(queryText)
+      .then((data) => {
+        let userId =  data.rows[0].current // function to get user ID.
   const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
   pool.query(queryText, [userId])
     .then((results) => {
@@ -97,24 +99,18 @@ router.post('/post_episode', function (req, res) {
           json: true
         };
         request.post(authOptions, function (error, response, body) {
-          console.log('post podcast was hit?')
+          console.log('post podcast was hit? logging response', response)
           res.redirect('https://hermes-host.herokuapp.com/#/publish-page') //this is a local host for wordpress instead of / but for presentation we will have to use redirect
         })
       }
       else {
-        res.send(500)
-      }
-    })
+        res.send(500)// error withgetting user id.
+      }})
+    })}
+    else {
+      res.send(500)// not every require field was filled.
+    }
 })// this is untested. 
-
-//this get's our users id on our app
-getuserID = () => {
-  const queryText = `SELECT * FROM "current_user";`
-  pool.query(queryText)
-    .then((result) => {
-      return result.rows[0].current
-    })
-}
 
 checkStorage = (access_token, userId) => { //checks if user has accounts
   const queryText = `SELECT * FROM "storage" WHERE "id"=$1;`
