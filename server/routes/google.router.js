@@ -14,27 +14,6 @@ const upload = require('./upload')
 // give the files a new identifier
 // SET STORAGE
 const projectId = process.env.GOOGLE_CLOUD_PROJECT_ID;
-// Creates a storage client
-
-
-// console.log(storage)
-// const multer = require('multer');
-
-
-// set up a directory where all our files will be saved
-// give the files a new identifier
-// SET STORAGE
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, 'uploadfile/')
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, file.name + '-' + Date.now())
-//     }
-// })
-
-// var upload = multer({ storage: storage })
-
 
 // Creates a storage client
 const gStorage = new Storage({
@@ -73,15 +52,10 @@ console.log(req.query)
     const client = new speech.SpeechClient();
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
-        uri: `gs://${req.query.bucketName}/2minSamplecopy.wav`,
+        uri: `gs://${bucketName}/2minSamplecopy.wav`,
      
     };
-    // Reads a local audio file and converts it to base64
-    // const file = fs.readFileSync(fileName);
-    // const audioBytes = file.toString('base64');
-    // const audio = {
-    //     content: audioBytes,
-    // };
+   
     const config = {
         encoding: 'LINEAR16',
         sampleRateHertz: 32000,
@@ -111,10 +85,7 @@ console.log(req.query)
     
 });
 
-//  GET route that renders the upload.js file
-router.get("/", (req, res) => {
-    res.sendFile(path.join(`${__dirname}/index.html`));
-  });
+ 
 
 router.post(
     '/upload',
@@ -129,7 +100,7 @@ router.post(
       if (req.file && req.file.cloudStoragePublicUrl) {
         data.audioUrl = req.file.cloudStoragePublicUrl;
       }
-      
+
   
    
     }
