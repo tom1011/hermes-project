@@ -54,7 +54,7 @@ res.send({bucketName:bucketName,
 
 
   router.get('/transcript', async function (req, res){
-console.log('57 google', req.query)
+console.log('57 google', req.query.fileName)
   // Creates a speech client
 
     const client = new speech.SpeechClient();
@@ -68,6 +68,7 @@ console.log('57 google', req.query)
         encoding: 'LINEAR16',
         sampleRateHertz: 16000,
         languageCode: 'en-US',
+        enableAutomaticPunctuation: true,
         // audioChannelCount: 2,
         // enableSeparateRecognitionPerChannel: true,
     };

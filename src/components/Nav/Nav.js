@@ -6,7 +6,7 @@ import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
-    {props.user.id && <img className="hermesLogo" src="images/logo.png" alt="HERMES LOGO"/>} 
+    {props.user.id && <img className="hermesLogo" src="images/logo/logo.png" alt="HERMES LOGO"/>} 
     <div className="nav-right">
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
