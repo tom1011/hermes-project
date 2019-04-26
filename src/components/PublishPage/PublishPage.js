@@ -19,15 +19,15 @@ class PublishPage extends Component {
     render() {
         return (
             <>
-            <StepperBar activeStep='5'></StepperBar>
+                <StepperBar activeStep='5'></StepperBar>
                 <div>
                     <div className="grid-container">
                         <div className="left">
                             <h1 className="header" >Congratulations!</h1>
                             <h2>Your post was successful!</h2>
-                        </div>          
+                        </div>
                         <div className="bigHermImage" >
-                            <img src="images/bigherm.png" alt="HERMES"/>
+                            <img src="images/bigherm.png" alt="HERMES" />
                         </div>
                         <div className="buttonLeft">
                             <div><button>  <img className="icons" src="images/logo/podbean.png" alt="podbean_link" /></button></div>
@@ -44,8 +44,8 @@ class PublishPage extends Component {
                 <div>
                     <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer">Link to PodBean</a>
                 </div>
-                <div>
-                    <button onClick={this.handleClick}>Publish Another Project</button>
+                <div className="publishButton">
+                    <button onClick={this.handleClick}>Start Another Project</button>
                 </div>
             </>
         )
