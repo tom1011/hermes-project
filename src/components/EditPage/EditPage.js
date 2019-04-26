@@ -5,7 +5,7 @@ import EditWordPressForm from './EditWordPressForm';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
 import Grid from '@material-ui/core/Grid';
-// import './EditPage.css';
+import './EditPage.css';
 
 class EditPage extends Component {
     componentDidMount = () => {
