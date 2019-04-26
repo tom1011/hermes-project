@@ -30,9 +30,9 @@ class PublishPage extends Component {
                         </div>
                        
                         <div className="bigHermImage" >
-                            <img src="images/bigherm.png" />
+                            <img src="images/bigherm.png" alt="HERMES"/>
                         </div>
-                        <div buttonLeft>
+                        <div className="buttonLeft">
                             <div><button>  <img className="icons" src="images/logo/podbean.png" alt="podbean_link" /></button></div>
                             <div>
 
@@ -43,7 +43,7 @@ class PublishPage extends Component {
                     </div>
                 </div>
                 <div className="publishButton">
-                    <button onClick={this.handleClick}>Publish Another Project</button>
+                    <button onClick={this.handleClick}>Start Another Project</button>
                 </div>
             </>
         )
