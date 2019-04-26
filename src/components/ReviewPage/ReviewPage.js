@@ -53,19 +53,22 @@ class ReviewPage extends Component {
                     <StepperBar activeStep='4'></StepperBar>
                     <div className="grid-container">
                         <div className="review-box grid-item">
-                        <div className="review">
-                        <h1>Review sites to be published to</h1>
-                        </div>
-                        <br />
+                            <div className="review grid-item">
+                                <h1>Review sites to be published to</h1>
+                            </div>
+                            <br />
 
-                        <span className="podbean">PodBean</span>
-                        <span className="wordpress">WordPress</span>
-                        <button onClick={this.handleClickEdit}>Edit</button>
-                    
-                    </div>
+                            <div className="icons grid-item">
+                                <p className="podbean">PodBean</p>
+                                <p className="wordpress">WordPress</p>
+                            </div>
+                            <div className="edit grid-item">
+                            <button onClick={this.handleClickEdit}>Edit</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
+                <div className="bottom">
                     <button className="cancelButton" onClick={this.handleCancelButton}>Cancel</button>
                     <button className="publishButton" onClick={this.handleClick}>Publish</button>
                 </div>
