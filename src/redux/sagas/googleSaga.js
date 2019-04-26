@@ -31,6 +31,7 @@ function* getTranscript(action){
         }}
 )
 console.log(response)
+yield put({type: "SET_TRANSCRIPT", payload: response.data})
 }
 
 catch (err){}

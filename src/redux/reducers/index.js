@@ -7,7 +7,7 @@ import user from './userReducer';
 // import fileUpload from './fileUploadReducer';
 
 
-
+import transcriptReducer from './editReducer'
 import podbean from './podbeanReducer';
 import wordpress from './wordpressReducer';
 import stepperReducer from './stepperReducer'
@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
 
 
   // fileUpload, // will have audio file and name
-
+transcriptReducer,
 stepperReducer,
   // will have audio file and name
 

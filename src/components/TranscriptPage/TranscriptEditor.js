@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 //creating the text editor and making functionality
 class TranscriptEditor extends Component {
     state = {
-        text: "",
+        text: this.props.reduxStore.transcriptReducer.transcription,
     }
 
 
@@ -38,6 +38,7 @@ class TranscriptEditor extends Component {
             <div>
 
                 <ReactQuill theme="snow"
+                value={this.state.text}
                     modules={this.modules}
                     formats={this.formats}>
                 </ReactQuill>
@@ -46,8 +47,8 @@ class TranscriptEditor extends Component {
     }
 }
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState
-});
+const mapReduxStoreToProps = (reduxStore) => ({
+    reduxStore: reduxStore
+})
 
-export default connect(mapReduxStateToProps)(TranscriptEditor);
+export default connect(mapReduxStoreToProps)(TranscriptEditor);
