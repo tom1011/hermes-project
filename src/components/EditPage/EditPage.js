@@ -4,7 +4,7 @@ import EditPodBeanForm from './EditPodBeanForm';
 import EditWordPressForm from './EditWordPressForm';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import './EditPage.css';
 
 class EditPage extends Component {
@@ -62,8 +62,8 @@ class EditPage extends Component {
                         {/* <Grid item xs={12}> */}
                             <EditWordPressForm />
                         {/* </Grid> */}
-                        <button onClick={this.handleCancelButton}>Cancel</button>
-                        <button onClick={this.handleClick}>Next</button>
+                    <button className="myButton" onClick={this.handleCancelButton}>Cancel</button>
+                    <button className="myButton" onClick={this.handleClick}>Next</button>
                     </div>
                 {/* </Grid> */}
             </>

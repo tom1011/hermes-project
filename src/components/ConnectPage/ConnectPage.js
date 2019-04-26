@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App/App.css';
-import LogOutButton from '../LogOutButton/LogOutButton';
+// import LogOutButton from '../LogOutButton/LogOutButton';
 import './ConnectPage.css';
 
 class ConnectPage extends Component {
@@ -43,11 +43,11 @@ class ConnectPage extends Component {
                     </div>
                 </div>
                 <div>
-                    <button onClick={this.handleStartPostButton}>Start Posting</button>
+                    <button className="myButton" onClick={this.handleStartPostButton}>Start Posting</button>
                 </div>
                 <div>
 
-                    <LogOutButton className="log-in" />
+                    {/* <LogOutButton className="log-in" /> */}
                 </div>
             </>
         );

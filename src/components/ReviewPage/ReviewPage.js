@@ -72,14 +72,14 @@ class ReviewPage extends Component {
                                 <p className="wordpress">WordPress</p>
                             </div>
                             <div className="edit grid-item">
-                            <button onClick={this.handleClickEdit}>Edit</button>
+                                    <button className="myButton" onClick={this.handleClickEdit}>Edit</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="bottom">
-                    <button className="cancelButton" onClick={this.handleCancelButton}>Cancel</button>
-                    <button className="publishButton" onClick={this.handleClick}>Publish</button>
+                        <button className="myButton"  onClick={this.handleCancelButton}>Cancel</button>
+                        <button className="myButton"  onClick={this.handleClick}>Publish</button>
                 </div>
                 </div>
             </>

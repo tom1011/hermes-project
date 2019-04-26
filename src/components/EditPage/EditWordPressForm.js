@@ -108,7 +108,7 @@ class EditWordPressForm extends Component {
                         <input placeholder="transcription"
                                 value={this.state.transcription}
                                 onChange={this.handleChange('transcription')} />
-                                <button onClick={this.handleClickEdit}>Edit Transcription</button>
+                            <button className="myButton" onClick={this.handleClickEdit}>Edit Transcription</button>
                         </label>
                         {/* <button onClick={this.handleChange}>Next</button> */}
                     </form>

@@ -24,15 +24,15 @@ class PlatformsPage extends Component {
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
-            title: "Are you sure?",
-            text: "Careful, you will lose all progress and information forever!",
+           
+            text: "Are you sure this is the correct file for upload!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
+                    swal("Your file has been uploaded", {
                         icon: "success",
                     });
                     this.props.history.push('/connect');
@@ -47,6 +47,7 @@ class PlatformsPage extends Component {
         return (
             <>
                 <StepperBar ></StepperBar>
+                <div className="box">
                 <h2 className="platform-heading">
                     WHICH PLATFORM WOULD YOU LIKE TO POST TO?
                 </h2>
@@ -75,14 +76,11 @@ class PlatformsPage extends Component {
                             <label htmlFor="PodBean">PodBean</label>
                         </div>
                     </div>
+                    </div>
 
-
-                    <div className="item-box grid-item3">
-                        
+                    {/* <div className="item-box grid-item3">
                         <div className="boxHeader">
-                            
                             <img className="icons" src="images/icons/VIDEO.png" alt="Podcast" />
-                          
                         </div>
                         <p className="line"></p>
                         <div className="checkBox">
@@ -90,13 +88,13 @@ class PlatformsPage extends Component {
                             <label htmlFor="PodBean">YouTube</label>
                         </div>
                         <div class="centered">COMING SOON</div>
-                    </div>
+                    </div> */}
 
                 </div>
 
                 <div>
-                    <button>CANCEL</button>
-                    <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
+                    <button className="myButton" onClick={this.handleCancelButton}>CANCEL</button>
+                    <button className="myButton" onClick={this.handleSelectPlatformsButton}>START POSTING</button>
 
                 </div>
             </>
