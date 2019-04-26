@@ -43,52 +43,62 @@ class PlatformsPage extends Component {
     }
 
     render() {
-        const { classes} = this.props;
+        const { classes } = this.props;
         return (
             <>
-               <StepperBar ></StepperBar>
+                <StepperBar ></StepperBar>
                 <h2 className="platform-heading">
                     WHICH PLATFORM WOULD YOU LIKE TO POST TO?
                 </h2>
                 <div className="grid-container">
-
                     <div className="item-box grid-item1">
                         <div className="boxHeader">
-                        <img className="icons" src="images/icons/BLOG.png" alt="blog" />
-                        Blog
+                            <img className="icons" src="images/icons/BLOG.png" alt="blog" />
+                            Blog
                         </div>
-                    <p className="line"></p>
-                    <div>
-                        <input type="checkbox" id="WordPress" name="WordPress" />
-                        <label htmlFor="WordPress" className="wordpress-label">WordPress</label>
+                        <p className="line"></p>
+                        <div className="checkBox">
+                            <input className="checkboxSquare" type="checkbox" id="WordPress" name="WordPress" />
+                            <label htmlFor="WordPress" className="wordpress-label">WordPress</label>
+                        </div>
                     </div>
+
+
+                    <div className="item-box grid-item2">
+                        <div className="boxHeader">
+                            <img className="icons" src="images/icons/MICROPHONE.png" alt="Podcast" />
+                            Podcast
+                        </div>
+                        <p className="line"></p>
+                        <div className="checkBox">
+                            <input className="checkboxSquare" type="checkbox" id="PodBean" name="PodBean" />
+                            <label htmlFor="PodBean">PodBean</label>
+                        </div>
+                    </div>
+
+
+                    <div className="item-box grid-item3">
+                        
+                        <div className="boxHeader">
+                            
+                            <img className="icons" src="images/icons/VIDEO.png" alt="Podcast" />
+                          
+                        </div>
+                        <p className="line"></p>
+                        <div className="checkBox">
+                            <input className="checkboxSquare" type="checkbox" id="PodBean" name="PodBean" />
+                            <label htmlFor="PodBean">YouTube</label>
+                        </div>
+                        <div class="centered">COMING SOON</div>
+                    </div>
+
                 </div>
 
-                <div className="item-box grid-item2">
-                        <img className="icons" src="images/icons/MICROPHONE.png" alt="Podcast" />
-                    Podcast
-                    <div>
-                        <input type="checkbox" id="PodBean" name="PodBean" />
-                        <label htmlFor="PodBean">PodBean</label>
-                    </div>
+                <div>
+                    <button>CANCEL</button>
+                    <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
+
                 </div>
-
-                <div className="item-box grid-item3">
-                        <img className="icons" src="images/icons/VIDEO.png" alt="Podcast" />
-                    Coming Soon
-                        <div>
-                        <input type="checkbox" id="PodBean" name="PodBean" />
-                        <label htmlFor="PodBean">PodBean</label>
-                    </div>
-                </div>
-
-            </div>
-
-            <div>
-                <button>CANCEL</button>
-                <button onClick={this.handleSelectPlatformsButton}>START POSTING</button>
-
-            </div>
             </>
         );
     };

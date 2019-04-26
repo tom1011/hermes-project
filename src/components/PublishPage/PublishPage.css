@@ -1,0 +1,19 @@
+.bigHermImage img {
+    height:600px;
+    position: right;
+
+}
+.header{
+    text-align: left;
+
+}
+
+.linkButtons{
+    border-radius: 4px;
+    text-align: left;
+    size: 30px;
+}
+
+.publishButton{
+    position: left;
+}
