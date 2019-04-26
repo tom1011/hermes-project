@@ -29,27 +29,38 @@
 }
 
 .podbean {
+    position: absolute;
+    max-width: 87px;
+    max-height: 87px;
+    left: 824px;
+    top: 514px;
+
     /* position: absolute; */
     width: 116px;
     height: 116px;
     /* left: 824px;
     top: 514px; */
-
     /* background: url(podbean logo.png); */
 }
 
 .wordpress p {
     text-align: center;
+
 }
 
 .wordpress {
     /* position: absolute; */
     width: 128px;
     height: 128px;
+
+    left: 578px;
+    top: 509px;
+
     /* left: 578px;
     top: 509px; */
 
     /* background: url(34209.png); */
+
 }
 
 .edit {

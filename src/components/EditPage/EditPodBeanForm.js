@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 class EditPodBeanForm extends Component {
 //held in reducer and in local state and are required by the apis to work
     state = {
+        piece: '',
         title: this.props.reduxState.podbean.title,
         description: this.props.reduxState.podbean.description,
     }
@@ -34,9 +35,15 @@ class EditPodBeanForm extends Component {
         return (
             <>
                 <div className="podbean-box">
-                    (insert fancy PodBean logo)
                     <h4>Edit Required Information for PodBean Podcast</h4>
                     <form onSubmit={this.addNewPodcast} className="podbean-form">
+                    <label className="title">
+                            Title of Piece
+                            <input className="piece"
+                                placeholder="piece"
+                                value={this.state.titleOfPiece}
+                                onChange={this.handleChange('titleOfPiece')} />
+                        </label>
                         <label className="title">
                             Title of Podcast
                             <input className="title-input"
@@ -51,7 +58,6 @@ class EditPodBeanForm extends Component {
                                 value={this.state.description}
                                 onChange={this.handleChange('description')} />
                         </label> 
-                        <button onClick={this.handleChange}>Add PodBean Podcast</button>
                     </form>
                 </div>
             </>

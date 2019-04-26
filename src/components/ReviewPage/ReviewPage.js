@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
-
+// import podbean from '../../../public/images/logo/podbean.png';
 import './ReviewPage.css';
+
 
 //this page will need to send the post requests to the selected platforms
 
@@ -51,6 +52,14 @@ class ReviewPage extends Component {
             <>
                 <div>
                     <StepperBar activeStep='4'></StepperBar>
+
+                    <div className="box">
+                        <h1 className="header">Review sites to be published to</h1>
+                        <br />
+                        <img className="podbean" src='images/logo/podbean.png'/>
+                        <p>WordPress</p>
+                        <button onClick={this.handleClickEdit}>Edit</button>
+
                     <div className="grid-container">
                         <div className="review-box grid-item">
                             <div className="review grid-item">

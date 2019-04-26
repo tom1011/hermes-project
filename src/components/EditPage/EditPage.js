@@ -48,7 +48,6 @@ class EditPage extends Component {
                 <StepperBar activeStep='3'></StepperBar>
                     <h2>Edit Page</h2>
 
-                    (insert progress bar here)
                 </div>
                 {/* <Grid
                     container
