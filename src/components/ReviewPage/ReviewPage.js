@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
-
 // import podbean from '../../../public/images/logo/podbean.png';
+import './ReviewPage.css';
+
 
 //this page will need to send the post requests to the selected platforms
 
@@ -51,17 +52,34 @@ class ReviewPage extends Component {
             <>
                 <div>
                     <StepperBar activeStep='4'></StepperBar>
+
                     <div className="box">
                         <h1 className="header">Review sites to be published to</h1>
                         <br />
                         <img className="podbean" src='images/logo/podbean.png'/>
                         <p>WordPress</p>
                         <button onClick={this.handleClickEdit}>Edit</button>
+
+                    <div className="grid-container">
+                        <div className="review-box grid-item">
+                            <div className="review grid-item">
+                                <h1>Review sites to be published to</h1>
+                            </div>
+                            <br />
+
+                            <div className="icons grid-item">
+                                <p className="podbean">PodBean</p>
+                                <p className="wordpress">WordPress</p>
+                            </div>
+                            <div className="edit grid-item">
+                            <button onClick={this.handleClickEdit}>Edit</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
+                <div className="bottom">
                     <button className="cancelButton" onClick={this.handleCancelButton}>Cancel</button>
-                    <button onClick={this.handleClick}>Publish Your Project</button>
+                    <button className="publishButton" onClick={this.handleClick}>Publish</button>
                 </div>
             </>
         )

@@ -1,22 +1,20 @@
-.box {
-    position: absolute;
+
+.review-box {
+    margin: 60px;
     width: 822px;
     height: 520px;
-    left: 348px;
     top: 321px;
 
     background: #DADADA;
     opacity: 0.5;
     border-radius: 21px;
 }
+.review h1 {
+    text-align: center;
+}
 
-.header {
-    position: absolute;
-    width: 251px;
-    height: 22px;
-    left: 637px;
-    top: 408px;
-
+.review {
+    
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -26,22 +24,55 @@
     color: #181818;
 }
 
+.podbean p {
+    text-align: center;
+}
+
 .podbean {
     position: absolute;
     max-width: 87px;
     max-height: 87px;
     left: 824px;
     top: 514px;
+
+    /* position: absolute; */
+    width: 116px;
+    height: 116px;
+    /* left: 824px;
+    top: 514px; */
+    /* background: url(podbean logo.png); */
+}
+
+.wordpress p {
+    text-align: center;
+
 }
 
 .wordpress {
-    position: absolute;
+    /* position: absolute; */
     width: 128px;
     height: 128px;
+
     left: 578px;
     top: 509px;
+
+    /* left: 578px;
+    top: 509px; */
+
+    /* background: url(34209.png); */
+
 }
 
+.edit {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.bottom {
+    text-align: center;
+    margin-top: 300px;
+}
+/* 
 .cancelButton {
     position: absolute;
     width: 219px;
@@ -60,10 +91,10 @@
 
     opacity: 0.4;
 
-}
+/* }
 
-.cancelButton {
-    position: absolute;
+.cancelButton { */
+    /* position: absolute;
     width: 289px;
     height: 78px;
     left: 433px;
@@ -75,11 +106,14 @@
     border-radius: 21px;
 }
 
-.publishText {
+.publishButton button {
+    text-align: center;
+}
+
+.publishButton {
     position: absolute;
     width: 202px;
     height: 53px;
-    left: 808px;
     top: 919px;
 
     font-family: Roboto;
@@ -91,18 +125,29 @@
 
     color: #000000;
 
-    opacity: 0.4;
-}
+    opacity: 0.4; */
+/* }
 
-.publishButton {
-    position: absolute;
-    width: 279px;
+.publishButton { */
+    /* width: 279px;
     height: 78px;
-    left: 769px;
     top: 907px;
 
     background: linear-gradient(0deg, #CFCFCF, #CFCFCF), #7B7B7B;
     opacity: 0.5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 21px;
+}  */
+
+
+ .grid-container {
+    display: grid;
+    margin: 10px 6px;
+    grid-template-columns: repeat(3, 12fr);
+    grid-template-rows: repeat(1, 30vw);
+    grid-gap: 15px;
+}
+
+.grid-item1 {
+    grid-column-start: 1;
 }

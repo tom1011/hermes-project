@@ -74,7 +74,7 @@ class UploadPage extends Component {
             <div>
                 <StepperBar activeStep='2'></StepperBar>
                 
-                <form action="/googleCloud/uploadfile" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
+                <form action="/googleCloud/upload" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
                         <label htmlFor="userFile">Choose file:</label>
                         <input
                             id="userFile"
