@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router-dom'
 
 class EditWordPressForm extends Component {
     //held in reducer and in local state and is required for the Api to work
 
     state = {
+        redirect: false,
         date:'', //need
         title: '', //need
         content: '',  //need
@@ -24,6 +25,7 @@ class EditWordPressForm extends Component {
         media_urls: '',//need
         comments_open: '',//need
         menu_order: '',//need
+        transcription: this.props.reduxStore.transcriptReducer.transcription
     }
 
         
@@ -53,12 +55,19 @@ class EditWordPressForm extends Component {
     handleClickEdit = (event) => {
         event.preventDefault();
         console.log('edit transcript button clicked');
-        //this.props.history.push('/transcript-page');
+        
+            this.setState({
+              redirect: true
+            })
+          
+        // this.props.history.push('../TranscriptPage/TranscriptPage.js');
     }
-
 
     render() {
         //console.log(this.props.history);
+        if (this.state.redirect) {
+            return <Redirect to='/transcript-page' />
+          }
         
         return (
             <>
@@ -109,8 +118,8 @@ class EditWordPressForm extends Component {
     }
 }
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState
-});
+const mapReduxStoreToProps = (reduxStore) => ({
+    reduxStore: reduxStore
+})
 
-export default connect(mapReduxStateToProps)(EditWordPressForm);
+export default connect(mapReduxStoreToProps)(EditWordPressForm);
