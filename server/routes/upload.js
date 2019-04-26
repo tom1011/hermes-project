@@ -16,7 +16,8 @@ function getPublicUrl (filename) {
       return next();
     }
   
-    const gcsname = Date.now() + req.file.originalname;
+   let gcsname = Date.now() + req.file.originalname;
+    console.log('20 upload', gcsname)
     const file = bucket.file(gcsname);
   
     const stream = file.createWriteStream({
@@ -32,7 +33,8 @@ function getPublicUrl (filename) {
     });
   
     stream.on('finish', () => {
-        const gcsname = req.file.cloudStorageObject
+        req.file.cloudStorageObject = gcsname
+        console.log(gcsname)
       file.makePublic().then(() => {
         req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
         next();
@@ -40,6 +42,7 @@ function getPublicUrl (filename) {
     });
  
     stream.end(req.file.buffer);
+    return(gcsname)
   }
   const Multer = require('multer');
 const multer = Multer({
@@ -53,6 +56,7 @@ const multer = Multer({
 module.exports = {
   getPublicUrl,
   sendUploadToGCS,
-  multer
+  multer,
+ 
 };
     

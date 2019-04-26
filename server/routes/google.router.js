@@ -9,7 +9,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const path = require('path');
 const upload = require('./upload')
-
+// console.log(upload.gcsname)
 // set up a directory where all our files will be saved
 // give the files a new identifier
 // SET STORAGE
@@ -46,22 +46,30 @@ res.send({bucketName:bucketName,
     fileName:fileName})
 })
 
+
+
+
+
+
+
+
   router.get('/transcript', async function (req, res){
-console.log(req.query)
+console.log('57 google', req.query)
   // Creates a speech client
+
     const client = new speech.SpeechClient();
     // The audio file's encoding, sample rate in hertz, and BCP-47 language code
     const audio = {
-        uri: `gs://${bucketName}/2minSamplecopy.wav`,
+        uri: `gs://${bucketName}/${req.query.fileName}`,
      
     };
    
     const config = {
         encoding: 'LINEAR16',
-        sampleRateHertz: 32000,
+        sampleRateHertz: 16000,
         languageCode: 'en-US',
-        audioChannelCount: 2,
-        enableSeparateRecognitionPerChannel: true,
+        // audioChannelCount: 2,
+        // enableSeparateRecognitionPerChannel: true,
     };
     const request = {
         config: config,
@@ -85,7 +93,9 @@ console.log(req.query)
     
 });
 
- 
+
+
+
 
 router.post(
     '/upload',
@@ -100,8 +110,9 @@ router.post(
       if (req.file && req.file.cloudStoragePublicUrl) {
         data.audioUrl = req.file.cloudStoragePublicUrl;
       }
-
-  
+var fileName = req.file.cloudStorage
+  console.log('googlerouter', req.file.cloudStorageObject)
+  res.send(req.file.cloudStorageObject)
    
     }
   );

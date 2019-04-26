@@ -17,7 +17,9 @@
 
 }
 
-
+.checkBox{
+    text-align: center;
+}
 .platform-heading {
     text-align: center;
     margin-top: 20px;
@@ -51,8 +53,6 @@
 
 .grid-item1 {
     grid-column-start: 1;
-  
-
 
 }
 
@@ -65,6 +65,30 @@
 
 .grid-item3 {
     grid-column-start: 3;
+   background: linear-gradient(#ffffff,transparent);
+   background-color: #6161614d;
+
  
    
+}
+
+.grid-item3 .boxHeader,
+.grid-item3 .line,
+.grid-item3 .checkBox {
+    opacity: .3;
+}
+
+.checkboxSquare{
+    width: 30px; 
+  height: 30px; 
+}
+
+
+.centered {
+  position: relative;
+  top: 10%;
+  left: 26%;
+  transform: translate(-20%, -20%);
+  font-size: 50px;
+  font-style: bold;
 }

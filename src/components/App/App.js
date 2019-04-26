@@ -31,7 +31,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#33ab9f',
-      main: '#F27935',
+      main: '#F9BF3B',
       dark: '#D35400',
       contrastText: '#fff',
     },
@@ -87,13 +87,18 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={ConnectPage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
               exact
               path="/info"
+              component={ConnectPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/test"
               component={InfoPage}
             />
             <ProtectedRoute
