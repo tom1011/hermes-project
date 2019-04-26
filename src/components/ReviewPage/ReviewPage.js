@@ -81,6 +81,7 @@ class ReviewPage extends Component {
                     <button className="cancelButton" onClick={this.handleCancelButton}>Cancel</button>
                     <button className="publishButton" onClick={this.handleClick}>Publish</button>
                 </div>
+                </div>
             </>
         )
     }
