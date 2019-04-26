@@ -32,7 +32,7 @@ class PublishPage extends Component {
                         <div className="buttonLeft">
                             <div><button>  <img className="icons" src="images/logo/podbean.png" alt="podbean_link" /></button></div>
                             <div>
-                                <button>  <img className="icons" src="images/logo/WordPress.png" alt="podbean_link" /></button>
+                                <button>  <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" /></button>
                             </div>
                         </div>
                         <br />
