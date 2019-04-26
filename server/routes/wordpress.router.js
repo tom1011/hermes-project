@@ -118,7 +118,7 @@ router.post('/post_episode', function (req, res) {
                 form: {
                   access_token: access_token,
                   title: 'this is a test post',
-                  content: 'this is the auctual post lets hope I see it.',
+                  content: 'this is the actual post lets hope I see it.',
                   tags: 'tests',
                   categories: 'API',
                   // access_token: access_token, // this is the wordpress response code.
