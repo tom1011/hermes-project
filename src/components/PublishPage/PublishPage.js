@@ -24,6 +24,14 @@ componentDidMount=()=>{
                     <br />
                 </div>
                 <div>
+                    <a target="_blank" href="https://junomercury.home.blog/2019/04/26/gates-do-they-count/" rel="noopener noreferrer">Link to WordPress</a>
+                </div>
+                <div>
+                    <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer">Link to PodBean</a>
+                </div>
+                
+                
+                <div>
                     <button onClick={this.handleClick}>Publish Another Project</button>
                 </div>
             </>
