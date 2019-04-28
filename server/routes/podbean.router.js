@@ -22,7 +22,7 @@ router.get('/token_check', function (req, res) {
       const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
       pool.query(queryText, [userId])
         .then((results) => {
-          if (results.rows[0].podbean) {
+          if (results.rowCount > 0 &&  results.rows[0].podbean) {
             res.send(true)
           }
           else {
