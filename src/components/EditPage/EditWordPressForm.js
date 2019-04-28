@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
-
+import SimpleModalWrapped from './transcriptModal'
 class EditWordPressForm extends Component {
     //held in reducer and in local state and is required for the Api to work
 
@@ -123,7 +123,7 @@ testFillBlog=(e)=>{
                         <input 
                                 value={this.state.form.categories}
                                 onChange={this.props.handleChangeW('categories')} />
-                                <button onClick={this.testFillCategories}>      </button>
+                                <SimpleModalWrapped/>
                         </label>
                         <br />
                         <label>
