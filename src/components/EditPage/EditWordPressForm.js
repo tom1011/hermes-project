@@ -13,33 +13,26 @@ const styles = theme => ({
         display: 'flex',
         background: 'white',
         flexWrap: 'wrap',
-        height: '400px',
-        [theme.breakpoints.up("lg")]: {
-            width: '600px'
-        },
         [theme.breakpoints.up("md")]: {
-            width: '600px'
+            width: '800px'
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.down("sm")]: {
             width: '600px'
-        },
-        [theme.breakpoints.up("xs")]: {
-            width: '600px'
-        },
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        },  
+        height: '550px',
+       
     },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
         // width: 200,
     },
-    dense: {
-        marginTop: 19,
-    },
-    menu: {
-        width: 200,
-    },
+    // dense: {
+    //     marginTop: 19,
+    // },
+    // menu: {
+    //     width: 200,
+    // },
 });
 
 
@@ -119,89 +112,74 @@ class EditWordPressForm extends Component {
                     justify="left"
                 >
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom>
-                            Enter the required information for WordPress.
-                        </Typography>
+                        
+                        <p>Enter the required information for WordPress.</p>
+                        
                     </Grid>
 
                     <Grid item xs={12}>
+                        
                         <form onSubmit={this.addNewBlog} className={classes.containerWordpress}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    id="title"
-                                    label="Name of Article"
-                                    fullWidth
-                                    value={this.state.title_of_blog}
-                                    onChange={this.handleChange('title_of_blog')}
-                                />
+                            <Grid item item xs={12}>
+                                <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                             </Grid>
-
-
-                            {/* <label>
-                                Title of Piece
-                                <input placeholder="title"
-                                    value={this.state.title_of_blog}
-                                    onChange={this.handleChange('title_of_blog')} />
-                            </label> */}
-
+                            
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     id="blog name"
                                     label="Name of Blog"
                                     fullWidth
+                                    variant="outlined"
+                                    margin="normal"
                                     value={this.state.blog_name}
                                     onChange={this.handleChange('blog_name')}
                                 />
                             </Grid>
 
-                            {/* <label>
-                                Blog Name
-                            <input placeholder="blog name"
-                                    value={this.state.blog_name}
-                                    onChange={this.handleChange('blog_name')} />
-                            </label> */}
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    id="title"
+                                    label="Name of Article"
+                                    fullWidth
+                                    variant="outlined"
+                                    margin="normal"
+                                    value={this.state.title_of_blog}
+                                    onChange={this.handleChange('title_of_blog')}
+                                />
+                            </Grid>
 
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     id="tags"
                                     label="Tags"
                                     fullWidth
+                                    variant="outlined"
+                                    margin="normal"
                                     value={this.state.tags}
                                     onChange={this.handleChange('tags')}
                                 />
                             </Grid>
-
-                            {/* <label>
-                                Tags
-                            <input placeholder="tags"
-                                    value={this.state.tags}
-                                    onChange={this.handleChange('tags')} />
-                            </label> */}
 
                             <Grid item xs={12} sm={6}>
                                 <TextField
                                     id="categories"
                                     label="Categories"
                                     fullWidth
+                                    variant="outlined"
+                                    margin="normal"
                                     value={this.state.categories}
                                     onChange={this.handleChange('categories')}
                                 />
                             </Grid>
-
-                            {/* <label>
-                                Categories
-                            <input placeholder="categories"
-                                    value={this.state.categories}
-                                    onChange={this.handleChange('categories')} />
-                            </label> */}
 
                             <Grid item xs={12}>
                                 <TextField
                                     id="transcription"
                                     label="Transcription"
                                     fullWidth
+                                    variant="outlined"
                                     multiline
-                                    rowsMax="6"
+                                    rowsMax="8"
                                     margin="normal"
                                     className={classes.textField}
                                     value={this.state.transcription}
@@ -212,15 +190,7 @@ class EditWordPressForm extends Component {
                             <Grid item xs={12}>
                                 <button className="myButton" onClick={this.handleClickEdit}>Edit Transcription</button>
                             </Grid>
-                            
-                            {/* <label>
-                                Transcription
-                            <input placeholder="transcription"
-                                    value={this.state.transcription}
-                                    onChange={this.handleChange('transcription')} />
-                                <button className="myButton" onClick={this.handleClickEdit}>Edit Transcription</button>
-                            </label> */}
-                            {/* <button onClick={this.handleChange}>Next</button> */}
+        
                         </form>
                     </Grid>
                 </Grid>

@@ -8,36 +8,29 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 const styles = theme => ({
-    container: {
+    containerPodbean: {
         display: 'flex',
         background: 'white',
         flexWrap: 'wrap',
-        [theme.breakpoints.up("lg")]: {
-            width: '600px'
-        },
         [theme.breakpoints.up("md")]: {
-            width: '600px'
+            width: '800px'
         }, 
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.down("sm")]: {
             width: '600px'
-        }, 
-        [theme.breakpoints.up("xs")]: {
-            width: '600px'
-        }, 
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
+        },  
+        
     },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        // width: 200,
+        // width: 400,
     },
-    dense: {
-        marginTop: 19,
-    },
-    menu: {
-        width: 200,
-    },
+    // dense: {
+    //     marginTop: 19,
+    // },
+    // menu: {
+    //     width: 200,
+    // },
 });
 
 class EditPodBeanForm extends Component {
@@ -85,42 +78,52 @@ class EditPodBeanForm extends Component {
                         </Typography>
                     </Grid>
                     
-                    <Grid item xs={12}>
-                            <form className={classes.container}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField 
-                                        id="piece"
-                                        label="Name of Episode"
-                                        fullWidth
-                                        value={this.state.titleOfPiece}
-                                        onChange={this.handleChange('titleOfPiece')}
-                                    />
-                                </Grid>
+                    <Grid item xs={12} >
+                        <form className={classes.containerPodbean}>
+                            <Grid item item xs={12}>
+                                <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
+                            </Grid>
 
-                                <Grid item xs={12} sm={6}>
-                                    <TextField 
-                                        id="title-input"
-                                        label="Name of Podcast" 
-                                        fullWidth      
-                                        value={this.state.titleOfPodbean}
-                                        onChange={this.handleChange('titleOfPodbean')}
+                            <Grid item xs={12} sm={6}>
+                                <TextField 
+                                    id="piece"
+                                    label="Name of Episode"
+                                    fullWidth
+                                    variant="outlined"
+                                    margin="normal"
+                                    value={this.state.titleOfPiece}
+                                    onChange={this.handleChange('titleOfPiece')}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} sm={6}>
+                                <TextField 
+                                    id="title-input"
+                                    label="Name of Podcast" 
+                                    fullWidth      
+                                    variant="outlined"
+                                    margin="normal"
+                                    value={this.state.titleOfPodbean}
+                                    onChange={this.handleChange('titleOfPodbean')}
+                                />
+                            </Grid>
+                                
+                            <Grid item xs={12}>
+                                <TextField 
+                                    id="description-input"
+                                    label="Description of Episode"
+                                    fullWidth
+                                    multiline
+                                    rowsMax="4"
+                                    defaultValue="What's your episode about?"
+                                    variant="outlined"
+                                    margin="normal"
+                                    className={classes.textField}
+                                    value={this.state.description}
+                                    onChange={this.handleChange('description')}
                                     />
-                                </Grid>
-                                    
-                                <Grid item xs={12}>
-                                    <TextField 
-                                        id="description-input"
-                                        label="Description of Episode"
-                                        fullWidth
-                                        multiline
-                                        rowsMax="6"
-                                        margin="normal"
-                                        className={classes.textField}
-                                        value={this.state.description}
-                                        onChange={this.handleChange('description')}
-                                        />
-                                </Grid>
-                            </form>
+                            </Grid>
+                        </form>
                     </Grid>
                 </Grid>
             </>
