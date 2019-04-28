@@ -4,18 +4,45 @@ import { connect } from 'react-redux';
 
 class EditPodBeanForm extends Component {
 //held in reducer and in local state and are required by the apis to work
-    state = {
+    state = {podbean: {
         piece: '',
-        title: this.props.reduxState.podbean.title,
-        description: this.props.reduxState.podbean.description,
+        title: '',
+        description: '',
     }
-
+    }
+    testFillTitle=(e)=>{
+        this.setState({
+            ...this.state,
+            podbean: { ...this.state.podbean,
+                title: 'Gates, do they count?',}
+        })
+    }
+  
+        testFillPiece=(e)=>{
+            this.setState({
+                ...this.state,
+                podbean: { ...this.state.form,
+                   piece: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
+            })
+        }
+        testFillDescription=(e)=>{
+            this.setState({
+                ...this.state,
+                podbean: { ...this.state.form,
+                   description: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+            })
+        }
     handleChange = (key) => (event) => {
         console.log('event happened')
         this.setState({
             ...this.state,
+            podbean: {
+            ...this.state.podbean,
             [key]: event.target.value,
+            }
         });
+        console.log(this.state.podbean.key)
+        this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean.key})
     }
 
 //when button is hit to save the data is sent to the reducer
@@ -41,22 +68,26 @@ class EditPodBeanForm extends Component {
                             Title of Piece
                             <input className="piece"
                                 placeholder="piece"
-                                value={this.state.titleOfPiece}
-                                onChange={this.handleChange('titleOfPiece')} />
+                                value={this.state.podbean.piece}
+                                onChange={this.props.handleChangeP('piece')} />
+                                 <button onClick={this.testFillPiece}>      </button>
                         </label>
                         <label className="title">
                             Title of Podcast
                             <input className="title-input"
                                 placeholder="title"
-                                value={this.state.titleOfPodbean}
-                                onChange={this.handleChange('titleOfPodbean')} />
+                                value={this.state.podbean.title}
+                                onChange={this.props.handleChangeP('title')} />
+                                
+                                <button onClick={this.testFillTitle}>      </button>
                         </label>
                         <label className="description">
                             Description
                             <input className="description-input"
                                 placeholder="description"
-                                value={this.state.description}
-                                onChange={this.handleChange('description')} />
+                                value={this.state.podbean.description}
+                                onChange={this.props.handleChangeP('description')} />
+                                <button onClick={this.testFillDescription}>      </button>
                         </label> 
                     </form>
                 </div>

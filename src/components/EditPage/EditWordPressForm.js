@@ -7,11 +7,11 @@ class EditWordPressForm extends Component {
 
     state = {
         redirect: false,
-        date:'', //need
+        date: '', //need
         title: '', //need
         content: '',  //need
-        excerpt:'', //need
-        slug:'', //need
+        excerpt: '', //need
+        slug: '', //need
         author: '',//need
         publicize_message: '',//need
         status: '',//need
@@ -19,56 +19,75 @@ class EditWordPressForm extends Component {
         password: '',//need
         parent: '',//need
         categories: '',//need
-        tags: '',//need
+       
         featured_image: '',//need
         media: '',//need
         media_urls: '',//need
         comments_open: '',//need
         menu_order: '',//need
-        transcription: this.props.reduxStore.transcriptReducer.transcription
+        transcription: this.props.reduxStore.editReducer.transcriptReducer.transcription,
+        form:{
+            title: this.props.reduxStore.editReducer.formReducer.title,
+blog: this.props.reduxStore.editReducer.formReducer.blog,
+tags:this.props.reduxStore.editReducer.formReducer.tags,
+categories:this.props.reduxStore.editReducer.formReducer.categories
+        }
+     
+        
     }
 
-        
-
-    handleChange = (key) => (event) => {
-        console.log('event happened')
+  
+   
+testFillTitle=(e)=>{
+    this.setState({
+        ...this.state,
+        form: { ...this.state.form,
+            title: 'Gates, do they count?',}
+    })
+}
+testFillBlog=(e)=>{
+    this.setState({
+        ...this.state,
+        form: { ...this.state.form,
+            blog: 'All About Doors',}
+    })
+}
+    testFillTags=(e)=>{
         this.setState({
             ...this.state,
-            [key]: event.target.value,
-        });
-    }
-
-    addNewBlog = (event) => {
-        event.preventDefault();
-        //this.props.dispatch({ type: 'ADD_DOG', payload: this.state })
-        console.log(this.state);
-
-        this.setState({
-            title_of_blog: '',
-            blog_name: '',
-            tags: '',
-            categories: '',
-            transcription: '',
+            form: { ...this.state.form,
+               tags: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
         })
     }
+    testFillCategories=(e)=>{
+        this.setState({
+            ...this.state,
+            form: { ...this.state.form,
+               categories: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+        })
+    }
+   
 
-    handleClickEdit = (event) => {
-        event.preventDefault();
+    handleRedirect = (event) => {
+        // event.preventDefault();
         console.log('edit transcript button clicked');
-        
-            this.setState({
-              redirect: true
-            })
-          
+        this.props.dispatch({type: "SET_WORDPRESS", payload: this.props.state.form})
+        this.props.dispatch({type: "SET_PODBEAN", payload: this.props.state.podbean})
+        this.setState({
+            ...this.state,
+            redirect: 'true',
+        })
+
         // this.props.history.push('../TranscriptPage/TranscriptPage.js');
     }
 
     render() {
+        console.log(this.state.form)
         //console.log(this.props.history);
-        if (this.state.redirect) {
+        if (this.state.redirect==='true') {
             return <Redirect to='/transcript-page' />
-          }
-        
+        }
+
         return (
             <>
                 <div>
@@ -77,39 +96,43 @@ class EditWordPressForm extends Component {
                     <form onSubmit={this.addNewBlog}>
                         <label>
                             Title of Piece
-                            <input placeholder="title"
-                                value={this.state.title_of_blog}
-                                onChange={this.handleChange('title_of_blog')} />
+                            <input 
+                                value={this.state.form.title}
+                                onChange={this.props.handleChangeW('title')} />
+                                <button onClick={this.testFillTitle}>      </button>
                         </label>
                         <br />
                         <label>
                             Blog Name
-                        <input placeholder="blog name"
-                                value={this.state.blog_name}
-                                onChange={this.handleChange('blog_name')} />
+                        <input 
+                                value={this.state.form.blog}
+                                onChange={this.props.handleChangeW('blog')} />
+                                <button onClick={this.testFillBlog}>      </button>
                         </label>
                         <br />
                         <label>
                             Tags
-                        <input placeholder="tags"
-                                value={this.state.tags}
-                                onChange={this.handleChange('tags')} />
+                        <input 
+                                value={this.state.form.tags}
+                                onChange={this.props.handleChangeW('tags')} />
+                                <button onClick={this.testFillTags}>      </button>
                         </label>
                         <br />
                         <label>
                             Categories
-                        <input placeholder="categories"
-                                value={this.state.categories}
-                                onChange={this.handleChange('categories')} />
+                        <input 
+                                value={this.state.form.categories}
+                                onChange={this.props.handleChangeW('categories')} />
+                                <button onClick={this.testFillCategories}>      </button>
                         </label>
                         <br />
                         <label>
                             Transcription
                         <input placeholder="transcription"
-                                value={this.state.transcription}
-                                onChange={this.handleChange('transcription')} />
-                                <button onClick={this.handleClickEdit}>Edit Transcription</button>
-                        </label>
+                                value={this.state.transcription}/>
+                </label>
+                            <button onClick={this.props.handleDispatch} onClick={this.handleRedirect}>Edit Transcription</button>
+                        
                         {/* <button onClick={this.handleChange}>Next</button> */}
                     </form>
                 </div>

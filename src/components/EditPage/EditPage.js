@@ -5,9 +5,26 @@ import EditWordPressForm from './EditWordPressForm';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
 import Grid from '@material-ui/core/Grid';
+import { Redirect } from 'react-router-dom'
 import './EditPage.css';
 
 class EditPage extends Component {
+    
+    state = {
+        redirect: false,
+        podbean: {
+        piece: '',
+        title: '',
+        description: '',
+    },
+    form: {
+        title: '',
+        blog: '',
+        tags: '',
+        categories: '',
+    }
+
+    }
     componentDidMount = () => {
         this.props.dispatch({ type: "STEP_THREE" })
     }
@@ -18,7 +35,26 @@ class EditPage extends Component {
         console.log('Next button clicked on edit page');
         this.props.history.push('/review-page');
     }
-
+    handleChangeP = (key) => (event) => {
+        console.log('event happened')
+        this.setState({
+            ...this.state,
+            podbean: {
+            ...this.state.podbean,
+            [key]: event.target.value,
+            }
+        });
+    }
+    handleChangeW = (key) => (event) => {
+        console.log('event happened')
+        this.setState({
+            ...this.state,
+            form: {
+                ...this.state.form,
+                [key]: event.target.value,
+            }
+        });
+    }
     //use the same function as the other pages for this button
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
@@ -40,8 +76,22 @@ class EditPage extends Component {
                 }
             });
     }
+    handleDispatch = (event) => {
+        // event.preventDefault();
+        console.log('edit transcript button clicked');
+        this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean})
+        this.props.dispatch({type: "SET_WORDPRESS", payload: this.state.form})
+       
 
+        // this.props.history.push('../TranscriptPage/TranscriptPage.js');
+    }
     render() {
+        console.log(this.state.redirect)
+        //console.log(this.props.history);
+        if (this.state.redirect==='true') {
+            return <Redirect to='/transcript-page' />
+        }
+        console.log(this.state.podbean, this.state.form)
         return (
             <>
                 <div>
@@ -57,10 +107,10 @@ class EditPage extends Component {
                 > */}
                     <div>
                         {/* <Grid item xs={12}> */}
-                            <EditPodBeanForm />
+                            <EditPodBeanForm state={this.state} handleChangeP={this.handleChangeP} />
                         {/* </Grid> */}
                         {/* <Grid item xs={12}> */}
-                            <EditWordPressForm />
+                            <EditWordPressForm state={this.state} handleDispatch={this.handleRedirect} handleChangeW={this.handleChangeW}/>
                         {/* </Grid> */}
                         <button onClick={this.handleCancelButton}>Cancel</button>
                         <button onClick={this.handleClick}>Next</button>

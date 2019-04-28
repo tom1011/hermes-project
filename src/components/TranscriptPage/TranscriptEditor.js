@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 //creating the text editor and making functionality
 class TranscriptEditor extends Component {
     state = {
-        text: this.props.reduxStore.transcriptReducer.transcription,
+        text: this.props.reduxStore.editReducer.transcriptReducer.transcription,
     }
 
 
