@@ -39,6 +39,7 @@ const styles = theme => ({
         width: 200,
     },
 });
+
 class EditPodBeanForm extends Component {
 //held in reducer and in local state and are required by the apis to work
     state = {
@@ -80,7 +81,7 @@ class EditPodBeanForm extends Component {
                 >
                     <Grid item xs={12}>
                         <Typography variant="h6" gutterBottom>
-                            Enter required information for Podbean Podcast.
+                            Enter the required information for Podbean.
                         </Typography>
                     </Grid>
                     
@@ -91,7 +92,6 @@ class EditPodBeanForm extends Component {
                                         id="piece"
                                         label="Name of Episode"
                                         fullWidth
-                                        margin="normal"
                                         value={this.state.titleOfPiece}
                                         onChange={this.handleChange('titleOfPiece')}
                                     />
@@ -102,7 +102,6 @@ class EditPodBeanForm extends Component {
                                         id="title-input"
                                         label="Name of Podcast" 
                                         fullWidth      
-                                        margin="normal"                                 
                                         value={this.state.titleOfPodbean}
                                         onChange={this.handleChange('titleOfPodbean')}
                                     />
@@ -114,7 +113,7 @@ class EditPodBeanForm extends Component {
                                         label="Description of Episode"
                                         fullWidth
                                         multiline
-                                        rowsMax="4"
+                                        rowsMax="6"
                                         margin="normal"
                                         className={classes.textField}
                                         value={this.state.description}
