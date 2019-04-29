@@ -4,9 +4,7 @@
     box-sizing: border-box;
     border-radius: 4px;
     padding: 10px;
-
 }
-
 
 .boxHeader{
     text-align: center;
@@ -14,17 +12,23 @@
 
 .icons{
     height: 60px;
-
 }
 
 .checkBox{
     text-align: center;
+    background-color: none;
 }
 .platform-heading {
-    text-align: center;
-    margin-top: 20px;
+    text-align: left;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
+.platform-heading-roboto{
+     text-align: left;
+    margin-top: 30px;
+    font-family:  'Roboto', sans-serif;
 
+}
 .wordpress-label {
     width: 322px;
     height: 74px;
@@ -43,44 +47,53 @@
     /* transform: rotate(0.17deg); */
 }
 
-.grid-container {
+.platform-grid-container {
     display: grid;
-    margin: 40px 40px;
-    grid-template-columns: repeat(3, 12fr);
+    align-items: center;
+    margin: 40px 80px;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 30vw);
-    grid-gap: 15px;
+    grid-gap: 2px;
 }
 
-.grid-item1 {
+.platform-grid-item1 {
+    margin-top: -60px;
     grid-column-start: 1;
-
 }
 
-.grid-item2 {
+.platform-grid-item2 {
+    margin-top: -60px;
     grid-column-start: 2;
-  
-
-    
 }
 
-.grid-item3 {
+.platform-grid-container .boxHeader {
+    margin-bottom: 20px;
+}
+
+/* /* .grid-item3 {
     grid-column-start: 3;
    background: linear-gradient(#ffffff,transparent);
    background-color: #6161614d;
+    */
 
- 
-   
-}
 
-.grid-item3 .boxHeader,
+/* .grid-item3 .boxHeader,
 .grid-item3 .line,
 .grid-item3 .checkBox {
     opacity: .3;
-}
+} */
 
 .checkboxSquare{
-    width: 30px; 
-  height: 30px; 
+    width: 22px; 
+  height: 22px; 
+  color: #CA9E1C;
+  vertical-align: 20px;
+}
+
+.checkboxSquare input{
+    width: 22px; 
+  height: 22px; 
+  background-color: #CA9E1C;
 }
 
 
@@ -93,3 +106,32 @@
   font-style: bold;
 }
 
+.platformImages img{
+    height: 60px;
+}
+
+.platformImagesPod img{
+     height: 80px;
+}
+
+.bigBox{
+    margin: 0 77px;
+}
+
+.myButton2{
+    color: #006487;
+    font-size: 24px;
+    background: none;
+    margin: 20px 20px;
+    /* text-transform: uppercase; */
+    box-shadow: none;
+    border: none;
+    transition: all .3s;
+}
+
+.myButton2:hover {
+    color: #037fac9a;
+    cursor: pointer;
+}
+
+git
