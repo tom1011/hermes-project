@@ -31,6 +31,62 @@ class EditPage extends Component {
     componentDidMount = () => {
         this.props.dispatch({ type: "STEP_THREE" })
     }
+    testFillTitle=(e)=>{
+        this.setState({
+            ...this.state,
+            wordpress: { ...this.state.wordpress,
+                title: 'Gates, do they count?',}
+        })
+    }
+    testFillBlog=(e)=>{
+        this.setState({
+            ...this.state,
+            wordpress: { ...this.state.wordpress,
+                blog: 'All About Doors',}
+        })
+    }
+        testFillTags=(e)=>{
+            this.setState({
+                ...this.state,
+                wordpress: { ...this.state.wordpress,
+                   tags: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
+            })
+        }
+        testFillCategories=(e)=>{
+            this.setState({
+                ...this.state,
+                wordpress: { ...this.state.wordpress,
+                   categories: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+            })
+        }
+        testFillTitleP = (e) => {
+            this.setState({
+                ...this.state,
+                podbean: {
+                    ...this.state.podbean,
+                    title: 'All about doors',
+                }
+            })
+        }
+    
+        testFillPiece = (e) => {
+            this.setState({
+                ...this.state,
+                podbean: {
+                    ...this.state.podbean,
+                    piece: 'Gates, do they count?',
+                }
+            })
+        }
+        testFillDescription = (e) => {
+            this.setState({
+                ...this.state,
+                podbean: {
+                    ...this.state.podbean,
+                    description: 'We discuss the definition of gates as they relate to doors and other portals into the home.',
+                }
+            })
+        }
     //need to conditionally send it either to the transcript page
     //or to the review page
     handleClick = (event) => {
@@ -110,10 +166,10 @@ class EditPage extends Component {
                             spacing={40}
                         >
                             <Grid item xs={12}>
-                                <EditPodBeanForm handleChangeP={this.handleChangeP} state={this.state}/>
+                                <EditPodBeanForm testFillPiece={this.testFillPiece} testFillTitleP={this.testFillTitleP} testFillDescription={this.testFillDescription} handleChangeP={this.handleChangeP} state={this.state}/>
                             </Grid>
                             <Grid item xs={12}>
-                                <EditWordPressForm  handleChangeW={this.handleChangeW} state={this.state} />
+                                <EditWordPressForm  testFillTitle={this.testFillTitle} testFillBlog={this.testFillBlog} testFillTags={this.testFillTags} testFillCategories={this.testFillCategories}handleChangeW={this.handleChangeW} state={this.state} />
                             </Grid>
                         </Grid>
                     </Grid>

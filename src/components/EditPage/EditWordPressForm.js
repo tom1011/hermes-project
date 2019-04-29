@@ -76,34 +76,7 @@ categories:'',
 
   
    
-testFillTitle=(e)=>{
-    this.setState({
-        ...this.state,
-        form: { ...this.state.form,
-            title: 'Gates, do they count?',}
-    })
-}
-testFillBlog=(e)=>{
-    this.setState({
-        ...this.state,
-        form: { ...this.state.form,
-            blog: 'All About Doors',}
-    })
-}
-    testFillTags=(e)=>{
-        this.setState({
-            ...this.state,
-            form: { ...this.state.form,
-               tags: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
-        })
-    }
-    testFillCategories=(e)=>{
-        this.setState({
-            ...this.state,
-            form: { ...this.state.form,
-               categories: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
-        })
-    }
+
    
 
     handleRedirect = (event) => {
@@ -161,7 +134,7 @@ testFillBlog=(e)=>{
                                     value={this.props.state.wordpress.blog}
                                     onChange={this.props.handleChangeW('blog')}
                                 />
-                                      <button className='sButton' onClick={this.testFillBlog}>  big button   </button>
+                                      <button className='sButton' onClick={this.props.testFillBlog}>  big button   </button>
       
                             </Grid>
 
@@ -175,7 +148,7 @@ testFillBlog=(e)=>{
                                     value={this.props.state.wordpress.title}
                                     onChange={this.props.handleChangeW('title')}g
                                 />
-                                       <button className='sButton' onClick={this.testFillTitle}>  big button   </button>
+                                       <button className='sButton' onClick={this.props.testFillTitle}>  big button   </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -188,7 +161,7 @@ testFillBlog=(e)=>{
                                     value={this.props.state.wordpress.tags}
                                     onChange={this.props.handleChangeW('tags')}
                                 />
-                                      <button className='sButton' onClick={this.testFillTags}>  big button   </button>
+                                      <button className='sButton' onClick={this.props.testFillTags}>  big button   </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -202,7 +175,7 @@ testFillBlog=(e)=>{
                                     onChange={this.props.handleChangeW('categories')}
                                 />
 
-                                       <button className='sButton' onClick={this.testFillCategories}>  big button   </button> 
+                                       <button className='sButton' onClick={this.props.testFillCategories}>  big button   </button> 
 
                             </Grid>
 
