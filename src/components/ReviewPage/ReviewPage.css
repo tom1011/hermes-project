@@ -1,6 +1,15 @@
+.overallBox {
+    text-align: center;
+}
+
+.grid-container {
+    display: grid;
+    /* padding: 10px  80px;
+    margin: 10px 10px; */
+}
 
 .platformImages{
-    height: 1200px;
+    height: 500px;
 }
 
 .imageBox{
@@ -8,82 +17,23 @@
 }
 
 .buttonsReview{
-    margin-top: 500px;   
-    width: 400px;
-    padding-right: 40px;
+    margin-top: 15px;
+    text-align: center;
 }
 
-.myButton{
-   text-align: left;
-}
-
-.review-box {
-    position: absolute;
-    width: 900px;
-    height: 500px;
-    top: 321px;
-    border-radius: 10px;
-}
-
-.grid-container{
-    height: 1200px;
-}
-
-.review {
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: normal;
-    margin-right: px;
-    color: #181818;
+.reviewBox {
+    /* border-radius: 10px; */
+    text-align: center;
 }
 
 .podbean p {
     text-align: center;
 }
 
-/* .podbean {
-    position: absolute;
-    max-width: 87px;
-    max-height: 87px;
-    left: 824px;
-    top: 200px;
-    width: 116px;
-    height: 116px;
-
-} */
-
-
-
-.edit {
-    text-align: center;
-    margin-top: 150px;
+.review-heading {
+    text-align: left;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.bottom {
-    text-align: center;
-    margin-top: 300px;
-}
-
-
-
-.header{
-    padding-left: 55px;
-    text-align: inherit;
-
-}
-
-
- .grid-container {
-    display: grid;
-    padding: 10px  380px;
-    margin: 40px 6px;
-    grid-template-columns: repeat(3, 12fr);
-    grid-template-rows: repeat(1, 30vw);
-    grid-gap: 15px;
-}
-
-.grid-item1 {
-    grid-column-start: 1;
-}
+ 

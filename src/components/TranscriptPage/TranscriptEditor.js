@@ -15,6 +15,7 @@ class TranscriptEditor extends Component {
 
     handleChange = (html) => {
         this.setState({ editorHtml: html });
+
     }
 
     modules = {
@@ -40,7 +41,8 @@ class TranscriptEditor extends Component {
                 <ReactQuill theme="snow"
                     value={this.state.text}
                     modules={this.modules}
-                    formats={this.formats}>
+                    formats={this.formats}
+                    onChange={this.handleChange}>
                 </ReactQuill>
             </div>
         )

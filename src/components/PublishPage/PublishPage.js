@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StepperBar from "../StepperBar/StepperBar";
 import "./PublishPage.css";
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
 
 //this page will need to send the post requests to the selected platforms
 
@@ -20,34 +24,71 @@ class PublishPage extends Component {
         return (
             <>
                 <StepperBar activeStep='5'></StepperBar>
-                <div>
-                    <div className="grid-container">
-                        <div className="left">
-                            <h1 className="header" >Congratulations!</h1>
-                            <h2>Your post was successful!</h2>
-                        </div>
-                        <div className="bigHermImage" >
-                            <img src="images/icons/bigherm.png" alt="HERMES" />
-                        </div>
-                            <div className="buttonLeft">
-                                <div>
-                                  <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer"> 
-                                    <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
-                                  </a>
-                                </div>
-          
-                                <div>
-                                   <a target="_blank" href="https://junomercury.home.blog/2019/04/26/gates-do-they-count/"rel="noopener noreferrer"> 
-                                    <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
-                                   </a>                               
-                                </div>
-                            </div>
-                        <br />
-                      </div>
-                  </div>
-                <div className="publishButton">
-                    <button onClick={this.handleClick}>Start Another Project</button>
-                </div>
+
+                <Grid
+                    container
+                    alignItems="center"
+                    direction="row"
+                    spacing={24}
+                    className="container-publish-content"
+                >
+                    <Grid item sm={1} className="grid-blank">
+
+                    </Grid> 
+                    
+                    <Grid item sm={4} className="grid-image">
+                        
+                        <img src="images/icons/bigherm.png" alt="HERMES" />
+                    </Grid>
+
+                    <Grid item sm={6}>
+                        <Grid container
+                            alignItems="left"
+                            direction="column"
+                            spacing={24}
+                            
+                        >
+                           
+                            <Grid item className="grid-logos">
+                                <Grid container
+                                    alignItems="left"
+                                    direction="column"
+                                    spacing={24}
+                                >
+                                    <Grid item>
+                                        <Typography variant="h4" gutterBottom>Congratulations!</Typography>
+                                        <Typography variant="h6" gutterBottom>Your post was successful!</Typography>
+                                        <Typography variant="body1" gutterBottom>Click to view your posts</Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <div className="platform-link">
+                                            <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer">
+                                                <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
+                                            </a>
+                                        </div>
+                                    </Grid>
+                                    <Grid item >
+                                        <div className="platform-link">
+                                            <a  target="_blank" href="https://junomercury.home.blog/2019/04/26/gates-do-they-count/" rel="noopener noreferrer">
+                                                <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
+                                            </a>
+                                        </div>
+                                    </Grid>
+
+                                </Grid>
+
+                            </Grid>
+                            <Grid item className="grid-button">
+                                <button className="myButton" onClick={this.handleClick}>START ANOTHER PROJECT</button>
+                            </Grid>
+                        </Grid>
+                         
+                    </Grid>
+                    {/* <Grid item sm={3} className="grid-blank">
+
+                    </Grid>  */}
+                </Grid>
+
             </>
         )
     }

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import TranscriptPage from '../TranscriptPage/TranscriptPage'
+import '../EditPage/EditPage.css';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -24,7 +25,7 @@ function getModalStyle() {
 const styles = theme => ({
   paper: {
     position: 'absolute',
-    width: theme.spacing.unit * 50,
+    width: theme.spacing.unit * 100,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
@@ -51,7 +52,7 @@ class SimpleModal extends React.Component {
     return (
       <div>
         {/* <Typography gutterBottom>Click to get the full Modal experience!</Typography> */}
-        <Button onClick={this.handleOpen}>Edit Transcription</Button>
+        <Button className="editTranscription" onClick={this.handleOpen}>Edit Transcription</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -59,7 +60,7 @@ class SimpleModal extends React.Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <TranscriptPage />
+            <TranscriptPage handleClose={this.handleClose} />
           </div>
         </Modal>
       </div>

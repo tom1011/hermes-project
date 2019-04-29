@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+// import axios from 'axios';
 import swal from 'sweetalert';
 import '../App/App.css';
 import StepperBar from '../StepperBar/StepperBar'
 import './Upload.css';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+// import Input from '@material-ui/core/Input';
 
 
 const styles = theme => ({

@@ -22,7 +22,7 @@ const styles = theme => ({
         [theme.breakpoints.down("sm")]: {
             width: '600px'
         },  
-        height: '550px',
+        height: '600px',
        
     },
     textField: {
@@ -76,34 +76,7 @@ categories:'',
 
   
    
-testFillTitle=(e)=>{
-    this.setState({
-        ...this.state,
-        form: { ...this.state.form,
-            title: 'Gates, do they count?',}
-    })
-}
-testFillBlog=(e)=>{
-    this.setState({
-        ...this.state,
-        form: { ...this.state.form,
-            blog: 'All About Doors',}
-    })
-}
-    testFillTags=(e)=>{
-        this.setState({
-            ...this.state,
-            form: { ...this.state.form,
-               tags: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
-        })
-    }
-    testFillCategories=(e)=>{
-        this.setState({
-            ...this.state,
-            form: { ...this.state.form,
-               categories: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
-        })
-    }
+
    
 
     handleRedirect = (event) => {
@@ -140,7 +113,7 @@ testFillBlog=(e)=>{
                 >
                     <Grid item xs={12}>
                         
-                        <p>Enter the required information for WordPress.</p>
+                        <h4 className="textFontEditPage">Enter the required information for WordPress.</h4>
                         
                     </Grid>
 
@@ -158,10 +131,10 @@ testFillBlog=(e)=>{
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.form.blog}
-                                    // onChange={this.handleChange('blog_name')}
+                                    value={this.props.state.wordpress.blog}
+                                    onChange={this.props.handleChangeW('blog')}
                                 />
-                                      <button onClick={this.testFillBlog}>      </button>
+                                      <button className='sButton' onClick={this.props.testFillBlog}>  big button   </button>
       
                             </Grid>
 
@@ -172,10 +145,10 @@ testFillBlog=(e)=>{
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.form.title}
-                                    // onChange={this.handleChange('title_of_blog')}
+                                    value={this.props.state.wordpress.title}
+                                    onChange={this.props.handleChangeW('title')}g
                                 />
-                                       <button onClick={this.testFillTitle}>      </button>
+                                       <button className='sButton' onClick={this.props.testFillTitle}>  big button   </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -185,10 +158,10 @@ testFillBlog=(e)=>{
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.form.tags}
-                                    // onChange={this.handleChange('tags')}
+                                    value={this.props.state.wordpress.tags}
+                                    onChange={this.props.handleChangeW('tags')}
                                 />
-                                      <button onClick={this.testFillTags}>      </button>
+                                      <button className='sButton' onClick={this.props.testFillTags}>  big button   </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -198,10 +171,12 @@ testFillBlog=(e)=>{
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.form.categories}
-                                    // onChange={this.handleChange('categories')}
+                                    value={this.props.state.wordpress.categories}
+                                    onChange={this.props.handleChangeW('categories')}
                                 />
-                                       <button onClick={this.testFillCategories}>      </button> 
+
+                                       <button className='sButton' onClick={this.props.testFillCategories}>  big button   </button> 
+
                             </Grid>
 
                             <Grid item xs={12}>
