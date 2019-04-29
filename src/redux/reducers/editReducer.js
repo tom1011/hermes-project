@@ -11,12 +11,18 @@ Unlike a door. It's not meant as a opening as a portal and something new. It's r
     console.log(state)
   };
   
-  const formReducer = (state = {podbean: {},
-  wordpress: {}}, action) => {
+  const formReducer = (state = {podbean: {piece: '',
+title: '',
+description: '',},
+  wordpress: {title: '',
+blog: '',
+tags: '',
+categories: '',}}, action) => {
     switch (action.type) {
       case 'SET_PODBEAN':
+      console.log('in reducer', action.payload)
         return {...state,
-        podbean: {...state.podbeen,
+        podbean: {...state.podbean,
         piece: action.payload.piece,
       title: action.payload.title,
     description: action.payload.description}

@@ -16,15 +16,15 @@ class EditPage extends Component {
     state = {
         redirect: false,
         podbean: {
-        piece: '',
-        title: '',
-        description: '',
+        piece: this.props.reduxStore.editReducer.formReducer.podbean.piece,
+        title: this.props.reduxStore.editReducer.formReducer.podbean.title,
+        description: this.props.reduxStore.editReducer.formReducer.podbean.description,
     },
-    form: {
-        title: '',
-        blog: '',
-        tags: '',
-        categories: '',
+    wordpress: {
+        title: this.props.reduxStore.editReducer.formReducer.wordpress.title,
+        blog: this.props.reduxStore.editReducer.formReducer.wordpress.blog,
+        tags: this.props.reduxStore.editReducer.formReducer.wordpress.tags,
+        categories: this.props.reduxStore.editReducer.formReducer.wordpress.categories,
     }
 
     }
@@ -34,6 +34,8 @@ class EditPage extends Component {
     //need to conditionally send it either to the transcript page
     //or to the review page
     handleClick = (event) => {
+        this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean})
+        this.props.dispatch({type: "SET_WORDPRESS", payload: this.state.wordpress})
         event.preventDefault();
         console.log('Next button clicked on edit page');
         this.props.history.push('/review-page');
@@ -52,8 +54,8 @@ class EditPage extends Component {
         console.log('event happened')
         this.setState({
             ...this.state,
-            form: {
-                ...this.state.form,
+            wordpress: {
+                ...this.state.wordpress,
                 [key]: event.target.value,
             }
         });
@@ -79,20 +81,13 @@ class EditPage extends Component {
                 }
             });
     }
-    handleDispatch = (event) => {
-        // event.preventDefault();
-        console.log('edit transcript button clicked');
-        this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean})
-        this.props.dispatch({type: "SET_WORDPRESS", payload: this.state.form})
-       
+    
 
-        // this.props.history.push('../TranscriptPage/TranscriptPage.js');
-    }
     render() {
         console.log(this.state.redirect)
         //console.log(this.props.history);
         
-        console.log(this.state.podbean, this.state.form)
+        console.log(this.state.podbean, this.state.wordpress)
         return (
             <>
                 <div>
@@ -115,10 +110,10 @@ class EditPage extends Component {
                             spacing={40}
                         >
                             <Grid item xs={12}>
-                                <EditPodBeanForm state={this.state}/>
+                                <EditPodBeanForm handleChangeP={this.handleChangeP} state={this.state}/>
                             </Grid>
                             <Grid item xs={12}>
-                                <EditWordPressForm state={this.state} />
+                                <EditWordPressForm  handleChangeW={this.handleChangeW} state={this.state} />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -134,7 +129,7 @@ class EditPage extends Component {
                                 <button className="myButton"  onClick={this.handleCancelButton}>CANCEL</button>
                             </Grid>
                             <Grid item>
-                                <button className="myButton"  onClick={this.handleClick}>FINISH EDITING</button>
+                                <button className="myButton"   onClick={this.handleClick}>FINISH EDITING</button>
                             </Grid>
                         </Grid>
                         
@@ -148,8 +143,8 @@ class EditPage extends Component {
     }
 }
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState
+const mapReduxStoreToProps = reduxStore => ({
+    reduxStore: reduxStore
 });
 
-export default connect(mapReduxStateToProps)(EditPage);
+export default connect(mapReduxStoreToProps)(EditPage);
