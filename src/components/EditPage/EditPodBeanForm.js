@@ -46,9 +46,9 @@ class EditPodBeanForm extends Component {
     }
     testFillTitle = (e) => {
         this.setState({
-            ...this.state,
+            ...this.props.state,
             podbean: {
-                ...this.state.podbean,
+                ...this.props.state.podbean,
                 title: 'All about doors',
             }
         })
@@ -56,18 +56,18 @@ class EditPodBeanForm extends Component {
 
     testFillPiece = (e) => {
         this.setState({
-            ...this.state,
+            ...this.props.state,
             podbean: {
-                ...this.state.podbean,
+                ...this.props.state.podbean,
                 piece: 'Gates, do they count?',
             }
         })
     }
     testFillDescription = (e) => {
         this.setState({
-            ...this.state,
+            ...this.props.state,
             podbean: {
-                ...this.state.podbean,
+                ...this.props.state.podbean,
                 description: 'We discuss the definition of gates as they relate to doors and other portals into the home.',
             }
         })
@@ -134,8 +134,8 @@ class EditPodBeanForm extends Component {
 
                                 />
 
-                                <button onClick={this.testFillPiece}>  </button> 
-                                <button className='sButton' onClick={this.testFillPiece}>   big button   </button>
+                                <button className='sButton' onClick={this.props.testFillPiece}>   big button   </button>
+
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -149,7 +149,7 @@ class EditPodBeanForm extends Component {
                                     value={this.props.state.podbean.title}
                                     onChange={this.props.handleChangeP('title')}
                                 />
-                                <button className='sButton' onClick={this.testFillTitle}>   big button   </button>
+                                <button className='sButton' onClick={this.props.testFillTitleP}>   big button   </button>
                             </Grid>
 
                             <Grid item xs={12}>
@@ -167,7 +167,7 @@ class EditPodBeanForm extends Component {
                                     value={this.props.state.podbean.description}
                                     onChange={this.props.handleChangeP('description')}
                                 />
-                                <button className='sButton' onClick={this.testFillDescription}>   big button   </button>
+                                <button className='sButton' onClick={this.props.testFillDescription}>   big button   </button>
                             </Grid>
                         </form>
                     </Grid>
