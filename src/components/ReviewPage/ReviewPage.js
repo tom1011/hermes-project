@@ -52,36 +52,30 @@ class ReviewPage extends Component {
             <>
                 <div>
                     <StepperBar activeStep='4'></StepperBar>
-
-                    <div className="box">
+                    <div className="overallBox">
                         <h1 className="header">Review sites to be published to</h1>
-                        <br />
-                        <img className="podbean" src='images/logo/podbean.png'/>
-                        <p>WordPress</p>
-                        <button onClick={this.handleClickEdit}>Edit</button>
-
+                       
                     <div className="grid-container">
-                        <div className="review-box grid-item">
-                            <div className="review grid-item">
-                                <h1>Review sites to be published to</h1>
+                            <div className="reviewBox">
+                              
+                                 <img className="imageBox" src="images/logo/box_icon_review.png" alt="image logo" />
                             </div>
-                            <br />
-
-                            <div className="icons grid-item">
-                                <p className="podbean">PodBean</p>
-                                <p className="wordpress">WordPress</p>
+                            
+                            <div className="buttonsReview">
+                                <button className="myButton" onClick={this.handleCancelButton}>Cancel</button>
+                                <button className="myButton" onClick={this.handleClickEdit}>Edit</button>
+                                <button className="myButton" onClick={this.handleClick}>Publish</button>
                             </div>
-                            <div className="edit grid-item">
-                                    <button className="myButton" onClick={this.handleClickEdit}>Edit</button>
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
-                <div className="bottom">
-                        <button className="myButton"  onClick={this.handleCancelButton}>Cancel</button>
-                        <button className="myButton"  onClick={this.handleClick}>Publish</button>
+                        <div className="buttonsReview">
+                            <button className="myButton" onClick={this.handleCancelButton}>Cancel</button>
+                            <button className="myButton" onClick={this.handleClickEdit}>Edit</button>
+                            <button className="myButton" onClick={this.handleClick}>Publish</button>
+                        </div>     
                 </div>
                 </div>
+               
             </>
         )
     }

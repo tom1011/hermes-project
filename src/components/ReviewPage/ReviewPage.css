@@ -1,26 +1,41 @@
 
-.review-box {
-    margin: 60px;
-    width: 822px;
-    height: 520px;
-    top: 321px;
-
-    background: #DADADA;
-    opacity: 0.5;
-    border-radius: 21px;
+.platformImages{
+    height: 1200px;
 }
-.review h1 {
-    text-align: center;
+
+.imageBox{
+    height: 500px;
+}
+
+.buttonsReview{
+    margin-top: 500px;   
+    width: 400px;
+    padding-right: 40px;
+}
+
+.myButton{
+   text-align: left;
+}
+
+.review-box {
+    position: absolute;
+    width: 900px;
+    height: 500px;
+    top: 321px;
+    border-radius: 10px;
+}
+
+.grid-container{
+    height: 1200px;
 }
 
 .review {
-    
-    font-family: Roboto;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: normal;
-
+    margin-right: px;
     color: #181818;
 }
 
@@ -28,40 +43,18 @@
     text-align: center;
 }
 
-.podbean {
+/* .podbean {
     position: absolute;
     max-width: 87px;
     max-height: 87px;
     left: 824px;
-    top: 514px;
-
-    /* position: absolute; */
+    top: 200px;
     width: 116px;
     height: 116px;
-    /* left: 824px;
-    top: 514px; */
-    /* background: url(podbean logo.png); */
-}
 
-.wordpress p {
-    text-align: center;
+} */
 
-}
 
-.wordpress {
-    /* position: absolute; */
-    width: 128px;
-    height: 128px;
-
-    left: 578px;
-    top: 509px;
-
-    /* left: 578px;
-    top: 509px; */
-
-    /* background: url(34209.png); */
-
-}
 
 .edit {
     text-align: center;
@@ -72,77 +65,20 @@
     text-align: center;
     margin-top: 300px;
 }
-/* 
-.cancelButton {
-    position: absolute;
-    width: 219px;
-    height: 53px;
-    left: 486px;
-    top: 920px;
 
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 48px;
-    line-height: normal;
-    letter-spacing: 0.02em;
 
-    color: #000000;
 
-    opacity: 0.4;
+.header{
+    padding-left: 55px;
+    text-align: inherit;
 
-/* }
-
-.cancelButton { */
-    /* position: absolute;
-    width: 289px;
-    height: 78px;
-    left: 433px;
-    top: 907px;
-
-    background: linear-gradient(0deg, #CFCFCF, #CFCFCF), #7B7B7B;
-    opacity: 0.5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 21px;
 }
-
-.publishButton button {
-    text-align: center;
-}
-
-.publishButton {
-    position: absolute;
-    width: 202px;
-    height: 53px;
-    top: 919px;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 48px;
-    line-height: normal;
-    letter-spacing: 0.02em;
-
-    color: #000000;
-
-    opacity: 0.4; */
-/* }
-
-.publishButton { */
-    /* width: 279px;
-    height: 78px;
-    top: 907px;
-
-    background: linear-gradient(0deg, #CFCFCF, #CFCFCF), #7B7B7B;
-    opacity: 0.5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 21px;
-}  */
 
 
  .grid-container {
     display: grid;
-    margin: 10px 6px;
+    padding: 10px  380px;
+    margin: 40px 6px;
     grid-template-columns: repeat(3, 12fr);
     grid-template-rows: repeat(1, 30vw);
     grid-gap: 15px;
