@@ -59,7 +59,7 @@ class SimpleModal extends React.Component {
           onClose={this.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
-            <TranscriptPage />
+            <TranscriptPage handleClose={this.handleClose} />
           </div>
         </Modal>
       </div>
