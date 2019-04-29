@@ -188,7 +188,7 @@ class EditWordPressForm extends Component {
                             </Grid>
 
                             <Grid item xs={12}>
-                                <button className="myButton" onClick={this.handleClickEdit}>Edit Transcription</button>
+                                <button className="myButton" onClick={this.handleClickEdit}>EDIT TRANSCRIPTION</button>
                             </Grid>
         
                         </form>
