@@ -59,7 +59,7 @@ class ConnectPage extends Component {
                                     </div>                                    
                                 :
                                 <div className="connect">
-                             CONNET TO
+                             CONNECT TO
                              <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
                                         
                              <div className="image-div">
@@ -84,7 +84,7 @@ class ConnectPage extends Component {
                                 </div>
                                 :
                                 <div className="connect">
-                            CONNET TO
+                            CONNECT TO
                                 <a href='https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
                                         <div className="image-div">
                                             <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
