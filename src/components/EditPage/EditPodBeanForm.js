@@ -133,7 +133,9 @@ class EditPodBeanForm extends Component {
                                     onChange={this.props.handleChangeP('piece')}
 
                                 />
+
                                 <button className='sButton' onClick={this.props.testFillPiece}>   big button   </button>
+
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
