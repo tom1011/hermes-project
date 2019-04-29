@@ -55,6 +55,8 @@ class EditPage extends Component {
                     container
                     alignItems="center"
                     direction="column"
+
+
                 >
                     <Grid item >
                         <Grid
@@ -75,13 +77,14 @@ class EditPage extends Component {
                         <Grid 
                             container
                             alignItems="center"
-                            direction="row"
+                            direction="row" 
+                            spacing={16}
                         >
                             <Grid item>
-                                <button className="myButton" onClick={this.handleCancelButton}>Cancel</button>
+                                <button className="myButton" onClick={this.handleCancelButton}>CANCEL</button>
                             </Grid>
                             <Grid item>
-                                <button className="myButton" onClick={this.handleClick}>Next</button>
+                                <button className="myButton" onClick={this.handleClick}>FINISH EDITING</button>
                             </Grid>
                         </Grid>
                         
