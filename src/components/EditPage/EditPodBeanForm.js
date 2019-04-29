@@ -45,7 +45,7 @@ class EditPodBeanForm extends Component {
         this.setState({
             ...this.state,
             podbean: { ...this.state.podbean,
-                title: 'Gates, do they count?',}
+                title: 'All about doors',}
         })
     }
   
@@ -53,14 +53,14 @@ class EditPodBeanForm extends Component {
             this.setState({
                 ...this.state,
                 podbean: { ...this.state.form,
-                   piece: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
+                   piece: 'Gates, do they count?',}
             })
         }
         testFillDescription=(e)=>{
             this.setState({
                 ...this.state,
                 podbean: { ...this.state.form,
-                   description: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+                   description: 'We discuss the definition of gates as they relate to doors and other portals into the home.',}
             })
         }
     handleChange = (key) => (event) => {

@@ -91,9 +91,7 @@ class EditPage extends Component {
     render() {
         console.log(this.state.redirect)
         //console.log(this.props.history);
-        if (this.state.redirect==='true') {
-            return <Redirect to='/transcript-page' />
-        }
+        
         console.log(this.state.podbean, this.state.form)
         return (
             <>

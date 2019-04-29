@@ -120,7 +120,7 @@ testFillBlog=(e)=>{
     }
 
     render() {
-<
+
         console.log(this.state.form)
 
         const { classes } = this.props;
@@ -158,8 +158,8 @@ testFillBlog=(e)=>{
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value=={this.state.form.blog}
-                                    onChange={this.handleChange('blog_name')}
+                                    value={this.state.form.blog}
+                                    // onChange={this.handleChange('blog_name')}
                                 />
                                       <button onClick={this.testFillBlog}>      </button>
       
@@ -173,7 +173,7 @@ testFillBlog=(e)=>{
                                     variant="outlined"
                                     margin="normal"
                                     value={this.state.form.title}
-                                    onChange={this.handleChange('title_of_blog')}
+                                    // onChange={this.handleChange('title_of_blog')}
                                 />
                                        <button onClick={this.testFillTitle}>      </button>
                             </Grid>
@@ -186,7 +186,7 @@ testFillBlog=(e)=>{
                                     variant="outlined"
                                     margin="normal"
                                     value={this.state.form.tags}
-                                    onChange={this.handleChange('tags')}
+                                    // onChange={this.handleChange('tags')}
                                 />
                                       <button onClick={this.testFillTags}>      </button>
                             </Grid>
@@ -199,9 +199,9 @@ testFillBlog=(e)=>{
                                     variant="outlined"
                                     margin="normal"
                                     value={this.state.form.categories}
-                                    onChange={this.handleChange('categories')}
+                                    // onChange={this.handleChange('categories')}
                                 />
-                                       <button onClick={this.testFillTags}>      </button> 
+                                       <button onClick={this.testFillCategories}>      </button> 
                             </Grid>
 
                             <Grid item xs={12}>
@@ -215,12 +215,13 @@ testFillBlog=(e)=>{
                                     margin="normal"
                                     className={classes.textField}
                                     value={this.state.transcription}
-                                    onChange={this.handleChange('transcription')}
+                                    // onChange={this.handleChange('transcription')}
                                 />
                             </Grid>
 
                             <Grid item xs={12}>
-                                <button className="myButton" onClick={this.handleClickEdit}>EDIT TRANSCRIPTION</button>
+                            <SimpleModalWrapped/>
+                                {/* <button className="myButton" onClick={this.handleClickEdit}>EDIT TRANSCRIPTION</button> */}
                             </Grid>
         
                         </form>
