@@ -16,10 +16,16 @@ class ConnectPage extends Component {
     }
     componentDidMount() {
         this.props.dispatch({ type: 'CHECK_TOKEN' })
-
+    }
+    handlePodBeanClick = () => {
+        this.props.dispatch({ type: 'CHANGE_PODBEAN_TOKEN' })
     }
 
+    // this function is too make a hardcoded conditional rendering work for our demo we should get rid of this after presentation
+
     render() {
+        console.log(this.props.reduxState.podbean.podbean_token)
+        
         return (
             <>
                 <Grid
@@ -27,51 +33,71 @@ class ConnectPage extends Component {
                     alignItems="left"
                     direction="center"
                     spacing={24}
-                    
+
                 >
                     <Grid item sm={12}>
-                        <Grid 
+                        <Grid
                             container
                             alignItems="center"
                             direction="column"
                             spacing={24}
                         >
+                            
                             <Grid item sm={12}
-                                onClick={this.handleWordPressClick} 
-                                
+                                onClick={this.handlePodBeanClick}
                             >
+                            {this.props.reduxState.podbean.podbean_token ? 
+                            
+                             <div className="connected">
+                             CONNECTED
+                             <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                                        
+                             <div className="image-div">
+                             <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
+                                        </div>
+                                    </a>
+                                    </div>                                    
+                                :
+                                <div className="connect">
+                             CONNET TO
+                             <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                                        
+                             <div className="image-div">
+                             <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
+                                        </div>
+                                    </a>
+                                </div>
+                        }
+                            </Grid>
+                            <Grid item sm={12}
+                                onClick={this.handleWordPressClick}
+                            >
+
+                            {this.props.reduxState.wordpress.wordpress_token ?
+                            <div className="connected">
+                            CONNECTED
                                 <a href='https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
-                                <div className="connect-div">
-                                    <div className="connect-to">
-                                        CONNECT TO
-                                    </div>
-                                    
                                         <div className="image-div">
                                             <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                                         </div>
+                                    </a>
                                 </div>
-                                </a>
-                            </Grid>
-
-                            <Grid item sm={12}
-                                onClick={this.handlePodBeanClick} 
-                            >
-                                <div className="connect-div" >
-                                    <div className="connect-to">
-                                        CONNECT TO
-                                    </div>
-                                        <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
-                                        <div className="image-div">  
-                                                <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
-                                            </div>
-                                        </a>
+                                :
+                                <div className="connect">
+                            CONNET TO
+                                <a href='https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
+                                        <div className="image-div">
+                                            <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
+                                        </div>
+                                    </a>
                                 </div>
+                            }
                             </Grid>
                         </Grid>
                     </Grid>
 
                     <Grid item sm={12}>
-                        <Grid 
+                        <Grid
                             container
                             alignItems="center"
                             direction="column"
@@ -81,12 +107,8 @@ class ConnectPage extends Component {
                                 <button className="myButton" onClick={this.handleStartPostButton}>START POSTING</button>
                             </Grid>
                         </Grid>
-
-                        
                     </Grid>
-        
                 </Grid>
-                
             </>
         );
     };
