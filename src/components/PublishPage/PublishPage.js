@@ -24,6 +24,7 @@ class PublishPage extends Component {
         return (
             <>
                 <StepperBar activeStep='5'></StepperBar>
+
                 <Grid
                     container
                     alignItems="center"
@@ -75,10 +76,7 @@ class PublishPage extends Component {
                                     </Grid>
 
                                 </Grid>
-                                
-                                
-                                
-                                
+
                             </Grid>
                             <Grid item className="grid-button">
                                 <button className="myButton" onClick={this.handleClick}>START ANOTHER PROJECT</button>
@@ -90,6 +88,7 @@ class PublishPage extends Component {
 
                     </Grid>  */}
                 </Grid>
+
             </>
         )
     }
