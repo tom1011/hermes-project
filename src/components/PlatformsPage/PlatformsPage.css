@@ -1,9 +1,18 @@
 /* Rectangle 3.1 */
 .item-box {
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 10px;
+    border: 1px solid #002A38;
+    height: 400px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.platform-grid-container {
+    display: grid;
+    align-items: center;
+    margin: 5px 60px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 30vw);
+    grid-gap: 2px;
 }
 
 .boxHeader{
@@ -20,49 +29,36 @@
 }
 .platform-heading {
     text-align: left;
-    margin-top: 10px;
     font-family: 'Montserrat', sans-serif;
 }
 .platform-heading-roboto{
      text-align: left;
-    margin-top: 30px;
-    font-family:  'Roboto', sans-serif;
-
+     font-family:  'Roboto', sans-serif;
 }
+
 .wordpress-label {
     width: 322px;
     height: 74px;
     left: 144px;
     top: 561px;
-
-    /* background: url(WordPress-logotype-standard.png); */
 }
-
 .line {
     width: 298.24px;
     height: 0px;
     text-align: center;
     margin: 10px auto;
     border: 1px solid #000000;
-    /* transform: rotate(0.17deg); */
 }
 
-.platform-grid-container {
-    display: grid;
-    align-items: center;
-    margin: 40px 80px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 30vw);
-    grid-gap: 2px;
-}
+
 
 .platform-grid-item1 {
-    margin-top: -60px;
+    margin-top: -200px;
     grid-column-start: 1;
 }
 
 .platform-grid-item2 {
-    margin-top: -60px;
+    margin-top: -195px;
     grid-column-start: 2;
 }
 
@@ -70,32 +66,18 @@
     margin-bottom: 20px;
 }
 
-/* /* .grid-item3 {
-    grid-column-start: 3;
-   background: linear-gradient(#ffffff,transparent);
-   background-color: #6161614d;
-    */
-
-
-/* .grid-item3 .boxHeader,
-.grid-item3 .line,
-.grid-item3 .checkBox {
-    opacity: .3;
-} */
-
 .checkboxSquare{
-    width: 22px; 
+  width: 22px; 
   height: 22px; 
   color: #CA9E1C;
   vertical-align: 20px;
 }
 
 .checkboxSquare input{
-    width: 22px; 
+  width: 22px; 
   height: 22px; 
   background-color: #CA9E1C;
 }
-
 
 .centered {
   position: relative;
@@ -122,14 +104,16 @@
     color: #006487;
     font-size: 24px;
     background: none;
-    margin: 20px 20px;
-    /* text-transform: uppercase; */
+    margin: 5px 13px;
+    box-shadow: 5px 10px;
     box-shadow: none;
     border: none;
     transition: all .3s;
+  
 }
 
 .myButton2:hover {
     color: #037fac9a;
     cursor: pointer;
 }
+

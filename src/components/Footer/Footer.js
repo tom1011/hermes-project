@@ -8,7 +8,9 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    {/* &copy; Prime Digital Academy */}
+    <style className="footerBox">
+    <img className="footerImg" src="images/icons/LeafPattern_Gold.png" alt = "leaf pattern"/>
+    </style>
   </footer>
 );
 

@@ -16,7 +16,7 @@ const styles = theme => ({
             width: '800px'
         }, 
         [theme.breakpoints.down("sm")]: {
-            width: '600px'
+            width: '900px'
         },  
         
     },
@@ -101,8 +101,8 @@ class EditPodBeanForm extends Component {
                     justify="left"
                 >
                     <Grid item xs={12}>
-                        <Typography variant="h6" gutterBottom>
-                            Enter the required information for Podbean.
+                        <Typography variant="h6" gutterBottom >
+                            <h4 className="textFontEditPage"> Enter the required information for Podbean. </h4>
                         </Typography>
                     </Grid>
                     

@@ -2,6 +2,23 @@ body{
     height: 2000px;
 }
 
+.textFontEditPage{
+    font-family: 'Montserrat', sans-serif;
+    color: #002A38;
+    text-align: center;
+
+}
+
+.editTranscription{
+   font-family:  'Roboto', sans-serif;
+     color: #006487;
+    font-size: 12px;
+    background: none;
+    box-shadow: 5px 10px;
+    box-shadow: none;
+    border: none;
+    transition: all .3s;
+}
 /* .podbean-form {
     position: absolute;
     width: 879px;
