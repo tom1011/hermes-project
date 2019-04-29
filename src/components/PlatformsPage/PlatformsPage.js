@@ -24,7 +24,7 @@ class PlatformsPage extends Component {
     handleCancelButton = () => {
         console.log('in SweetAlert Cancel Button');
         swal({
-           
+
             text: "Are you sure this is the correct file for upload!",
             icon: "warning",
             buttons: true,
@@ -46,39 +46,44 @@ class PlatformsPage extends Component {
         const { classes } = this.props;
         return (
             <>
-                <StepperBar ></StepperBar>
-                <div className="box">
-                <h2 className="platform-heading">
-                    WHICH PLATFORM WOULD YOU LIKE TO POST TO?
+                <StepperBar className="stepperBackgroundColor"></StepperBar>
+                <div className="bigBox">
+                    <div className="box">
+                        <h2 className="platform-heading-roboto">
+                            SELECT PLATFORM
                 </h2>
-                <div className="grid-container">
-                    <div className="item-box grid-item1">
-                        <div className="boxHeader">
-                            <img className="icons" src="images/icons/BLOG.png" alt="blog" />
-                            Blog
+                        <h3 className="platform-heading">
+                            Where would you like to post?
+                    </h3>
+
+                        <div className="item-box  platform-grid-container">
+                            <div className="platform-grid-item1">
+                                <div className="boxHeader">
+                                    <img className="icons" src="images/icons/BLOG.png" alt="blog" />
+                                    Blog
                         </div>
-                        <p className="line"></p>
-                        <div className="checkBox">
-                            <input className="checkboxSquare" type="checkbox" id="WordPress" name="WordPress" />
-                            <label htmlFor="WordPress" className="wordpress-label">WordPress</label>
-                        </div>
-                    </div>
+                                {/* <p className="line"></p> */}
+                                <div className="checkBox">
+                                    <input className="checkboxSquare" type="checkbox" id="WordPress" name="WordPress" />
+                                    <label className="platformImages" htmlFor="WordPress" > <img src="images/logo/wordpress.png" alt="WordPress Logo" /></label>
+                                </div>
+                            </div>
 
 
-                    <div className="item-box grid-item2">
-                        <div className="boxHeader">
-                            <img className="icons" src="images/icons/MICROPHONE.png" alt="Podcast" />
-                            Podcast
+                            <div className="platform-grid-item2">
+                                <div className="boxHeader">
+                                    <img className="icons" src="images/icons/MICROPHONE.png" alt="Podcast" />
+                                    Podcast
                         </div>
-                        <p className="line"></p>
-                        <div className="checkBox">
-                            <input className="checkboxSquare" type="checkbox" id="PodBean" name="PodBean" />
-                            <label htmlFor="PodBean">PodBean</label>
+                                {/* <p className="line"></p> */}
+                                <div className="checkBox">
+                                    <input className="checkboxSquare" type="checkbox" id="PodBean" name="PodBean" />
+                                    <label className="platformImagesPod" htmlFor="PodBean"> <img src="images/logo/PodBean.png" alt="podbean logo" /> </label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    </div>
 
-                    {/* <div className="item-box grid-item3">
+                        {/* <div className="item-box grid-item3">
                         <div className="boxHeader">
                             <img className="icons" src="images/icons/VIDEO.png" alt="Podcast" />
                         </div>
@@ -90,12 +95,13 @@ class PlatformsPage extends Component {
                         <div class="centered">COMING SOON</div>
                     </div> */}
 
-                </div>
+                    </div>
 
-                <div>
-                    <button className="myButton" onClick={this.handleCancelButton}>CANCEL</button>
-                    <button className="myButton" onClick={this.handleSelectPlatformsButton}>START POSTING</button>
+                    <div>
+                        <button className="myButton2" onClick={this.handleCancelButton}>Cancel</button>
+                        <button className="myButton" onClick={this.handleSelectPlatformsButton}>START POSTING</button>
 
+                    </div>
                 </div>
             </>
         );

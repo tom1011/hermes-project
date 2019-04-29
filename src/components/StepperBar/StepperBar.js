@@ -41,7 +41,7 @@ class StepperBar extends React.Component {
 
         return (
             <div>
-                <Stepper activeStep={activeStep} alternativeLabel>
+                <Stepper style={{ backgroundColor:"#EBEFF0"}} activeStep={activeStep} alternativeLabel>
                     {steps.map(label => (
                         <Step key={label}>
                             <StepLabel className={label.number}>{label.step}</StepLabel>
