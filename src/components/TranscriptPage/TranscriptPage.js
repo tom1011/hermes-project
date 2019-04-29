@@ -4,6 +4,9 @@ import TranscriptEditor from './TranscriptEditor';
 
 import swal from 'sweetalert';
 import 'react-quill/dist/quill.snow.css';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 
 class TranscriptPage extends Component {
@@ -38,14 +41,33 @@ class TranscriptPage extends Component {
     render() {
         return (
             <>
-                <div>
-                    <h1>Edit Text for WordPress</h1>
-                    <TranscriptEditor />
-                </div>
-                <div>
-                    <button onClick={this.handleCancelButton}>Cancel</button>
-                    <button onClick={this.handleClick}>Submit Edits</button>
-                </div>
+                <Grid 
+                    container
+                    direction="row"
+                    spacing={16}
+                    marginLeft='5px'
+                    marginRight='5px'
+                >
+                    
+                    <Grid item>
+                        <Typography variant="h6" gutterBottom>
+                            Edit your transcription for WordPress.
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Paper>
+                            <TranscriptEditor />
+                        </Paper>
+                        
+                    </Grid>
+                    <Grid item>
+                        <button className="myButton" onClick={this.handleCancelButton}>CANCEL</button>
+                    </Grid>
+                    <Grid item>
+                        <button className="myButton" onClick={this.handleClick}>SUBMIT EDITS</button>
+                    </Grid>
+                </Grid>
+                
             </>
         )
     }
