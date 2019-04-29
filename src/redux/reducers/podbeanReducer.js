@@ -1,7 +1,8 @@
 //required and also default values to post
 const podbean = (state = {
   status: 'publish',
-  type: 'public'
+  type: 'public',
+  podbean_token: false
   //if it doesn't work, check 'type'
 }, action) => {
   switch (action.type) {
@@ -23,6 +24,11 @@ const podbean = (state = {
       };
     case 'GET_PODBEAN': //this holds the file in the reducer 
       return state;
+      case 'CHANGE_PODBEAN_TOKEN':
+      return {
+        ...state,
+        podbean_token: true
+      }
     default:
       return state;
   }
