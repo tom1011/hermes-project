@@ -42,7 +42,8 @@ class TranscriptEditor extends Component {
                     value={this.state.text}
                     modules={this.modules}
                     formats={this.formats}
-                    onChange={this.handleChange}>
+                    // onChange={this.handleChange}
+                >
                 </ReactQuill>
             </div>
         )
