@@ -14,11 +14,11 @@ const styles = theme => ({
         flexWrap: 'wrap',
         [theme.breakpoints.up("md")]: {
             width: '800px'
-        }, 
+        },
         [theme.breakpoints.down("sm")]: {
             width: '600px'
-        },  
-        
+        },
+
     },
     textField: {
         marginLeft: theme.spacing.unit,
@@ -34,49 +34,56 @@ const styles = theme => ({
 });
 
 class EditPodBeanForm extends Component {
-//held in reducer and in local state and are required by the apis to work
-    state = {podbean: {
-        piece: '',
-        title: '',
-        description: '',
+    //held in reducer and in local state and are required by the apis to work
+    state = {
+        podbean: {
+            piece: '',
+            title: '',
+            description: this.props.reduxState.editReducer.formReducer.podbean.description,
+        }
     }
-    }
-    testFillTitle=(e)=>{
+    testFillTitle = (e) => {
         this.setState({
             ...this.state,
-            podbean: { ...this.state.podbean,
-                title: 'All about doors',}
+            podbean: {
+                ...this.state.podbean,
+                title: 'All about doors',
+            }
         })
     }
-  
-        testFillPiece=(e)=>{
-            this.setState({
-                ...this.state,
-                podbean: { ...this.state.form,
-                   piece: 'Gates, do they count?',}
-            })
-        }
-        testFillDescription=(e)=>{
-            this.setState({
-                ...this.state,
-                podbean: { ...this.state.form,
-                   description: 'We discuss the definition of gates as they relate to doors and other portals into the home.',}
-            })
-        }
+
+    testFillPiece = (e) => {
+        this.setState({
+            ...this.state,
+            podbean: {
+                ...this.state.podbean,
+                piece: 'Gates, do they count?',
+            }
+        })
+    }
+    testFillDescription = (e) => {
+        this.setState({
+            ...this.state,
+            podbean: {
+                ...this.state.podbean,
+                description: 'We discuss the definition of gates as they relate to doors and other portals into the home.',
+            }
+        })
+    }
     handleChange = (key) => (event) => {
         console.log('event happened')
         this.setState({
             ...this.state,
             podbean: {
-            ...this.state.podbean,
-            [key]: event.target.value,
+                ...this.props.state.podbean,
+                [key]: event.target.value,
             }
         });
         console.log(this.state.podbean.key)
-        this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean.key})
+        // this.props.dispatch({ type: "SET_PODBEAN", payload: this.state.podbean.key })
     }
 
-//when button is hit to save the data is sent to the reducer
+    //when button is hit to save the data is sent to the reducer
     addNewPodcast = (event) => {
         event.preventDefault();
         this.props.dispatch({ type: 'UPDATE_PODBEAN', payload: this.state })
@@ -85,10 +92,10 @@ class EditPodBeanForm extends Component {
 
     //this did-mount is to get the reducer's information 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_PODBEAN'})
+        this.props.dispatch({ type: 'GET_PODBEAN' })
     }
 
-//form with inputfields 
+    //form with inputfields 
     render() {
         const { classes } = this.props;
 
@@ -105,7 +112,7 @@ class EditPodBeanForm extends Component {
                             Enter the required information for Podbean.
                         </Typography>
                     </Grid>
-                    
+
                     <Grid item xs={12} >
                         <form className={classes.containerPodbean}>
                             <Grid item item xs={12}>
@@ -113,34 +120,36 @@ class EditPodBeanForm extends Component {
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
-                                <TextField 
+                                <TextField
                                     id="piece"
                                     label="Name of Episode"
                                     fullWidth
+                                    multiline
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.podbean.piece}
-                                    onChange={this.handleChange('titleOfPiece')}
+                                    value={this.props.state.podbean.piece}
+                                    onChange={this.props.handleChangeP('piece')}
 
                                 />
-                                       <button onClick={this.testFillPiece}>      </button> 
+                                <button className='sButton' onClick={this.testFillPiece}>   big button   </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
-                                <TextField 
+                                <TextField
                                     id="title-input"
-                                    label="Name of Podcast" 
-                                    fullWidth      
+                                    label="Name of Podcast"
+                                    fullWidth
+                                    multiline
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.podbean.title}
-                                    onChange={this.handleChange('titleOfPodbean')}
+                                    value={this.props.state.podbean.title}
+                                    onChange={this.props.handleChangeP('title')}
                                 />
-                                      <button onClick={this.testFillTitle}>      </button>
+                                <button className='sButton' onClick={this.testFillTitle}>   big button   </button>
                             </Grid>
-                                
+
                             <Grid item xs={12}>
-                                <TextField 
+                                <TextField
                                     id="description-input"
                                     label="Description of Episode"
                                     fullWidth
@@ -151,10 +160,10 @@ class EditPodBeanForm extends Component {
                                     margin="normal"
                                     className={classes.textField}
 
-                                    value={this.state.podbean.description}                                    
-onChange={this.handleChange('description')}
-                                    />
-                                      <button onClick={this.testFillDescription}>      </button>
+                                    value={this.props.state.podbean.description}
+                                    onChange={this.props.handleChangeP('description')}
+                                />
+                                <button className='sButton' onClick={this.testFillDescription}>   big button   </button>
                             </Grid>
                         </form>
                     </Grid>
