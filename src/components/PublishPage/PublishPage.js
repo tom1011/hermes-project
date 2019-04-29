@@ -29,25 +29,24 @@ class PublishPage extends Component {
                         <div className="bigHermImage" >
                             <img src="images/icons/bigherm.png" alt="HERMES" />
                         </div>
-                            <div className="buttonLeft">
-                                <div>
-                                  <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer"> 
+                        <div className="buttonLeft">
+                            <div>
+                                <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer">
                                     <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
-                                  </a>
-                                </div>
-          
-                                <div>
-                                   <a target="_blank" href="https://junomercury.home.blog/2019/04/26/gates-do-they-count/"rel="noopener noreferrer"> 
-                                    <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
-                                   </a>                               
-                                </div>
+                                </a>
                             </div>
-                        <br />
-                      </div>
-                  </div>
-                <div className="publishButton">
-                    <button onClick={this.handleClick}>Start Another Project</button>
+                            <div>
+                                <a target="_blank" href="https://junomercury.home.blog/2019/04/26/gates-do-they-count/" rel="noopener noreferrer">
+                                    <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
+                                </a>
+                            </div>
+                            <div className="publishButton">
+                                <button onClick={this.handleClick}>Start Another Project</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </>
         )
     }

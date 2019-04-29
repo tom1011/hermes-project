@@ -22,7 +22,7 @@ const styles = theme => ({
         [theme.breakpoints.down("sm")]: {
             width: '600px'
         },  
-        height: '550px',
+        height: '600px',
        
     },
     textField: {
@@ -140,7 +140,7 @@ testFillBlog=(e)=>{
                 >
                     <Grid item xs={12}>
                         
-                        <p>Enter the required information for WordPress.</p>
+                        <h4 className="textFontEditPage">Enter the required information for WordPress.</h4>
                         
                     </Grid>
 
@@ -201,7 +201,9 @@ testFillBlog=(e)=>{
                                     value={this.props.state.wordpress.categories}
                                     onChange={this.props.handleChangeW('categories')}
                                 />
+
                                        <button className='sButton' onClick={this.testFillCategories}>  big button   </button> 
+
                             </Grid>
 
                             <Grid item xs={12}>

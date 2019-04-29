@@ -1,11 +1,14 @@
 body{
     height: 2000px;
 }
-.sButton{
 
+
+
+  .sButton{
     background: transparent;
     border: none !important;
     color: white
+
 }
 /* .podbean-form {
     position: absolute;

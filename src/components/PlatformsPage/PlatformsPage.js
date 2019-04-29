@@ -51,6 +51,7 @@ class PlatformsPage extends Component {
                     <div className="box">
                         <h2 className="platform-heading-roboto">
                             SELECT PLATFORM
+
                         </h2>
                         <h3 className="platform-heading">
                             Where would you like to post?
@@ -61,21 +62,17 @@ class PlatformsPage extends Component {
                                 <div className="boxHeader">
                                     <img className="icons" src="images/icons/BLOG.png" alt="blog" />
                                     Blog
-                        </div>
-                                {/* <p className="line"></p> */}
+                           </div>
                                 <div className="checkBox">
                                     <input className="checkboxSquare" type="checkbox" id="WordPress" name="WordPress" />
                                     <label className="platformImages" htmlFor="WordPress" > <img src="images/logo/wordpress.png" alt="WordPress Logo" /></label>
                                 </div>
                             </div>
-
-
                             <div className="platform-grid-item2">
                                 <div className="boxHeader">
                                     <img className="icons" src="images/icons/MICROPHONE.png" alt="Podcast" />
                                     Podcast
-                        </div>
-                                {/* <p className="line"></p> */}
+                            </div>
                                 <div className="checkBox">
                                     <input className="checkboxSquare" type="checkbox" id="PodBean" name="PodBean" />
                                     <label className="platformImagesPod" htmlFor="PodBean"> <img src="images/logo/PodBean.png" alt="podbean logo" /> </label>
@@ -96,11 +93,9 @@ class PlatformsPage extends Component {
                     </div> */}
 
                     </div>
-
                     <div>
                         <button className="myButton2" onClick={this.handleCancelButton}>Cancel</button>
                         <button className="myButton" onClick={this.handleSelectPlatformsButton}>START POSTING</button>
-
                     </div>
                 </div>
             </>
