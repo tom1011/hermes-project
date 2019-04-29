@@ -123,7 +123,7 @@ class EditPodBeanForm extends Component {
                                     onChange={this.handleChange('titleOfPiece')}
 
                                 />
-                                       <button onClick={this.testFillPiece}>      </button> 
+                                <button onClick={this.testFillPiece}>      </button> 
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
