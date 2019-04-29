@@ -61,11 +61,12 @@ class EditPage extends Component {
                         <Grid
                             container
                             direction="column"
+                            spacing={40}
                         >
-                            <Grid item>
+                            <Grid item xs={12}>
                                 <EditPodBeanForm />
                             </Grid>
-                            <Grid item>
+                            <Grid item xs={12}>
                                 <EditWordPressForm />
                             </Grid>
                         </Grid>
