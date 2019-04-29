@@ -41,8 +41,11 @@ class TranscriptEditor extends Component {
                 <ReactQuill theme="snow"
                     value={this.state.text}
                     modules={this.modules}
-                    formats={this.formats}>
-                    
+
+                    formats={this.formats}
+                    // onChange={this.handleChange}
+                >
+
                 </ReactQuill>
             </div>
         )
