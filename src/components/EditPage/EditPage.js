@@ -4,9 +4,12 @@ import EditPodBeanForm from './EditPodBeanForm';
 import EditWordPressForm from './EditWordPressForm';
 import StepperBar from '../StepperBar/StepperBar';
 import swal from 'sweetalert';
-import Grid from '@material-ui/core/Grid';
-import { Redirect } from 'react-router-dom'
+
+// import Grid from '@material-ui/core/Grid';
+
 import './EditPage.css';
+import Grid from '@material-ui/core/Grid';
+
 
 class EditPage extends Component {
     
@@ -96,26 +99,52 @@ class EditPage extends Component {
             <>
                 <div>
                 <StepperBar activeStep='3'></StepperBar>
-                    <h2>Edit Page</h2>
+                    
 
                 </div>
-                {/* <Grid
+                <Grid
                     container
                     alignItems="center"
                     direction="column"
-                    justify="space-evenly"
-                > */}
-                    <div>
-                        {/* <Grid item xs={12}> */}
-                            <EditPodBeanForm state={this.state} handleChangeP={this.handleChangeP} />
-                        {/* </Grid> */}
-                        {/* <Grid item xs={12}> */}
-                            <EditWordPressForm state={this.state} handleDispatch={this.handleRedirect} handleChangeW={this.handleChangeW}/>
-                        {/* </Grid> */}
-                        <button onClick={this.handleCancelButton}>Cancel</button>
-                        <button onClick={this.handleClick}>Next</button>
-                    </div>
-                {/* </Grid> */}
+
+
+
+                >
+                    <Grid item >
+                        <Grid
+                            container
+                            direction="column"
+                            spacing={40}
+                        >
+                            <Grid item xs={12}>
+                                <EditPodBeanForm state={this.state}/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <EditWordPressForm state={this.state} />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item >
+                        <Grid 
+                            container
+                            alignItems="center"
+                            direction="row" 
+                            spacing={16}
+                        >
+                            <Grid item>
+                                <button className="myButton"  onClick={this.handleCancelButton}>CANCEL</button>
+                            </Grid>
+                            <Grid item>
+                                <button className="myButton"  onClick={this.handleClick}>FINISH EDITING</button>
+                            </Grid>
+                        </Grid>
+                        
+                        
+                    </Grid>
+                    
+                </Grid>
+
             </>
         )
     }
