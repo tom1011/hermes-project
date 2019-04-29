@@ -14,7 +14,7 @@ class TranscriptPage extends Component {
     handleClick = (event) => {
         event.preventDefault();
         console.log('button clicked');
-        this.props.history.push('/edit-page');
+        this.props.handleClose()
     }
 
     handleCancelButton = () => {

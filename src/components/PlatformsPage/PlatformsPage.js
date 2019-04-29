@@ -51,10 +51,12 @@ class PlatformsPage extends Component {
                     <div className="box">
                         <h2 className="platform-heading-roboto">
                             SELECT PLATFORM
-                       </h2>
+
+                        </h2>
                         <h3 className="platform-heading">
                             Where would you like to post?
-                    </h3>
+                        </h3>
+
                         <div className="item-box  platform-grid-container">
                             <div className="platform-grid-item1">
                                 <div className="boxHeader">
