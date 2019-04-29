@@ -5,6 +5,47 @@ import swal from 'sweetalert';
 import '../App/App.css';
 import StepperBar from '../StepperBar/StepperBar'
 import './Upload.css';
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+
+
+const styles = theme => ({
+    containerUpload: {
+        display: 'flex',
+        background: 'white',
+        flexWrap: 'wrap',
+        [theme.breakpoints.up("sm")]: {
+            width: '600px'
+        },
+        height: '200px',
+        justify:"center",
+
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        // width: 200,
+    },
+    // inputFile: {
+    //     width: '0.1px',
+    //     height: '0.1px',
+    //     opacity: '0',
+    //     overflow: 'hidden',
+    //     position: 'absolute',
+    //     zIndex: '- 1',
+    // },
+    // inputLabel: {
+    //     fontSize: '1.25em',
+    //     fontWeight: '700',
+    //     color: 'white',
+    //     backgroundColor: 'black',
+    //     display: 'inline-block'
+    // }
+    
+});
+
+
 class UploadPage extends Component {
     
     state = {
@@ -69,29 +110,65 @@ class UploadPage extends Component {
     }
     
     render() {
+        const { classes } = this.props;
+
         return (
 
-            <div>
+            <>
                 <StepperBar activeStep='2'></StepperBar>
-                
-                <form action="/googleCloud/upload" encType="multipart/form-data" method="POST" onSubmit={this.uploadRequest} >
-                        <label htmlFor="userFile">Choose file:</label>
-                        <input
-                            id="userFile"
-                            type="file"
-                            name="userFile"
-                            onChange={this.handleOnChange}
-                        />
-                    <div>
-                    <button onClick={this.handleCancelButton}>Cancel</button>
-                    <input type="submit" value="Upload" />
-                    </div>  
-                </form>                  
-            </div>
+
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <Grid item>
+                        <form
+                            className={classes.containerUpload}
+                            action="/googleCloud/upload"
+                            encType="multipart/form-data"
+                            method="POST"
+                            onSubmit={this.uploadRequest}
+                        >
+                            <Grid item xs={12}>
+                                
+                                <input
+                                        id="userFile"
+                                        type="file"
+                                        name="userFile"
+                                        onChange={this.handleOnChange} 
+                                        className="inputFile"                                      
+                                    />
+                                
+                                <label 
+                                    htmlFor="userFile"
+                                    className="inputLabel"
+                                >
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" /></svg>
+                                    </span>
+                                    Choose File
+                                </label>
+                                
+                            </Grid>
+                            
+                            <Grid item xs={12}>
+                                
+                                <button className="myButton" onClick={this.handleCancelButton}>CANCEL</button>
+                                <input className="myButton" type="submit" value="UPLOAD" />
+                                   
+                            </Grid>
+                            
+                        </form>  
+                    </Grid>
+                                    
+            </Grid>
+            </>
         );
     };
 };
 const mapReduxStateToProps = reduxState => ({
     reduxState
 });
-export default connect(mapReduxStateToProps)(UploadPage);
+export default connect(mapReduxStateToProps)(withStyles(styles)(UploadPage));

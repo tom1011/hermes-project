@@ -48,14 +48,15 @@ class EditPage extends Component {
             <>
                 <div>
                 <StepperBar activeStep='3'></StepperBar>
-                    <h2>Edit Page</h2>
+                    
 
                 </div>
                 <Grid
                     container
                     alignItems="center"
                     direction="column"
-                    
+
+
                 >
                     <Grid item >
                         <Grid
