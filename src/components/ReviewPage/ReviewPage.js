@@ -54,13 +54,14 @@ class ReviewPage extends Component {
                     <StepperBar activeStep='4'></StepperBar>
                     <div className="overallBox">
                         <h3 className="review-heading">Review sites to be published to</h3>
-
+                        <center>
                         <div className="grid-container">
                             <div className="reviewBox">
 
                                 <img className="imageBox" src="images/logo/box_icon_review.png" alt="image logo" />
                             </div>
                         </div>
+                        </center>
                         <div className="buttonsReview">
                             <button className="myButton" onClick={this.handleCancelButton}>Cancel</button>
                             <button className="myButton" onClick={this.handleClickEdit}>Edit</button>
