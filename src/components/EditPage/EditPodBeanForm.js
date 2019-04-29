@@ -35,18 +35,45 @@ const styles = theme => ({
 
 class EditPodBeanForm extends Component {
 //held in reducer and in local state and are required by the apis to work
-    state = {
+    state = {podbean: {
         piece: '',
-        title: this.props.reduxState.podbean.title,
-        description: this.props.reduxState.podbean.description,
+        title: '',
+        description: '',
     }
-
+    }
+    testFillTitle=(e)=>{
+        this.setState({
+            ...this.state,
+            podbean: { ...this.state.podbean,
+                title: 'Gates, do they count?',}
+        })
+    }
+  
+        testFillPiece=(e)=>{
+            this.setState({
+                ...this.state,
+                podbean: { ...this.state.form,
+                   piece: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
+            })
+        }
+        testFillDescription=(e)=>{
+            this.setState({
+                ...this.state,
+                podbean: { ...this.state.form,
+                   description: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+            })
+        }
     handleChange = (key) => (event) => {
         console.log('event happened')
         this.setState({
             ...this.state,
+            podbean: {
+            ...this.state.podbean,
             [key]: event.target.value,
+            }
         });
+        console.log(this.state.podbean.key)
+        this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean.key})
     }
 
 //when button is hit to save the data is sent to the reducer
@@ -67,6 +94,7 @@ class EditPodBeanForm extends Component {
 
         return (
             <>
+
                 <Grid
                     container
                     direction="column"
@@ -91,9 +119,11 @@ class EditPodBeanForm extends Component {
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.titleOfPiece}
+                                    value={this.state.podbean.piece}
                                     onChange={this.handleChange('titleOfPiece')}
+
                                 />
+                                       <button onClick={this.testFillPiece}>      </button> 
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -103,9 +133,10 @@ class EditPodBeanForm extends Component {
                                     fullWidth      
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.titleOfPodbean}
+                                    value={this.state.podbean.title}
                                     onChange={this.handleChange('titleOfPodbean')}
                                 />
+                                      <button onClick={this.testFillTitle}>      </button>
                             </Grid>
                                 
                             <Grid item xs={12}>
@@ -119,13 +150,16 @@ class EditPodBeanForm extends Component {
                                     variant="outlined"
                                     margin="normal"
                                     className={classes.textField}
-                                    value={this.state.description}
-                                    onChange={this.handleChange('description')}
+
+                                    value={this.state.podbean.description}                                    
+onChange={this.handleChange('description')}
                                     />
+                                      <button onClick={this.testFillDescription}>      </button>
                             </Grid>
                         </form>
                     </Grid>
                 </Grid>
+
             </>
         )
     }

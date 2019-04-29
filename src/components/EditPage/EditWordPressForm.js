@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
+
+import SimpleModalWrapped from './transcriptModal'
+
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -36,16 +39,17 @@ const styles = theme => ({
 });
 
 
+
 class EditWordPressForm extends Component {
     //held in reducer and in local state and is required for the Api to work
 
     state = {
         redirect: false,
-        date:'', //need
+        date: '', //need
         title: '', //need
         content: '',  //need
-        excerpt:'', //need
-        slug:'', //need
+        excerpt: '', //need
+        slug: '', //need
         author: '',//need
         publicize_message: '',//need
         status: '',//need
@@ -53,59 +57,82 @@ class EditWordPressForm extends Component {
         password: '',//need
         parent: '',//need
         categories: '',//need
-        tags: '',//need
+       
         featured_image: '',//need
         media: '',//need
         media_urls: '',//need
         comments_open: '',//need
         menu_order: '',//need
-        transcription: this.props.reduxStore.transcriptReducer.transcription
+        transcription: this.props.reduxStore.editReducer.transcriptReducer.transcription,
+        form:{
+            title: '',
+blog: '',
+tags:'',
+categories:'',
+        }
+     
+        
     }
 
-        
-
-    handleChange = (key) => (event) => {
-        console.log('event happened')
+  
+   
+testFillTitle=(e)=>{
+    this.setState({
+        ...this.state,
+        form: { ...this.state.form,
+            title: 'Gates, do they count?',}
+    })
+}
+testFillBlog=(e)=>{
+    this.setState({
+        ...this.state,
+        form: { ...this.state.form,
+            blog: 'All About Doors',}
+    })
+}
+    testFillTags=(e)=>{
         this.setState({
             ...this.state,
-            [key]: event.target.value,
-        });
-    }
-
-    addNewBlog = (event) => {
-        event.preventDefault();
-        //this.props.dispatch({ type: 'ADD_DOG', payload: this.state })
-        console.log(this.state);
-
-        this.setState({
-            title_of_blog: '',
-            blog_name: '',
-            tags: '',
-            categories: '',
-            transcription: '',
+            form: { ...this.state.form,
+               tags: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
         })
     }
+    testFillCategories=(e)=>{
+        this.setState({
+            ...this.state,
+            form: { ...this.state.form,
+               categories: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+        })
+    }
+   
 
-    handleClickEdit = (event) => {
-        event.preventDefault();
+    handleRedirect = (event) => {
+        // event.preventDefault();
         console.log('edit transcript button clicked');
-        
-            this.setState({
-              redirect: true
-            })
-          
+        this.props.dispatch({type: "SET_WORDPRESS", payload: this.props.state.form})
+        this.props.dispatch({type: "SET_PODBEAN", payload: this.props.state.podbean})
+        this.setState({
+            ...this.state,
+            redirect: 'true',
+        })
+
         // this.props.history.push('../TranscriptPage/TranscriptPage.js');
     }
 
     render() {
+<
+        console.log(this.state.form)
+
         const { classes } = this.props;
+
         //console.log(this.props.history);
-        if (this.state.redirect) {
+        if (this.state.redirect==='true') {
             return <Redirect to='/transcript-page' />
-          }
-        
+        }
+
         return (
             <>
+
                 <Grid
                     container
                     direction="column"
@@ -131,9 +158,11 @@ class EditWordPressForm extends Component {
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.blog_name}
+                                    value=={this.state.form.blog}
                                     onChange={this.handleChange('blog_name')}
                                 />
+                                      <button onClick={this.testFillBlog}>      </button>
+      
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -143,9 +172,10 @@ class EditWordPressForm extends Component {
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.title_of_blog}
+                                    value={this.state.form.title}
                                     onChange={this.handleChange('title_of_blog')}
                                 />
+                                       <button onClick={this.testFillTitle}>      </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -155,9 +185,10 @@ class EditWordPressForm extends Component {
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.tags}
+                                    value={this.state.form.tags}
                                     onChange={this.handleChange('tags')}
                                 />
+                                      <button onClick={this.testFillTags}>      </button>
                             </Grid>
 
                             <Grid item xs={12} sm={6}>
@@ -167,9 +198,10 @@ class EditWordPressForm extends Component {
                                     fullWidth
                                     variant="outlined"
                                     margin="normal"
-                                    value={this.state.categories}
+                                    value={this.state.form.categories}
                                     onChange={this.handleChange('categories')}
                                 />
+                                       <button onClick={this.testFillTags}>      </button> 
                             </Grid>
 
                             <Grid item xs={12}>
@@ -194,6 +226,7 @@ class EditWordPressForm extends Component {
                         </form>
                     </Grid>
                 </Grid>
+
             </>
         )
     }
