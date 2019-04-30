@@ -35,28 +35,28 @@ class EditPage extends Component {
         this.setState({
             ...this.state,
             wordpress: { ...this.state.wordpress,
-                title: 'Gates, do they count?',}
+                title: 'Manatees: Starting to Recover',}
         })
     }
     testFillBlog=(e)=>{
         this.setState({
             ...this.state,
             wordpress: { ...this.state.wordpress,
-                blog: 'All About Doors',}
+                blog: 'The World We Live In',}
         })
     }
         testFillTags=(e)=>{
             this.setState({
                 ...this.state,
                 wordpress: { ...this.state.wordpress,
-                   tags: 'Doors,'+' '+ 'Gates,'+ ' '+ 'Lies,',}
+                   tags: 'Environment,' + ' ' + 'Sea life,' + ' ' + 'Endangered,',}
             })
         }
         testFillCategories=(e)=>{
             this.setState({
                 ...this.state,
                 wordpress: { ...this.state.wordpress,
-                   categories: 'The neverending, and unstoppable marching of time,' + ' ' + 'Sharks',}
+                   categories: 'Environmental Efforts' + ' ' + 'Endangered Species List',}
             })
         }
         testFillTitleP = (e) => {
@@ -64,7 +64,7 @@ class EditPage extends Component {
                 ...this.state,
                 podbean: {
                     ...this.state.podbean,
-                    title: 'All about doors',
+                    title: 'The World We Live In',
                 }
             })
         }
@@ -74,7 +74,7 @@ class EditPage extends Component {
                 ...this.state,
                 podbean: {
                     ...this.state.podbean,
-                    piece: 'Gates, do they count?',
+                    piece: 'Manatees: Starting to Recover',
                 }
             })
         }
@@ -83,7 +83,7 @@ class EditPage extends Component {
                 ...this.state,
                 podbean: {
                     ...this.state.podbean,
-                    description: 'We discuss the definition of gates as they relate to doors and other portals into the home.',
+                    description: 'We discuss how manatees have been taken off the endangered species list and added to the targeted list. Are they safe though?',
                 }
             })
         }
