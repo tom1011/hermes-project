@@ -7,7 +7,8 @@ body{
   .sButton{
     background: transparent;
     border: none !important;
-    color: white
+    color: white;
+    outline:none;
 
 }
 /* .podbean-form {

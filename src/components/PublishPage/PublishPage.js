@@ -62,14 +62,14 @@ class PublishPage extends Component {
                                     </Grid>
                                     <Grid item>
                                         <div className="platform-link">
-                                            <a target="_blank" href="https://leoronone.podbean.com/e/gates-do-they-count/" rel="noopener noreferrer">
+                                            <a target="_blank" href="https://leoronone.podbean.com/e/episode-28-manatees-starting-to-recover/" rel="noopener noreferrer">
                                                 <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
                                             </a>
                                         </div>
                                     </Grid>
                                     <Grid item >
                                         <div className="platform-link">
-                                            <a  target="_blank" href="https://junomercury.home.blog/2019/04/26/gates-do-they-count/" rel="noopener noreferrer">
+                                            <a  target="_blank" href="https://junomercury.home.blog/2019/04/30/manatees-starting-to-recover/" rel="noopener noreferrer">
                                                 <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                                             </a>
                                         </div>
