@@ -23,8 +23,8 @@ class ConnectPage extends Component {
     render() {
         let wordpressRedirectUrl = 'http://localhost:5000/wordpress/callback_wordpress`'
         let wordpressClientId = '65413'
-        let podbeanRedirectUrl = ''
-        let podbeanClientID = ''
+        let podbeanRedirectUrl = 'https://hermes-host.herokuapp.com/podbean/callback_podbean'
+        let podbeanClientID = '7ae314124aac5c7de467d'
         return (
             <>
                 <Grid
@@ -41,7 +41,6 @@ class ConnectPage extends Component {
                             direction="column"
                             spacing={24}
                         >
-                            
                             <Grid item sm={12}
                                 onClick={this.handlePodBeanClick}
                             >
@@ -49,7 +48,7 @@ class ConnectPage extends Component {
                             
                              <div className="connected">
                              CONNECTED
-                             <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                             <a href={`https://api.podbean.com/v1/dialog/oauth?redirect_uri=${podbeanRedirectUrl}&scope=episode_publish&response_type=code&client_id=${podbeanClientID}`}>
                                         
                              <div className="image-div">
                              <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
@@ -59,7 +58,7 @@ class ConnectPage extends Component {
                                 :
                                 <div className="connect">
                              CONNECT TO
-                             <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                             <a href={`https://api.podbean.com/v1/dialog/oauth?redirect_uri=${podbeanRedirectUrl}&scope=episode_publish&response_type=code&client_id=${podbeanClientID}`}>
                                         
                              <div className="image-div">
                              <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
