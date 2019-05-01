@@ -6,7 +6,7 @@ import './ConnectPage.css';
 import Grid from '@material-ui/core/Grid';
 
 class ConnectPage extends Component {
-
+     
     handleStartPostButton = (event) => {
         console.log('handleStartPostButton hit');
         // direct to next step: Select Platform
@@ -17,15 +17,14 @@ class ConnectPage extends Component {
     componentDidMount() {
         this.props.dispatch({ type: 'CHECK_TOKEN' })
     }
-    handlePodBeanClick = () => {
-        this.props.dispatch({ type: 'CHANGE_PODBEAN_TOKEN' })
-    }
 
     // this function is too make a hardcoded conditional rendering work for our demo we should get rid of this after presentation
 
     render() {
-        console.log(this.props.reduxState.podbean.podbean_token)
-        
+        let wordpressRedirectUrl = 'http://localhost:5000/wordpress/callback_wordpress`'
+        let wordpressClientId = '65413'
+        let podbeanRedirectUrl = 'https://hermes-host.herokuapp.com/podbean/callback_podbean'
+        let podbeanClientID = '7ae314124aac5c7de467d'
         return (
             <>
                 <Grid
@@ -42,7 +41,6 @@ class ConnectPage extends Component {
                             direction="column"
                             spacing={24}
                         >
-                            
                             <Grid item sm={12}
                                 onClick={this.handlePodBeanClick}
                             >
@@ -50,7 +48,7 @@ class ConnectPage extends Component {
                             
                              <div className="connected">
                              CONNECTED
-                             <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                             <a href={`https://api.podbean.com/v1/dialog/oauth?redirect_uri=${podbeanRedirectUrl}&scope=episode_publish&response_type=code&client_id=${podbeanClientID}`}>
                                         
                              <div className="image-div">
                              <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
@@ -60,7 +58,7 @@ class ConnectPage extends Component {
                                 :
                                 <div className="connect">
                              CONNECT TO
-                             <a href='https://api.podbean.com/v1/dialog/oauth?redirect_uri=https://hermes-host.herokuapp.com/podbean/callback_podbean&scope=episode_publish&response_type=code&client_id=7ae314124aac5c7de467d'>
+                             <a href={`https://api.podbean.com/v1/dialog/oauth?redirect_uri=${podbeanRedirectUrl}&scope=episode_publish&response_type=code&client_id=${podbeanClientID}`}>
                                         
                              <div className="image-div">
                              <img className="icons" src="images/logo/podbean.png" alt="podbean_link" />
@@ -72,11 +70,10 @@ class ConnectPage extends Component {
                             <Grid item sm={12}
                                 onClick={this.handleWordPressClick}
                             >
-
                             {this.props.reduxState.wordpress.wordpress_token ?
                             <div className="connected">
                             CONNECTED
-                                <a href='https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
+                                <a href={`https://public-api.wordpress.com/oauth2/authorize?client_id=${wordpressClientId}&response_type=code&redirect_uri=${wordpressRedirectUrl}`}>
                                         <div className="image-div">
                                             <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                                         </div>
@@ -85,7 +82,7 @@ class ConnectPage extends Component {
                                 :
                                 <div className="connect">
                             CONNECT TO
-                                <a href='https://public-api.wordpress.com/oauth2/authorize?client_id=65413&response_type=code&redirect_uri=http://localhost:5000/wordpress/callback_wordpress'>
+                                <a href={`https://public-api.wordpress.com/oauth2/authorize?client_id=${wordpressClientId}&response_type=code&redirect_uri=${wordpressRedirectUrl}`}>
                                         <div className="image-div">
                                             <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                                         </div>
