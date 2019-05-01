@@ -22,13 +22,6 @@ const podbean = (state = {
         ...state,
         media: action.payload
       };
-    case 'GET_PODBEAN': //this holds the file in the reducer 
-      return state;
-      case 'CHANGE_PODBEAN_TOKEN':
-      return {
-        ...state,
-        podbean_token: true
-      }
     default:
       return state;
   }

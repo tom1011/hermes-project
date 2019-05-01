@@ -32,6 +32,27 @@ router.get('/token_check', function (req, res) {
     })
 })
 
+router.post('/put_token', function (req, res) {
+  const queryText = `SELECT * FROM "current_user";`
+  pool.query(queryText)
+    .then((result) => {
+      let userId = result.rows[0].current
+      const queryText = `SELECT * FROM "storage" WHERE "user_id" = $1;`
+      pool.query(queryText, [userId])
+        .then((results) => {
+          if (results.rowCount > 0 &&  results.rows[0].podbean) {
+            res.send(true)
+          }
+          else {
+            res.send(false)
+          }
+        })
+    })
+})
+
+
+
+
 router.get('/callback_podbean', function (req, res, next) {
   console.log('call back was hit', req.body)
   // your application requests refresh and access tokens
