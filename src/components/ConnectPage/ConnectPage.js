@@ -21,7 +21,7 @@ class ConnectPage extends Component {
     // this function is too make a hardcoded conditional rendering work for our demo we should get rid of this after presentation
 
     render() {
-        let wordpressRedirectUrl = 'http://hermes-group-david.herokuapp.com/wordpress/callback_wordpress`'
+        let wordpressRedirectUrl = 'https://hermes-group-david.herokuapp.com/wordpress/callback_wordpress'
         let wordpressClientId = '65413'
         let podbeanRedirectUrl = 'https://hermes-group-david.herokuapp.com/podbean/callback_podbean'
         let podbeanClientID = '7ae314124aac5c7de467d'
@@ -73,7 +73,7 @@ class ConnectPage extends Component {
                             {this.props.reduxState.wordpress.wordpress_token ?
                             <div className="connected">
                             CONNECTED
-                                <a href={`https://public-api.wordpress.com/oauth2/authorize?client_id=${wordpressClientId}&response_type=code&redirect_uri=${wordpressRedirectUrl}`}>
+                                <a href={`https://public-api.wordpress.com/oauth2/authorize?redirect_uri=${wordpressRedirectUrl}&client_id=${wordpressClientId}&response_type=code`}>
                                         <div className="image-div">
                                             <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                                         </div>
@@ -82,7 +82,7 @@ class ConnectPage extends Component {
                                 :
                                 <div className="connect">
                             CONNECT TO
-                                <a href={`https://public-api.wordpress.com/oauth2/authorize?client_id=${wordpressClientId}&response_type=code&redirect_uri=${wordpressRedirectUrl}`}>
+                                <a href={`https://public-api.wordpress.com/oauth2/authorize?redirect_uri=${wordpressRedirectUrl}&client_id=${wordpressClientId}&response_type=code`}>
                                         <div className="image-div">
                                             <img className="icons" src="images/logo/WordPress.png" alt="wordpress_link" />
                                         </div>
