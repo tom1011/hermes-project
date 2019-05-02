@@ -6,8 +6,6 @@ import SimpleModalWrapped from './transcriptModal'
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -30,44 +28,22 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
         // width: 200,
     },
-    // dense: {
-    //     marginTop: 19,
-    // },
-    // menu: {
-    //     width: 200,
-    // },
+
 });
-
-
 
 class EditWordPressForm extends Component {
     //held in reducer and in local state and is required for the Api to work
 
     state = {
         redirect: false,
-        date: '', //need
+
         title: '', //need
         content: '',  //need
-        excerpt: '', //need
-        slug: '', //need
-        author: '',//need
-        publicize_message: '',//need
-        status: '',//need
-        sticky: '',//need
-        password: '',//need
-        parent: '',//need
         categories: '',//need
-       
-        featured_image: '',//need
-        media: '',//need
-        media_urls: '',//need
-        comments_open: '',//need
-        menu_order: '',//need
+        tags: '',
+        blog: '', // I don't think we need this.
         transcription: this.props.reduxStore.editReducer.transcriptReducer.transcript,
-        
-        
-     
-        
+                
     }
     
     render() {
@@ -165,7 +141,6 @@ class EditWordPressForm extends Component {
                                     margin="normal"
                                     className={classes.textField}
                                     value={this.props.reduxStore.editReducer.transcriptReducer.transcript}
-                                    
                                 />
                             </Grid>
 
