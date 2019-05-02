@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
-const transcriptReducer = (state = {transcription: ` The plight of the Manatee has been lessened as of late. They haven't reached the numbers that we hope they haven't moved off the endangered species list. Although they are still in danger of being put back on very soon. While this is good news is it's important to note that we haven't reached a sustainable population yet and we need to continue our efforts here at Nature First and The World We Live In.  We hope to help the Manatee finally find a sustainable population where they can live and thrive without our influence, and your donations help. I hope that you can continue to donate to Nature first and to The World We Live In Podcast, so that we can help the manatee finally reach a place where they don't need our interference, where they can live in the ocean, and they can be happy without humans around making sure their population is being sustained.
-Human influence on nature, as always, as I've said many times is not my favorite, but sometimes it's necessary. For example the Manatee wouldn't be here in a sustainable place without us, so for that I thank you and appreciate all of your help.
-`}, action) => {
+const transcriptReducer = (state={transcript: `You're file is being transcribed`}, action) => {
     switch (action.type) {
       case 'SET_TRANSCRIPT':
-        return action.payload;
-    
+      
+        return {transcript: action.payload} 
+        
       default:
+      console.log(state)
         return state;
-    }
-    console.log(state)
-  };
+    
+   
+  }};
   
   const formReducer = (state = {podbean: {piece: '',
 title: '',

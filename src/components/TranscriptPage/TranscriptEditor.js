@@ -35,11 +35,12 @@ class TranscriptEditor extends Component {
     ]
 
     render() {
+        console.log(this.props.reduxStore.editReducer.transcriptReducer.transcription)
         return (
             <div>
 
                 <ReactQuill theme="snow"
-                    value={this.state.text}
+                    value={this.props.reduxStore.editReducer.transcriptReducer.transcription}
                     modules={this.modules}
 
                     formats={this.formats}

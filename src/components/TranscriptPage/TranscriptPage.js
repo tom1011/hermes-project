@@ -7,13 +7,17 @@ import 'react-quill/dist/quill.snow.css';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 class TranscriptPage extends Component {
-
-    handleClick = (event) => {
+    state = {
+        text: this.props.reduxStore.editReducer.transcriptReducer.transcript,
+    }
+    handleClick = (event, text, delta, source, editor) => {
         event.preventDefault();
-        console.log('button clicked');
+      this.props.dispatch({type: "SET_TRANSCRIPT", payload: this.state.text})
         this.props.handleClose()
     }
 
@@ -38,17 +42,46 @@ class TranscriptPage extends Component {
             });
     }
 
+
+
+
+
+    handleChange=( text, delta, source, editor) => {
+       
+        const content = editor.getText(text);
+        this.setState({ ...this.state,
+            text: content });
+        console.log(content)
+    }
+
+    modules = {
+        toolbar: [
+            [{ 'header': [1, 2, false] }],
+            ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+            ['link', 'image'],
+        ],
+    }
+
+    formats = [
+        'header',
+        'bold', 'italic', 'underline', 'strike', 'blockquote',
+        'list', 'bullet', 'indent',
+        'link', 'image'
+    ]
     render() {
+        // console.log('button clicked', this.editor.getText());
+        console.log(this.state)
         return (
-            <>
-                <Grid 
+            <div>
+                <Grid
                     container
                     direction="row"
                     spacing={16}
                     marginLeft='5px'
                     marginRight='5px'
                 >
-                    
+
                     <Grid item>
                         <Typography variant="h6" gutterBottom>
                             Edit your transcription for WordPress.
@@ -56,9 +89,23 @@ class TranscriptPage extends Component {
                     </Grid>
                     <Grid item>
                         <Paper>
-                            <TranscriptEditor />
+
+
+                            <ReactQuill theme="snow"
+                                ref='editor'
+                                defaultValue={this.state.text}
+                                modules={this.modules}
+
+                                formats={this.formats}
+                                onChange={this.handleChange}
+                            >
+
+                            </ReactQuill>
+
+
+
                         </Paper>
-                        
+
                     </Grid>
                     <Grid item>
                         <button className="myButton" onClick={this.handleCancelButton}>CANCEL</button>
@@ -67,14 +114,14 @@ class TranscriptPage extends Component {
                         <button className="myButton" onClick={this.handleClick}>SUBMIT EDITS</button>
                     </Grid>
                 </Grid>
-                
-            </>
+
+            </div>
         )
     }
 }
 
-const mapReduxStateToProps = reduxState => ({
-    reduxState
-});
+const mapReduxStoreToProps = (reduxStore) => ({
+    reduxStore: reduxStore
+})
 
-export default connect(mapReduxStateToProps)(TranscriptPage);
+export default connect(mapReduxStoreToProps)(TranscriptPage);
