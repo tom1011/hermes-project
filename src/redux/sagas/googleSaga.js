@@ -30,7 +30,7 @@ function* getTranscript(action){
 
         }}
 )
-console.log(response)
+console.log('responseT', response.data)
 yield put({type: "SET_TRANSCRIPT", payload: response.data})
 }
 

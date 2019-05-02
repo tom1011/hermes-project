@@ -31,64 +31,7 @@ class EditPage extends Component {
     componentDidMount = () => {
         this.props.dispatch({ type: "STEP_THREE" })
     }
-    testFillTitle=(e)=>{
-        this.setState({
-            ...this.state,
-            wordpress: { ...this.state.wordpress,
-                title: 'Manatees: Starting to Recover',}
-        })
-    }
-    testFillBlog=(e)=>{
-        this.setState({
-            ...this.state,
-            wordpress: { ...this.state.wordpress,
-                blog: 'The World We Live In',}
-        })
-    }
-        testFillTags=(e)=>{
-            this.setState({
-                ...this.state,
-                wordpress: { ...this.state.wordpress,
-                   tags: 'Environment,' + ' ' + 'Sea life,' + ' ' + 'Endangered,',}
-            })
-        }
-        testFillCategories=(e)=>{
-            this.setState({
-                ...this.state,
-                wordpress: { ...this.state.wordpress,
-                   categories: 'Environmental Efforts' + ' ' + 'Endangered Species List',}
-            })
-        }
-        testFillTitleP = (e) => {
-            this.setState({
-                ...this.state,
-                podbean: {
-                    ...this.state.podbean,
-                    title: 'The World We Live In',
-                }
-            })
-        }
-    
-        testFillPiece = (e) => {
-            this.setState({
-                ...this.state,
-                podbean: {
-                    ...this.state.podbean,
-                    piece: 'Manatees: Starting to Recover',
-                }
-            })
-        }
-        testFillDescription = (e) => {
-            this.setState({
-                ...this.state,
-                podbean: {
-                    ...this.state.podbean,
-                    description: 'We discuss how manatees have been taken off the endangered species list and added to the targeted list. Are they safe though?',
-                }
-            })
-        }
-    //need to conditionally send it either to the transcript page
-    //or to the review page
+
     handleClick = (event) => {
         this.props.dispatch({type: "SET_PODBEAN", payload: this.state.podbean})
         this.props.dispatch({type: "SET_WORDPRESS", payload: this.state.wordpress})
