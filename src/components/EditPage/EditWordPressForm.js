@@ -63,45 +63,20 @@ class EditWordPressForm extends Component {
         media_urls: '',//need
         comments_open: '',//need
         menu_order: '',//need
-        transcription: this.props.reduxStore.editReducer.transcriptReducer.transcription,
-        form:{
-            title: '',
-blog: '',
-tags:'',
-categories:'',
-        }
+        transcription: this.props.reduxStore.editReducer.transcriptReducer.transcript,
+        
+        
      
         
     }
-
-  
-   
-
-   
-
-    handleRedirect = (event) => {
-        // event.preventDefault();
-        console.log('edit transcript button clicked');
-        this.props.dispatch({type: "SET_WORDPRESS", payload: this.props.state.form})
-        this.props.dispatch({type: "SET_PODBEAN", payload: this.props.state.podbean})
-        this.setState({
-            ...this.state,
-            redirect: 'true',
-        })
-
-        // this.props.history.push('../TranscriptPage/TranscriptPage.js');
-    }
-
+    
     render() {
 
-        console.log(this.state.form)
+        console.log(this.state.transcription)
 
         const { classes } = this.props;
 
-        //console.log(this.props.history);
-        if (this.state.redirect==='true') {
-            return <Redirect to='/transcript-page' />
-        }
+       
 
         return (
             <>
@@ -189,8 +164,8 @@ categories:'',
                                     rowsMax="8"
                                     margin="normal"
                                     className={classes.textField}
-                                    value={this.state.transcription}
-                                    // onChange={this.handleChange('transcription')}
+                                    value={this.props.reduxStore.editReducer.transcriptReducer.transcript}
+                                    
                                 />
                             </Grid>
 
