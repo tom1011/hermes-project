@@ -25,7 +25,6 @@ router.get('/transcription', async function (req, res) {
   console.log(req.query)
 
   // The name for the bucket
-  const bucketName = 'hermesgroupprojectdavid';
   // The name of the audio file to transcribe
   const fileName = req.query.file;
   // local file to upload
