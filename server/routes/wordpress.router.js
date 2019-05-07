@@ -45,7 +45,6 @@ router.get('/callback_wordpress', function (req, res) {
 
   var code = req.query.code || null; // this is the token we got back form wordpress
   if (code === null || typeof (code) === 'undefined') res.send(500)
-  const queryText = `SELECT * FROM "current_user";`
   let userId = req.user.id
   if (userId === null) res.send(500);
   //attempt to grab the current user form the database
@@ -59,8 +58,7 @@ router.get('/callback_wordpress', function (req, res) {
       client_id: client_id,
       client_secret: client_secret,
       redirect_uri: redirect_uri,
-    },
-    json: true
+    }
   };
   request.post(authOptions, function (error, response, body) {
     console.log('log body', body)
@@ -70,6 +68,8 @@ router.get('/callback_wordpress', function (req, res) {
     checkStorage(access_token, userId, blogId, blogurl)// this updates the database with the token.
     res.redirect('http://hermes-group-david.herokuapp.com/#/connect')
     // to DB
+  }).catch(error => {
+    console.log('logging return error from wordpress', error)
   })
 })
 
