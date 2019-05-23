@@ -16,7 +16,7 @@ var request = require('request'); // "Request" library
 
 var client_id = '65413'; // Your client id
 var client_secret = process.env.CLIENT_SECRET_WORDPRESS; // Your secret
-var redirect_uri = 'http://hermes-group-david.herokuapp.com/wordpress/callback_wordpress'; // Your redirect uri
+var redirect_uri = 'https://hermes-group-david.herokuapp.com/wordpress/callback_wordpress'; // Your redirect uri
 
 const router = express.Router();
 
@@ -66,7 +66,7 @@ router.get('/callback_wordpress', function (req, res) {
     let blogId = body.blog_id // we will make this a global variable and update it every time they auth.
     let blogurl = body.blog_url
     checkStorage(access_token, userId, blogId, blogurl)// this updates the database with the token.
-    res.redirect('http://hermes-group-david.herokuapp.com/#/connect')
+    res.redirect('https://hermes-group-david.herokuapp.com/#/connect')
     // to DB
   }).catch(error => {
     console.log('logging return error from wordpress', error)
@@ -130,7 +130,6 @@ checkStorage = (access_token, userId, blogId, blogurl) => { //checks if user has
 }
 
 updateToStorage = (access_token, userId, blogId, blogurl) => {
-
   const queryText = `UPDATE "storage" SET "wordpress"=$1, "blog_id"=$3, "blog_url"=$4 WHERE "id"=$2;` //update access token by user id
   pool.query(queryText, [access_token, userId, blogId, blogurl]).then(() => {
     console.log('access token added to database');
