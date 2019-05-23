@@ -44,9 +44,9 @@ router.get('/callback_wordpress', function (req, res) {
   // after checking the state parameter
 
   var code = req.query.code || null; // this is the token we got back form wordpress
-  if (code === null || typeof (code) === 'undefined') res.send(500)
+  // if (code === null || typeof (code) === 'undefined') res.send(500) -- removed validation to get to see if it works
   let userId = req.user.id
-  if (userId === null) res.send(500);
+  // if (userId === null) res.send(500); -- removed balidation to see if it will work without.
   //attempt to grab the current user form the database
   //execute an authorization code grant flow using ga post
   var authOptions = {
